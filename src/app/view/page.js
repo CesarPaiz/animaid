@@ -3,6 +3,7 @@ import { AniLisInfoID } from "../../../stuff/anilist"
 import VideoPlayerMain from "../../../stuff/videoPlayer";
 import { getAnimeID } from "../../../stuff/api";
 import { getVideoChapter } from "../../../stuff/api"
+import videoQualityStractor from "../../../stuff/videoQualityStractor";
 
 export default async function Page({
     searchParams,
@@ -11,9 +12,11 @@ export default async function Page({
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
-    var apiIDname = await getAnimeID( {nombreAnime : result.data.Media.title.romaji})
-    var animeByChapter = await getVideoChapter( {nombreAnime : apiIDname})
-    
+    var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
+    var animeByChapter = await getVideoChapter({ nombreAnime: apiIDname })
+    var calidades = videoQualityStractor(animeByChapter)
+    console.log(calidades)
+
     return (
         <>
             <div className="text-white grid justify-center text-center ">
@@ -23,12 +26,11 @@ export default async function Page({
                     <span className="mt-4 ml-4 line-clamp-6 hover:line-clamp-none">{descriptionFix}</span>
                 </div>
 
-                <div className="flex align-center justify-center max-w-3xl max-h-3xl mt-4 rounded">
-                <VideoPlayerMain chapter={animeByChapter} />
+                <div className="flex align-center justify-center max-w-2xl max-h-2xl mt-4 rounded">
+                    <VideoPlayerMain videoSource={calidades} />
+                </div>
             </div>
 
-            </div>
-            
         </>
     )
 }
