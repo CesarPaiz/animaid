@@ -15,7 +15,7 @@ export default async function Main({
                     {
                         data?.data.Page.media.map(item => (
 
-                            <tr key={item.id}>
+                            <tr key={item}>
                                 <td className="w-20">
                                     <Link href={{
                                         pathname: '/view',
@@ -26,7 +26,7 @@ export default async function Main({
                                         <img src={item.coverImage.medium} height={90} width={90} className="rounded mb-4 bg-slate-800" alt="logo" />
                                     </Link>
                                 </td>
-                                <td key={item.id}>
+                                <td key={item}>
                                     <Link href={{
                                         pathname: '/view',
                                         query: {

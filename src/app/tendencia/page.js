@@ -1,8 +1,13 @@
+'use client'
 import Link from "next/link"
 import AnimeTable from "../../../stuff/animeTable"
 import { AniListTendencia } from "../../../stuff/anilist"
 import PaginationMain from "../../../stuff/pagination"
+import Image from "next/image"
 
+const imageLoader = ({ src }) => {
+    return src
+  }
 export default async function Main({
     searchParams,
 }) {
@@ -15,7 +20,7 @@ export default async function Main({
                     {
                         data?.data.Page.media.map(item => (
 
-                            <tr key={item.id}>
+                            <tr key={item}>
                                 <td className="w-20">
                                     <Link href={{
                                         pathname: '/view',
@@ -23,10 +28,10 @@ export default async function Main({
                                             query: item.id
                                         }
                                     }}>
-                                        <img src={item.coverImage.medium} height={90} width={90} className="rounded mb-4 bg-slate-800" alt="logo" />
+                                        <Image loader={imageLoader} src={item.coverImage.medium} height={90} width={90} className="rounded mb-4 bg-slate-800" alt="logo" />
                                     </Link>
                                 </td>
-                                <td key={item.id}>
+                                <td key={item}>
                                     <Link href={{
                                         pathname: '/view',
                                         query: {

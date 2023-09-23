@@ -12,7 +12,7 @@ export async function AniListSearch({ nombreAnime }) {
         pageInfo {
           total
         }
-        media(search: $Search,sort: TRENDING_DESC,isAdult: false) {
+        media(search: $Search,sort: TRENDING_DESC,isAdult: false,type: ANIME) {
           id
           title {
             romaji
@@ -58,7 +58,7 @@ export async function AniListTendencia({ pagina }) {
         pageInfo {
           total
         }
-        media(sort: TRENDING_DESC, isAdult: false) {
+        media(sort: TRENDING_DESC, isAdult: false,type: ANIME) {
           id
           title {
             romaji
@@ -100,7 +100,7 @@ export async function AniListTendencia({ pagina }) {
 export async function AniLisInfoID({ id }) {
     var query = `
 query ($Id: Int) { # Define which variables will be used in the query (id)
-  Media (id: $Id) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+  Media (id: $Id,type: ANIME) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
     id
     description
     title {

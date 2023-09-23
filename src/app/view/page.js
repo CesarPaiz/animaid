@@ -1,6 +1,8 @@
 import React from "react";
 import { AniLisInfoID } from "../../../stuff/anilist"
 import VideoPlayerMain from "../../../stuff/videoPlayer";
+import { getAnimeID } from "../../../stuff/api";
+import { getVideoChapter } from "../../../stuff/api"
 
 export default async function Page({
     searchParams,
@@ -9,6 +11,9 @@ export default async function Page({
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
+    var apiIDname = await getAnimeID( {nombreAnime : result.data.Media.title.romaji})
+    var animeByChapter = await getVideoChapter( {nombreAnime : apiIDname})
+    
     return (
         <>
             <div className="text-white grid justify-center text-center ">
@@ -19,7 +24,7 @@ export default async function Page({
                 </div>
 
                 <div className="flex align-center justify-center max-w-3xl max-h-3xl mt-4 rounded">
-                <VideoPlayerMain />
+                <VideoPlayerMain chapter={animeByChapter} />
             </div>
 
             </div>

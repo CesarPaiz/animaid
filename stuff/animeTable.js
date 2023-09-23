@@ -14,8 +14,8 @@ export default async function AnimeTable({ nombreAnime }) {
                         data?.data.Page.media.map(item => (
 
                             <tr >
-                                <td key={item.id} className="w-20">
-                                    <Link key={item.id} href={{
+                                <td key={item} className="w-20">
+                                    <Link  href={{
                                         pathname: '/view',
                                         query: {
                                             query: item.id
@@ -24,8 +24,8 @@ export default async function AnimeTable({ nombreAnime }) {
                                         <img src={item.coverImage.medium} height={90} width={90} className="rounded mb-4  bg-slate-800" alt="logo" />
                                     </Link>
                                 </td>
-                                <td key={item.id} className=' max-w-4xl'>
-                                    <Link key={item.id} href={{
+                                <td key={item} className=' max-w-4xl'>
+                                    <Link href={{
                                         pathname: '/view',
                                         query: {
                                             query: item.id
