@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import MultiQualityVideoPlayer from './videoCostructor';
 import 'plyr/dist/plyr.css';
 

@@ -9,7 +9,7 @@ class MultiQualityVideoPlayer extends Component {
     this.player = null;
     this.sources = this.props.sources;
     this.state = {
-      selectedQuality: 0, // Inicialmente seleccionamos la calidad más baja
+      selectedQuality: 2, 
     };
   }
 
@@ -18,25 +18,22 @@ class MultiQualityVideoPlayer extends Component {
       height:480,
       width:640,
       controls: true,
-      autoplay: false, // Desactiva la reproducción automática
+      autoplay: false, 
       sources: this.sources,
     };
 
-    // Crea el reproductor de video
     this.player = videojs(this.videoNode, videoOptions);
 
-    // Inicializa el reproductor
     this.player.play();
   }
 
   componentWillUnmount() {
     if (this.player) {
-      this.player.dispose(); // Limpia el reproductor de video cuando se desmonta el componente
+      this.player.dispose(); 
     }
   }
 
   handleQualityChange = (newQuality) => {
-    // Cambia la fuente del video según la calidad seleccionada
     this.player.src(this.sources[newQuality]);
     this.setState({ selectedQuality: newQuality });
   };
