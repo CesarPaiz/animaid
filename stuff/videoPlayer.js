@@ -1,17 +1,15 @@
-'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
 
 const CustomVideoPlayer = dynamic(() => import('./videoCostructor'), {
-  ssr: false, 
+  ssr: false,
 });
 
 
-const MyComponent = ({videoURLmain, subtitleURLmain}) => {
-
+const MyComponent = ({ videoURLmain, subtitleURLmain }) => {
   return (
     <div>
-      <CustomVideoPlayer subtitleURL={subtitleURLmain} videoURL={videoURLmain}/>
+      <CustomVideoPlayer subtitleURL={subtitleURLmain} videoURL={videoURLmain} />
     </div>
   );
 };

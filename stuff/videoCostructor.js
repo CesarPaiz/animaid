@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
 class VideoPlayer extends Component {
+
   render() {
     const { subtitleURL, videoURL } = this.props;
-  
     return (
       <div>
-        {videoURL && subtitleURL && (
+        {subtitleURL && videoURL && (
           <ReactPlayer
+            key={subtitleURL}
             url={videoURL}
             controls={true}
             width="100%"
