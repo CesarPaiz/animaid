@@ -15,9 +15,7 @@ export default async function Page({
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
-
     var aniInfo = await animeInfo({ nombreAnime: apiIDname })
-    
 
 
     return (
@@ -34,10 +32,10 @@ export default async function Page({
                         aniInfo?.episodes.map(item => (
 
                             <Link href={{
-                                pathname: '/view/mirar',
+                                pathname: '/anime/mirar',
                                 query: {
                                     
-                                    anime: aniInfo.id ,
+                                    anime: searchParams.query,
                                     captitulo: item.number
                                 }
                             }} key={item} className="grid justify-center text-center text-white">{item.id}</Link>

@@ -12,7 +12,6 @@ function getUrlsByQualities(qualities) {
 
 export default function videoQualityStractor(jsonQualities) {
     
-
     const urls = getUrlsByQualities(jsonQualities);
 
     if (Object.keys(urls)) {

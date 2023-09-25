@@ -16,7 +16,7 @@ export default async function AnimeTable({ nombreAnime }) {
                             <tr >
                                 <td key={item} className="w-20">
                                     <Link  href={{
-                                        pathname: '/view',
+                                        pathname: '/anime',
                                         query: {
                                             query: item.id
                                         }
@@ -26,7 +26,7 @@ export default async function AnimeTable({ nombreAnime }) {
                                 </td>
                                 <td key={item} className=' max-w-4xl'>
                                     <Link href={{
-                                        pathname: '/view',
+                                        pathname: '/anime',
                                         query: {
                                             query: item.id
                                         }

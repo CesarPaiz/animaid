@@ -23,7 +23,7 @@ export default async function Main({
                             <tr key={item}>
                                 <td className="w-20">
                                     <Link href={{
-                                        pathname: '/view',
+                                        pathname: '/anime',
                                         query: {
                                             query: item.id
                                         }
@@ -33,7 +33,7 @@ export default async function Main({
                                 </td>
                                 <td key={item}>
                                     <Link href={{
-                                        pathname: '/view',
+                                        pathname: '/anime',
                                         query: {
                                             query: item.id
                                         }
