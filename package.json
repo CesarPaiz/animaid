@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --legacy-peer-deps",
-    "build": "next build --legacy-peer-deps",
-    "start": "next start --legacy-peer-deps",
-    "lint": "next lint --legacy-peer-deps"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "anilist-node": "^1.14.0",
