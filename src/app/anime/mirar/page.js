@@ -23,7 +23,7 @@ export default async function Page({
     var aniURLFix = aniUrl.replace("https://aniwatch.to/watch/", "");
     var final = await getVideoChapter({ captitulo: aniURLFix })
     var video = await final.sources[0].url
-    var subtitles = await final.subtitles[7].url
+    var subtitles = await final.subtitles[0].url
     var totalEpisodes = parseInt(aniInfo.totalEpisodes);
     return (
 
