@@ -6,7 +6,7 @@ const CustomVideoPlayer = dynamic(() => import('./videoCostructor'), {
 });
 
 
-const MyComponent = ({ videoURLmain, subsEspanish, subsEnglish }) => {
+const MyComponent = ({  subsEspanish, subsEnglish, videoURLmain}) => {
   return (
     <div>
       <CustomVideoPlayer subsES={subsEspanish} subsEN={subsEnglish} videoURL={videoURLmain} />

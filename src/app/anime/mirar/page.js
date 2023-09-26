@@ -29,7 +29,7 @@ export default async function Page({
         <>
             <div className="text-white grid justify-center text-center ">
                 <div className="flex align-center justify-center max-w-2xl max-h-2xl mt-4 rounded">
-                    <VideoRPlayer videoURLmain={video} subsEnglish={subsEN} subsEspanish={subsES} />
+                    <VideoRPlayer subsEnglish={subsEN} subsEspanish={subsES} videoURLmain={video} />
                 </div>
                 <div className="flex align-center justify-center mt-4 rounded">
                     <PaginationMirar anime={searchParams.anime} captitulo={searchParams.captitulo} maxCaptitulo={totalEpisodes} />

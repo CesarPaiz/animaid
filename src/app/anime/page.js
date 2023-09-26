@@ -37,7 +37,7 @@ export default async function Page({
                                     anime: searchParams.query,
                                     captitulo: item.number
                                 }
-                            }} key={item} className="grid justify-center text-center text-white">{item.id}</Link>
+                            }} key={item} className="grid justify-center text-center text-white">{aniInfo.title} Captitulo {item.number}</Link>
 
                         ))
                     }
