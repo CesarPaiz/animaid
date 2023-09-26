@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
 class VideoPlayer extends Component {
-
   render() {
-    const { subtitleURL, videoURL } = this.props;
+    const { subsES, subsEN, videoURL } = this.props;
+
     return (
       <div>
-        {subtitleURL && videoURL && (
+        {videoURL && subsEN && (
           <ReactPlayer
-            key={subtitleURL}
             url={videoURL}
+            key={videoURL}
             controls={true}
             width="100%"
             height="auto"
@@ -23,9 +23,15 @@ class VideoPlayer extends Component {
                 tracks: [
                   {
                     kind: 'subtitles',
-                    src: subtitleURL,
+                    src: subsES,
                     srcLang: 'es',
                     label: 'Spanish',
+                  },
+                  {
+                    kind: 'subtitles',
+                    src: subsEN,
+                    srcLang: 'en',
+                    label: 'English',
                   },
                 ],
               },

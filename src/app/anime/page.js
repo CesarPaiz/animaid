@@ -3,7 +3,6 @@ import { AniLisInfoID } from "../../../stuff/anilist"
 import VideoPlayerMain from "../../../stuff/videoPlayer";
 import { getAnimeID } from "../../../stuff/api";
 import { getVideoChapter } from "../../../stuff/api"
-import videoQualityStractor from "../../../stuff/videoQualityStractor";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
 
