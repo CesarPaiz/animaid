@@ -14,7 +14,7 @@ export default async function Page({
 }) {
     var result = await AniLisInfoID({ id: searchParams.anime })
     var cap = parseInt(searchParams.captitulo)
-    var infoAnime = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
+    var infoAnime = await getAnimeID({ nombreAnime: result.data.Media.title.english })
     var aniInfo = await animeInfo({ nombreAnime: infoAnime })
     var aniUrl = getUrlByNumber({ jsonObj: aniInfo.episodes, targetNumber: cap })
     var aniURLFix = aniUrl.replace("https://aniwatch.to/watch/", "");
@@ -22,7 +22,7 @@ export default async function Page({
     var getSubs =  getSubsLenguageMain({jsonSubs: final.subtitles})
     var subsEN = getSubs[0] ?? ""
     var subsES = getSubs[2] ?? getSubs[3] ?? getSubs [1] ?? ""
-    var video = await final.sources[0].url
+    var video = final.sources[0].url
     var totalEpisodes = parseInt(aniInfo.totalEpisodes);
     return (
 

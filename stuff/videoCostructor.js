@@ -8,7 +8,7 @@ class VideoPlayer extends Component {
 
     return (
       <div>
-        {videoURL && subsEN && (
+        {videoURL && (
           <ReactPlayer
             url={videoURL}
             key={videoURL}
