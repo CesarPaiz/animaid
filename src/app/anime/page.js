@@ -13,7 +13,7 @@ export default async function Page({
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
-    var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.english })
+    var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
     var aniInfo = await animeInfo({ nombreAnime: apiIDname })
 
 
