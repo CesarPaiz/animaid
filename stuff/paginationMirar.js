@@ -6,7 +6,7 @@ export default function PaginationMirar({ anime, captitulo, maxCaptitulo , resul
             <Link href={{
                 pathname: '/anime/mirar',
                 query: {
-                    anime: anime,
+                    id: anime,
                     captitulo: parseInt(captitulo) + 1,
                     resultado: resultadoFix
                 }
@@ -21,7 +21,7 @@ export default function PaginationMirar({ anime, captitulo, maxCaptitulo , resul
             <Link href={{
                 pathname: '/anime/mirar',
                 query: {
-                    anime: anime,
+                    id: anime,
                     captitulo: parseInt(captitulo) - 1,
                     resultado: resultadoFix
                 }
@@ -37,7 +37,7 @@ export default function PaginationMirar({ anime, captitulo, maxCaptitulo , resul
                 <Link href={{
                     pathname: '/anime/mirar',
                     query: {
-                        anime: anime,
+                        id: anime,
                         captitulo: parseInt(captitulo) - 1,
                         resultado: resultadoFix
 
@@ -48,7 +48,7 @@ export default function PaginationMirar({ anime, captitulo, maxCaptitulo , resul
                 </Link>                <Link href={{
                     pathname: '/anime/mirar',
                     query: {
-                        anime: anime,
+                        id: anime,
                         captitulo: parseInt(captitulo) + 1,
                         resultado: resultadoFix
                     }

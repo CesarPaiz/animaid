@@ -20,7 +20,7 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            anime: item.id,
+                                            id: item.id,
                                             resultado: 0
                                         }
                                     }}>
@@ -31,12 +31,12 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            anime: item.id,
+                                            id: item.id,
                                             resultado: 0
                                         }
                                     }}>
                                         <span className="ml-4 ">
-                                            <span>{item.title.romaji} </span>
+                                            <span>{item.title.english} </span>
                                         </span>
                                     </Link>
                                 </td>

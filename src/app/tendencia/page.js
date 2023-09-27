@@ -25,7 +25,7 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            anime: item.id,
+                                            id: item.id,
                                             captitulo: item.number,
                                             resultado: 0
                                         }
@@ -37,7 +37,7 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            anime: item.id,
+                                            id: item.id,
                                             captitulo: item.number,
                                             resultado: 0
                                         }

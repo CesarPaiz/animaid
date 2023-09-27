@@ -11,7 +11,7 @@ import { getSubsLenguageES , getSubsLenguageEn } from "../../../../stuff/getSubs
 export default async function Page({
     searchParams,
 }) {
-    var result = await AniLisInfoID({ id: searchParams.anime })
+    var result = await AniLisInfoID({ id: searchParams.id })
     var cap = parseInt(searchParams.captitulo)
     var infoAnime = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
     var aniInfo = await animeInfo({ nombreAnime: infoAnime[parseInt(searchParams.resultado)].id })
@@ -31,7 +31,7 @@ export default async function Page({
                     <VideoRPlayer subsEnglish={subsEN} subsEspanish={subsES} videoURLmain={video} />
                 </div>
                 <div className="flex align-center justify-center mt-4 rounded">
-                    <PaginationMirar anime={searchParams.anime} captitulo={searchParams.captitulo} maxCaptitulo={totalEpisodes} resultado={searchParams.resultado} />
+                    <PaginationMirar anime={searchParams.id} captitulo={searchParams.captitulo} maxCaptitulo={totalEpisodes} resultado={searchParams.resultado} />
                 </div>
 
             </div>

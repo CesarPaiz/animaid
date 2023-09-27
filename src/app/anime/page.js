@@ -7,7 +7,7 @@ import NexResultButtons from "../../../stuff/nexResult";
 export default async function Page({
     searchParams,
 }) {
-    var result = await AniLisInfoID({ id: searchParams.anime })
+    var result = await AniLisInfoID({ id: searchParams.id })
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
@@ -35,21 +35,21 @@ export default async function Page({
                                     pathname: '/anime/mirar',
                                     query: {
 
-                                        anime: searchParams.anime,
+                                        id: searchParams.id,
                                         captitulo: item.number,
-                                        resultado : searchParams.resultado
-                                        
+                                        resultado: searchParams.resultado
+
                                     }
                                 }}
-                            key= {item.title} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {aniInfo.title} Captitulo {item.number} 
-                                <span> {item.title} </span>
-                            </Link >
+                                    key={item.title} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {aniInfo.title} Captitulo {item.number}
+                                    <span> {item.title} </span>
+                                </Link >
                             </>
 
-                ))
+                        ))
                     }
-            </div>
-        </div >
+                </div>
+            </div >
 
         </>
     )

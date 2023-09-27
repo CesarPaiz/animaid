@@ -18,7 +18,7 @@ export default async function AnimeTable({ nombreAnime }) {
                                     <Link  href={{
                                         pathname: '/anime',
                                         query: {
-                                            anime: item.id,
+                                            id: item.id,
                                             resultado: 0
                                         }
                                     }}>
@@ -29,12 +29,12 @@ export default async function AnimeTable({ nombreAnime }) {
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            anime: item.id,
+                                            id: item.id,
                                             resultado: 0
                                         }
                                     }}>
                                         <span className="align-center flex ">
-                                            <span className='w-full h-full ml-4'>{item.title.romaji} </span>
+                                            <span className='w-full h-full ml-4'>{item.title.inglish} </span>
                                         </span>
                                     </Link>
                                 </td>
