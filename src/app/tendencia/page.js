@@ -7,12 +7,12 @@ import Image from "next/image"
 
 const imageLoader = ({ src }) => {
     return src
-  }
+}
 export default async function Main({
     searchParams,
 }) {
     var paginaN = searchParams.pagina ?? 1
-    const data = await AniListTendencia({ pagina : paginaN })
+    const data = await AniListTendencia({ pagina: paginaN })
     return (
         <>
             <table className="flex justify-center mt-4 text-white border-spacing-2">
@@ -25,7 +25,9 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            query: item.id
+                                            anime: item.id,
+                                            captitulo: item.number,
+                                            resultado: searchParams.resultado
                                         }
                                     }}>
                                         <Image loader={imageLoader} src={item.coverImage.medium} height={90} width={90} className="rounded mb-4 bg-slate-800" alt="logo" />
@@ -35,7 +37,9 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            query: item.id
+                                            anime: item.id,
+                                            captitulo: item.number,
+                                            resultado: searchParams.resultado
                                         }
                                     }}>
                                         <span className="ml-4 ">
