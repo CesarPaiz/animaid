@@ -20,7 +20,8 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            query: item.id
+                                            anime: item.id,
+                                            resultado: 0
                                         }
                                     }}>
                                         <img src={item.coverImage.medium} height={90} width={90} className="rounded mb-4 bg-slate-800" alt="logo" />
@@ -30,7 +31,8 @@ export default async function Main({
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
-                                            query: item.id
+                                            anime: item.id,
+                                            resultado: 0
                                         }
                                     }}>
                                         <span className="ml-4 ">

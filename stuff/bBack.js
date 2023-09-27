@@ -3,15 +3,8 @@ export default function Bback({
     actual,
 }) {
     var actualFix = parseInt(actual)
-    if (actualFix < 2) {
-        <Link href={{
-            pathname: '/tendencia',
-            query: {
-                pagina: actualFix
-            }
-        }}>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Anterior</button>
-        </Link>
+    if (actualFix === 1) {
+        
     }
     else {
         return (
@@ -21,7 +14,7 @@ export default function Bback({
                     pagina: actualFix - 1
                 }
             }}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Anterior</button>
+                <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-4 ">Anterior</button>
             </Link>
         )
     }

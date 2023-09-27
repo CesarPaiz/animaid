@@ -4,14 +4,18 @@ export default function Bnext({
 }) {
     var actualFix = parseInt(actual)
     return (
-        <Link href={{
-            pathname: '/tendencia',
-            query: {
-                pagina: actualFix + 1
-            }
-        }}>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Siguiente</button>
-        </Link>
+
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-4">
+            <Link href={{
+                pathname: '/tendencia',
+                query: {
+                    pagina: actualFix + 1
+                }
+            }}>
+                Siguiente
+            </Link>
+        </button>
+
     )
 
 }

@@ -5,7 +5,7 @@ export async function getAnimeID({ nombreAnime }) {
 
     var result = await fetch(url)
     const id = await result.json();
-    return (id.results[0].id);
+    return (id.results);
 }
 export async function getVideoChapter({captitulo }) {
     var url = "https://api-animaid.vercel.app/anime/zoro/watch?episodeId=" + captitulo +"$episode$89506$both&server=vidstreaming" ;
