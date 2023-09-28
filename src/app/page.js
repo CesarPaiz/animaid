@@ -1,15 +1,18 @@
+'use client'
 import Link from "next/link"
 import AnimeTable from "../../stuff/animeTable"
 import { AniListTendencia } from "../../stuff/anilist"
 import PaginationMain from "../../stuff/pagination"
+import NextNProgress from "nextjs-progressbar"
 
 export default async function Main({
     searchParams,
 }) {
     var paginaN = searchParams.pagina ?? 1
-    const data = await AniListTendencia({ pagina : paginaN })
+    const data = await AniListTendencia({ pagina: paginaN })
     return (
         <>
+            <NextNProgress color="#ff" />
             <table className="flex justify-center mt-4 text-white border-spacing-2 place-items-center ">
                 <tbody>
                     {
@@ -46,7 +49,7 @@ export default async function Main({
                 </tbody>
             </table >
 
-            <PaginationMain paginaQ={paginaN}  />
+            <PaginationMain paginaQ={paginaN} />
 
         </>
 
