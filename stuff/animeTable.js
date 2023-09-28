@@ -34,7 +34,7 @@ export default async function AnimeTable({ nombreAnime }) {
                                         }
                                     }}>
                                         <span className="ml-4 align-left grid ">
-                                            <span className=''>{item.title.english} </span>
+                                            <span className=''>{item.title.english ?? item.title.romaji} </span>
                                         </span>
                                     </Link>
                                 </td>

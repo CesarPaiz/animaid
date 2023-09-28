@@ -43,7 +43,7 @@ export default async function Main({
                                         }
                                     }}>
                                         <span className="ml-4 ">
-                                            <span>{item.title.romaji} </span>
+                                            <span>{item.title.english ?? item.title.romaji} </span>
                                         </span>
                                     </Link>
                                 </td>
