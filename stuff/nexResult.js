@@ -6,7 +6,7 @@ export default function NexResultButtons({ item , resultado}) {
         <Link href={{
             pathname: '/anime',
             query: {
-                anime: item,
+                id: item,
                 resultado: resultadoFix
             }
         }}>

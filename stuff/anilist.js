@@ -16,6 +16,7 @@ export async function AniListSearch({ nombreAnime }) {
           id
           title {
             romaji
+            english
           } 
           coverImage {
             medium
@@ -62,6 +63,7 @@ export async function AniListTendencia({ pagina }) {
           id
           title {
             romaji
+            english
           } 
           coverImage {
             medium

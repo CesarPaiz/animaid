@@ -10,13 +10,13 @@ export default async function Main({
     const data = await AniListTendencia({ pagina : paginaN })
     return (
         <>
-            <table className="flex justify-center mt-4 text-white border-spacing-2">
+            <table className="flex justify-center mt-4 text-white border-spacing-2 place-items-center ">
                 <tbody>
                     {
                         data?.data.Page.media.map(item => (
 
                             <tr key={item}>
-                                <td className="w-20">
+                                <td className="w-20 mr-4">
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
@@ -27,7 +27,7 @@ export default async function Main({
                                         <img src={item.coverImage.medium} height={90} width={90} className="rounded mb-4 bg-slate-800" alt="logo" />
                                     </Link>
                                 </td>
-                                <td key={item}>
+                                <td key={item} className="place-items-center ml-4 max-w-2xl ">
                                     <Link href={{
                                         pathname: '/anime',
                                         query: {
@@ -35,8 +35,8 @@ export default async function Main({
                                             resultado: 0
                                         }
                                     }}>
-                                        <span className="ml-4 ">
-                                            <span>{item.title.english} </span>
+                                        <span className="ml-4 align-left grid">
+                                            <span className="">{item.title.english} </span>
                                         </span>
                                     </Link>
                                 </td>
