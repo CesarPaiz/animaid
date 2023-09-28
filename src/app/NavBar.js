@@ -11,7 +11,7 @@ export default function NavBar() {
     return (
         <nav id="main_nav" className="flex gap-4 h-full justify-center mt-1 max-h-10 ">
             <Link className="font-size-2 text-white text-3xl align-left ml-4 mt-1 font-bold pl-4 align-left" href="/" >
-                <Image width={200} height={50} className="" src="/img/logoTitle.png" alt="logo" />
+                <Image width={180} height={80} className="" src="/img/logoTitle.png" alt="logo" />
             </Link>
             <input value={nombreAnilist} onChange={e => setNombre(e.target.value)} className="rounded-full text-dark-500 justify-center grow place-items-center  text-center outline-none" placeholder="¿Que anime debo buscar?" />
 
