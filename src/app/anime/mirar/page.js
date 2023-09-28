@@ -13,8 +13,16 @@ export default async function Page({
 }) {
     var result = await AniLisInfoID({ id: searchParams.id })
     var cap = parseInt(searchParams.captitulo)
-    var infoAnime = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
-    var aniInfo = await animeInfo({ nombreAnime: infoAnime[parseInt(searchParams.resultado)].id })
+    try {
+        var infoAnime = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
+        var aniInfo = await animeInfo({ nombreAnime: infoAnime[parseInt(searchParams.resultado)].id })
+
+    }
+    catch (error) {
+        var infoAnime2 = await getAnimeID({ nombreAnime: result.data.Media.title.english })
+        var aniInfo = await animeInfo({ nombreAnime: infoAnime2[parseInt(searchParams.resultado)].id })
+
+    }
     var aniUrl = getUrlByNumber({ jsonObj: aniInfo.episodes, targetNumber: cap })
     var aniURLFix = aniUrl.replace("https://aniwatch.to/watch/", "");
     var final = await getVideoChapter({ captitulo: aniURLFix })
