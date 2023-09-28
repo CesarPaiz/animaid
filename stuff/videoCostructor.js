@@ -26,6 +26,7 @@ class VideoPlayer extends Component {
                     src: subsES,
                     srcLang: 'es',
                     label: 'Spanish',
+                    default: true,
                   },
                   {
                     kind: 'subtitles',
