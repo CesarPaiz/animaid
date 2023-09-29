@@ -7,7 +7,7 @@ export default async function BuscarMain({
     var nombre = searchParams.query;
     return (
         <>
-            <AnimeTable nombreAnime={nombre} />
+            <AnimeTable className="" nombreAnime={nombre} />
         </>
     )
 }
