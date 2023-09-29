@@ -93,7 +93,7 @@ class VideoPlayer extends Component {
       )
 
     }
-    else {
+    else if(subsES && subsEN) {
       return (
         <div>
           {videoURL && (
@@ -111,16 +111,15 @@ class VideoPlayer extends Component {
                   tracks: [
                     {
                       kind: 'subtitles',
+                      src: subsEN,
+                      srcLang: 'en',
+                      label: 'English',
+                    },{
+                      kind: 'subtitles',
                       src: subsES,
                       srcLang: 'es',
                       label: 'Spanish',
                       default: true,
-                    },
-                    {
-                      kind: 'subtitles',
-                      src: subsEN,
-                      srcLang: 'en',
-                      label: 'English',
                     },
                   ],
                 },
