@@ -37,6 +37,37 @@ class VideoPlayer extends Component {
         </div>
       );
     }
+    else if (!subsEN || subsES) {
+      return (
+        <div>
+          {videoURL && (
+            <ReactPlayer
+              url={videoURL}
+              key={videoURL}
+              controls={true}
+              width="100%"
+              height="auto"
+              config={{
+                file: {
+                  attributes: {
+                    crossOrigin: 'true',
+                  },
+                  tracks: [
+                    {
+                      kind: 'subtitles',
+                      src: subsES,
+                      srcLang: 'es',
+                      label: 'Spanish',
+                      default: true,
+                    },
+                  ],
+                },
+              }}
+            />
+          )}
+        </div>
+      );
+    }
     else if (!subsEN || !subsES) {
       return (
         <div>
@@ -81,7 +112,7 @@ class VideoPlayer extends Component {
                     {
                       kind: 'subtitles',
                       src: subsES,
-                      srcLang: 'en',
+                      srcLang: 'es',
                       label: 'Spanish',
                       default: true,
                     },
