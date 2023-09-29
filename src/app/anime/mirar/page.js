@@ -6,7 +6,7 @@ import { getVideoChapter } from "../../../../stuff/api"
 import { animeInfo } from "../../../../stuff/api";
 import { getUrlByNumber } from "../../../../stuff/getAnimeCap";
 import PaginationMirar from "../../../../stuff/paginationMirar";
-import { getSubsLenguageES , getSubsLenguageEn } from "../../../../stuff/getSubsLenguage";
+import { getSubsLenguageES , getSubsLenguageEN } from "../../../../stuff/getSubsLenguage";
 
 export default async function Page({
     searchParams,
@@ -27,7 +27,7 @@ export default async function Page({
     var aniURLFix = aniUrl.replace("https://aniwatch.to/watch/", "");
     var final = await getVideoChapter({ captitulo: aniURLFix })
     var getSubsES =  getSubsLenguageES({jsonSubs: final.subtitles})
-    var getSubsEN =  getSubsLenguageEn({jsonSubs: final.subtitles})
+    var getSubsEN =  getSubsLenguageEN({jsonSubs: final.subtitles})
     var subsEN = getSubsEN[0] ?? ""
     var subsES = getSubsES[0] ?? ""
     var video = final.sources[0].url
