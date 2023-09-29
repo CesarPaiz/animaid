@@ -37,7 +37,7 @@ class VideoPlayer extends Component {
         </div>
       );
     }
-    else if (!subsEN  && subsES) {
+    else if (!subsEN) {
       return (
         <div>
           {videoURL && (
@@ -68,7 +68,7 @@ class VideoPlayer extends Component {
         </div>
       );
     }
-    else if (!subsEN  && !subsES) {
+    else if (!subsEN || !subsES) {
       return (
         <div>
           {videoURL && (
@@ -93,7 +93,7 @@ class VideoPlayer extends Component {
       )
 
     }
-    else if(subsES && subsEN) {
+    else{
       return (
         <div>
           {videoURL && (
