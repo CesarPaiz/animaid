@@ -16,12 +16,10 @@ export default async function Page({
     try {
         var infoAnime = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
         var aniInfo = await animeInfo({ nombreAnime: infoAnime[parseInt(searchParams.resultado)].id })
-
     }
     catch (error) {
         var infoAnime2 = await getAnimeID({ nombreAnime: result.data.Media.title.english })
         var aniInfo = await animeInfo({ nombreAnime: infoAnime2[parseInt(searchParams.resultado)].id })
-
     }
     var aniUrl = getUrlByNumber({ jsonObj: aniInfo.episodes, targetNumber: cap })
     var aniURLFix = aniUrl.replace("https://aniwatch.to/watch/", "");

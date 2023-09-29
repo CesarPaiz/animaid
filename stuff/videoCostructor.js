@@ -5,7 +5,6 @@ import ReactPlayer from 'react-player/lazy';
 class VideoPlayer extends Component {
   render() {
     const { subsES, subsEN, videoURL } = this.props;
-
     if (!subsES && subsEN) {
       return (
         <div>
@@ -21,13 +20,12 @@ class VideoPlayer extends Component {
                   attributes: {
                     crossOrigin: 'true',
                   },
-                  tracks: [
+                  tracks: [              
                     {
                       kind: 'subtitles',
                       src: subsEN,
                       srcLang: 'en',
                       label: 'English',
-                      default: true,
                     },
                   ],
                 },
@@ -35,12 +33,67 @@ class VideoPlayer extends Component {
             />
           )}
         </div>
+
       );
     }
-    else if (!subsEN) {
+    else if (subsES && !subsEN) {
       return (
         <div>
           {videoURL && (
+            <ReactPlayer
+              url={videoURL}
+              key={videoURL}
+              controls={true}
+              width="100%"
+              height="auto"
+              config={{
+                file: {
+                  attributes: {
+                    crossOrigin: 'true',
+                  },
+                  tracks: [              
+                    {
+                      kind: 'subtitles',
+                      src: subsEN,
+                      srcLang: 'en',
+                      label: 'English',
+                    },
+                  ],
+                },
+              }}
+            />
+          )}
+        </div>
+
+      );
+    }
+    else if (!subsEN && !subsES) {
+      return (
+        <div>
+          {videoURL && (
+            <ReactPlayer
+              url={videoURL}
+              key={videoURL}
+              controls={true}
+              width="100%"
+              height="auto"
+              config={{
+                file: {
+                  attributes: {
+                    crossOrigin: 'true',
+                  },
+                },
+              }}
+            />
+          )}
+        </div>
+        
+      );
+    }
+    else {
+      return (
+        <div>
+          {videoURL && subsEN && subsES && (
             <ReactPlayer
               url={videoURL}
               key={videoURL}
@@ -58,68 +111,12 @@ class VideoPlayer extends Component {
                       src: subsES,
                       srcLang: 'es',
                       label: 'Spanish',
-                      default: true,
                     },
-                  ],
-                },
-              }}
-            />
-          )}
-        </div>
-      );
-    }
-    else if (!subsEN || !subsES) {
-      return (
-        <div>
-          {videoURL && (
-            <ReactPlayer
-              url={videoURL}
-              key={videoURL}
-              controls={true}
-              width="100%"
-              height="auto"
-              config={{
-                file: {
-                  attributes: {
-                    crossOrigin: 'true',
-                  }
-                }
-              }
-              }
-
-            />
-          )}
-        </div>  
-      )
-
-    }
-    else{
-      return (
-        <div>
-          {videoURL && (
-            <ReactPlayer
-              url={videoURL}
-              key={videoURL}
-              controls={true}
-              width="100%"
-              height="auto"
-              config={{
-                file: {
-                  attributes: {
-                    crossOrigin: 'true',
-                  },
-                  tracks: [
                     {
                       kind: 'subtitles',
                       src: subsEN,
                       srcLang: 'en',
                       label: 'English',
-                    },{
-                      kind: 'subtitles',
-                      src: subsES,
-                      srcLang: 'es',
-                      label: 'Spanish',
-                      default: true,
                     },
                   ],
                 },
@@ -127,10 +124,12 @@ class VideoPlayer extends Component {
             />
           )}
         </div>
+        
       );
     }
 
   }
-}
 
-export default VideoPlayer;
+}
+export default VideoPlayer
+
