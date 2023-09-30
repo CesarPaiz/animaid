@@ -23,7 +23,7 @@ export default async function AnimeTable({ nombreAnime }) {
                             }}>
                                 <div className="relative">
                                     <img className="w-auto h-64 object-cover   " src={item.coverImage.large} alt="Descripción de la imagen" />
-                                    <div className=" w-full absolute inset-0 text-white bg-black bg-opacity-50 hover:bg-opacity-0 flex items-end justify-center ">
+                                    <div className=" w-full absolute inset-0 text-white bg-black bg-opacity-30 hover:bg-opacity-0 flex items-end justify-center ">
                                         <h2 className=" text-base font-bold  truncate">{item.title.english ?? item.title.romaji}</h2>
                                     </div>
                                 </div>
