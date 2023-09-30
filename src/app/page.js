@@ -11,7 +11,7 @@ export default async function Main({
 
     return (
         <>
-            <div className="max-w-full ml-8 mr-8 mx-auto grid grid-cols-2 gap-6 md:grid-cols-6 mt-8 rounded overflow-hidden shadow-lg">
+            <div className="max-w-full ml-8 mr-8 mx-auto grid gap-6 grid-cols-2 md:grid-cols-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
 
