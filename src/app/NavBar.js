@@ -12,8 +12,8 @@ export default function NavBar() {
         <nav id="main_nav" className="flex gap-4 w-full flex-row mt-3 max-h-10 justify-center">
             <div className="font-size-2 text-white text-3xl flex-row flex place-items-left ml-0 md:ml-4 mt-1 font-bold pl-4">
                 <Link className="" href="/" >
-                    <span className="text-white hidden lg:block">AniMaid</span>
-                    <span className="text-white md:hidden ">AM</span>
+                    <span className="text-white hidden  xl:block 2xl:block lg:block md:block sm:hidden">AniMaid</span>
+                    <span className="text-white xl:hidden 2xl:hidden lg:hidden md:hidden sm:block ">AM</span>
                 </Link>
             </div>
             <div className="flex flex-row justify-center grow ">
