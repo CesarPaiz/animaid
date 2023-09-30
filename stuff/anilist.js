@@ -8,7 +8,7 @@ import Link from "next/link";
 export async function AniListSearch({ nombreAnime }) {
     var query = `
     query ($Search: String, $Page: Int ) { # Define which variables will be used in the query (id)
-        Page (page: $Page,perPage: 21) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+        Page (page: $Page,perPage: 18) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
         pageInfo {
           total
         }
@@ -56,7 +56,7 @@ export async function AniListSearch({ nombreAnime }) {
 export async function AniListTendencia({ pagina }) {
     var query = `
     query ($Page: Int ) { # Define which variables will be used in the query (id)
-        Page (page: $Page,perPage: 21) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+        Page (page: $Page,perPage: 18) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
         pageInfo {
           total
         }
@@ -66,7 +66,9 @@ export async function AniListTendencia({ pagina }) {
             romaji
             english
           } 
+          description
           coverImage {
+            large
             medium
           } 
           }

@@ -15,12 +15,12 @@ export default async function Main({
     const data = await AniListTendencia({ pagina: paginaN })
     return (
         <>
-            <div className="mt-8 grid grid-cols-3 text-white gap-4 ">
-
+            <div className="max-w-full ml-8 mr-8 mx-auto grid grid-cols-6 gap-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
 
-                        <div key={item} className="grid place-items-center">
+
+                        <div key={item} className="max-w-sm mx-auto bg-gray-800 rounded overflow-hidden shadow-lg">
                             <Link href={{
                                 pathname: '/anime',
                                 query: {
@@ -28,23 +28,21 @@ export default async function Main({
                                     resultado: 0
                                 }
                             }}>
-                                <img src={item.coverImage.medium} height={90} width={90} className="rounded mb-2 bg-slate-800" alt="logo" />
+                                <div className="relative">
+                                    <img className="w-auto h-64 object-cover   " src={item.coverImage.large} alt="Descripción de la imagen" />
+                                    <div className=" w-full absolute inset-0 text-white bg-black bg-opacity-50 hover:bg-opacity-0 flex items-end justify-center ">
+                                        <h2 className=" text-base font-bold  truncate">{item.title.english ?? item.title.romaji}</h2>
+                                    </div>
+                                </div>
 
-                            </Link><Link href={{
-                                pathname: '/anime',
-                                query: {
-                                    id: item.id,
-                                    resultado: 0
-                                }
-                            }}>
-                                <span className="ml-4 ">
-                                    <span className="">{item.title.english ?? item.title.romaji} </span>
-                                </span>
+
+
                             </Link>
-
+                              
                         </div>
                     ))
                 }
+
             </div>
 
             <PaginationMain paginaQ={paginaN} />

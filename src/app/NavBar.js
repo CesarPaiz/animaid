@@ -16,7 +16,7 @@ export default function NavBar() {
                 </Link>
             </div>
             <div className="flex flex-row justify-center grow ">
-                <input value={nombreAnilist} onChange={e => setNombre(e.target.value)} className=" flex rounded-full text-dark-500  place-items-center justify-center grow place-items-center  mr-2 text-center outline-none max-w-lg" placeholder="¿Que anime debo buscar?" />
+                <input onFocus={e => e.target.placeholder =""}onBlur={e => e.target.placeholder = "¿Que anime debo buscar?"} value={nombreAnilist} onChange={e => setNombre(e.target.value)} className=" flex rounded-full text-dark-500  place-items-center justify-center grow place-items-center  mr-2 text-center outline-none max-w-lg" placeholder="¿Que anime debo buscar?" />
 
                 <Link
                     href={{

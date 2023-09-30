@@ -11,13 +11,14 @@ export default async function Page({
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
-    var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
-    var apiIDname2 = await getAnimeID({ nombreAnime: result.data.Media.title.english })
     var numeroResultado = parseInt(searchParams.resultado)
     try {
+        var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
         var animeByResultado = apiIDname[parseInt(numeroResultado)]
         var aniInfo = await animeInfo({ nombreAnime: animeByResultado.id })
     } catch (error) {
+        var apiIDname2 = await getAnimeID({ nombreAnime: result.data.Media.title.english })
+        console.log(apiIDname2)
         var animeByResultado = apiIDname2[parseInt(numeroResultado)]
         var aniInfo = await animeInfo({ nombreAnime: animeByResultado.id })
     }

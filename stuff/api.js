@@ -2,7 +2,6 @@ import axios from "axios"
 
 export async function getAnimeID({ nombreAnime }) {
     var url = "https://api-animaid.vercel.app/anime/zoro/" + nombreAnime + "?page=1"
-
     var result = await fetch(url)
     const id = await result.json();
     return (id.results);
