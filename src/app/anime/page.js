@@ -2,7 +2,6 @@ import { AniLisInfoID } from "../../../stuff/anilist"
 import { getAnimeID } from "../../../stuff/api";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
-import NexResultButtons from "../../../stuff/nexResult";
 
 export default async function Page({
     searchParams,
@@ -11,19 +10,10 @@ export default async function Page({
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
-    var numeroResultado = parseInt(searchParams.resultado)
-    try {
-        var apiIDname = await getAnimeID({ nombreAnime: result.data.Media.title.romaji })
-        var animeByResultado = apiIDname[parseInt(numeroResultado)]
-        var aniInfo = await animeInfo({ nombreAnime: animeByResultado.id })
-    } catch (error) {
-        var apiIDname2 = await getAnimeID({ nombreAnime: result.data.Media.title.english })
-        console.log(apiIDname2)
-        var animeByResultado = apiIDname2[parseInt(numeroResultado)]
-        var aniInfo = await animeInfo({ nombreAnime: animeByResultado.id })
-    }
-
-
+    var title = result.data.Media.title.romaji 
+    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s]/g, '');
+    var titleFix = titleFixPar1.replace(/\s+/g, '-');
+    var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     return (
         <>
             <div className="text-white grid justify-center text-center place-items-center">
@@ -34,10 +24,9 @@ export default async function Page({
 
                 </div>
 
-                <NexResultButtons item={searchParams.id} resultado={searchParams.resultado} />
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
                     {
-                        aniInfo?.episodes.map(item => (
+                        apiIDname?.episodes.map(item => (
                             <>
                                 <Link href={{
                                     pathname: '/anime/mirar',
@@ -45,12 +34,11 @@ export default async function Page({
 
                                         id: searchParams.id,
                                         captitulo: item.number,
-                                        resultado: searchParams.resultado
 
                                     }
                                 }}
-                                    key={item.title} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {aniInfo.title} Captitulo {item.number}
-                                    <span> {item.title} </span>
+                                    key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
+                                    <span> Episodio {item.number} </span>
                                 </Link >
                             </>
 

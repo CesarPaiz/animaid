@@ -1,21 +1,20 @@
 import axios from "axios"
 
+const urlApi = "https://multi-api-animaid.vercel.app"
 export async function getAnimeID({ nombreAnime }) {
-    var url = "https://api-animaid.vercel.app/anime/zoro/" + nombreAnime + "?page=1"
-    var result = await fetch(url)
+    var request = urlApi + "/anime/monoschinos/name/" + nombreAnime
+    var result = await fetch(request)
     const id = await result.json();
-    return (id.results);
+    return (id);
 }
 export async function getVideoChapter({captitulo }) {
-    var url = "https://api-animaid.vercel.app/anime/zoro/watch?episodeId=" + captitulo +"$episode$89506$both&server=vidstreaming" ;
-    var result = await fetch(url, { params: { server: "vidstreaming" } })
+    var result = await fetch(urlApi + captitulo)
     const id = await result.json();
     return (id);
 
 }
 export async function animeInfo({ nombreAnime }) {
-    var url = "https://api-animaid.vercel.app/anime/zoro/info?id=" + nombreAnime;
-
+    var url = "https://api-animaid.vercel.app/anime/gogoanime/info/" + nombreAnime;
     var result = await fetch(url,)
     const id = await result.json();
     return(id)

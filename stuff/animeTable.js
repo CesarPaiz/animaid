@@ -18,7 +18,6 @@ export default async function AnimeTable({ nombreAnime }) {
                                 pathname: '/anime',
                                 query: {
                                     id: item.id,
-                                    resultado: 0
                                 }
                             }}>
                                 <div className="relative">

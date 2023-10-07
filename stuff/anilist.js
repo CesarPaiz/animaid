@@ -109,8 +109,10 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
     id
     description
     title {
-        romaji
         english
+        romaji
+        native
+        userPreferred
     }
     coverImage {
         large

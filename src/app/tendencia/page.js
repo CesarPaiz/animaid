@@ -25,7 +25,6 @@ export default async function Main({
                                 pathname: '/anime',
                                 query: {
                                     id: item.id,
-                                    resultado: 0
                                 }
                             }}>
                                 <div className="relative">
