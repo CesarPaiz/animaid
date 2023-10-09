@@ -13,9 +13,10 @@ export async function getVideoChapter({captitulo }) {
     return (id);
 
 }
+
 export async function animeInfo({ nombreAnime }) {
-    var url = "https://api-animaid.vercel.app/anime/gogoanime/info/" + nombreAnime;
-    var result = await fetch(url,)
+    var url = urlApi + "/anime/monoschinos/filter?title=" + nombreAnime;
+    var result = await fetch(url)
     const id = await result.json();
     return(id)
 }

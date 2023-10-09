@@ -9,21 +9,45 @@ export default async function Page({
     searchParams,
 }) {
 
+    function obtenerPrimerTextoAlfanumerico(texto) {
+        const coincidencia = texto.match(/[a-zA-Z0-9]+/);
+        if (coincidencia) {
+            return coincidencia[0];
+        } else {
+            return "No se encontró texto alfanumérico";
+        }
+    }
+
     function getUrlByNumber(json, targetNumber) {
         const matchingObject = json.find(obj => obj.number === targetNumber);
         return matchingObject ? matchingObject.url : null;
-      }
-      
+    }
+
     var cap = parseInt(searchParams.captitulo)
     var result = await AniLisInfoID({ id: searchParams.id })
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
-    var resultado = getUrlByNumber(apiIDname.episodes, cap)
-    var captitulo = resultado
-    var final = await getVideoChapter({ captitulo: captitulo })
-    var video = final[0].url
+    if (apiIDname.episodes === undefined) {
+        var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
+        var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
+        var tituloAbuscar = apiIDnameFix.results[0].url
+        var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
+        var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })  
+        var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
+        var captitulo = resultado
+        var final = await getVideoChapter({ captitulo: captitulo })
+        var video = final[0].url
+    }
+    else{
+        var apiIDnameFinal = await getAnimeID({ nombreAnime: titleFix })
+        var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
+        var captitulo = resultado
+        var final = await getVideoChapter({ captitulo: captitulo })
+        var video = final[0].url
+    }
+    
 
     return (
         <>
