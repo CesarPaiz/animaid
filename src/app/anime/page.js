@@ -38,7 +38,7 @@ export default async function Page({
                                     }
                                 }}
                                     key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
-                                    <span> Episodio {item.number} </span>
+                                    <span> Episodio {item.number } </span>
                                 </Link >
                             </>
 
