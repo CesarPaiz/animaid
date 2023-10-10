@@ -1,17 +1,14 @@
 'use client'
 import Link from "next/link"
-import AnimeTable from "../../../stuff/animeTable"
 import { AniListTendencia } from "../../../stuff/anilist"
 import PaginationMain from "../../../stuff/pagination"
-import Image from "next/image"
 
-const imageLoader = ({ src }) => {
-    return src
-}
+
 export default async function Main({
     searchParams,
 }) {
-    var paginaN = searchParams.pagina ?? 1
+    var paginaN = parseInt(searchParams.pagina)
+    
     const data = await AniListTendencia({ pagina: paginaN })
     return (
         <>
@@ -33,8 +30,6 @@ export default async function Main({
                                         <h2 className=" text-base font-bold  truncate">{item.title.romaji ?? item.title.english}</h2>
                                     </div>
                                 </div>
-
-
 
                             </Link>
                               

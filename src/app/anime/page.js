@@ -24,13 +24,13 @@ export default async function Page({
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
-    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s]/g, '');
+    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
         var titlePart1 = obtenerPrimerTextoAlfanumerico(titleFix)
         var apiIDnameFix = await animeInfo({ nombreAnime: titlePart1 })
-        var tituloAbuscar = apiIDnameFix.results[0].url
+        var tituloAbuscar = apiIDnameFix.results[0].url // uso mementanio para buscar la url, luego se mejora :p
         var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
         var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })  
     }

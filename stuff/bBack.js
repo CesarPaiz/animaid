@@ -3,7 +3,7 @@ export default function Bback({
     actual,
 }) {
     var actualFix = parseInt(actual)
-    if (actualFix === 1) {
+    if (actualFix === 0) {
         
     }
     else {

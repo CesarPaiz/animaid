@@ -1,12 +1,12 @@
 import Link from "next/link"
-import AnimeTable from "../../stuff/animeTable"
 import { AniListTendencia } from "../../stuff/anilist"
 import PaginationMain from "../../stuff/pagination"
+import { Suspense } from "react"
 
 export default async function Main({
     searchParams,
 }) {
-    var paginaN = searchParams.pagina ?? 0
+    var paginaN = 0
     const data = await AniListTendencia({ pagina: paginaN })
 
     return (
@@ -40,7 +40,6 @@ export default async function Main({
 
             </div>
             <PaginationMain paginaQ={paginaN} />
-
         </>
 
     )

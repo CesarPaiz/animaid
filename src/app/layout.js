@@ -4,6 +4,7 @@ export const metadata = {
 }
 import "./globals.css"
 import NavBar from "./NavBar"
+import { Suspense } from "react"
 
 export default function RootLayout({ children }) {
   return (
@@ -16,7 +17,10 @@ export default function RootLayout({ children }) {
 
           <NavBar />
         </div>
+        <Suspense fallback={<div>Loading...</div>}>
+
         {children}
+        </Suspense>
       </body>
     </html >
   )
