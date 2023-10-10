@@ -38,15 +38,16 @@ export default async function Page({
             var tituloAbuscar = apiIDnameFix.results[0].url
             var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
             var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
-            var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
-            var captitulo = resultado
-            var final = await getVideoChapter({ captitulo: captitulo })
-            var video = final[0].url
+
         }
         else {
             var apiIDnameFinaljson = await getAnimeID({ nombreAnime: newTitlejson })
             var apiIDnameFinal = apiIDnameFinaljson
         }
+        var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
+        var captitulo = resultado
+        var final = await getVideoChapter({ captitulo: captitulo })
+        var video = final[0].url
 
     }
     else {
