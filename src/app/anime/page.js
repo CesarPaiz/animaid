@@ -2,19 +2,10 @@ import { AniLisInfoID } from "../../../stuff/anilist"
 import { getAnimeID } from "../../../stuff/api";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
-import {encontrarURLMasSimilar} from "../../../stuff/similar";
-
+import {obtenerATF} from "../../../stuff/buscarATF"
 export default async function Page({
     searchParams,
 }) {
-    function obtenerPrimerTextoAlfanumerico(texto) {
-        const coincidencia = texto.match(/[a-zA-Z0-9]+/);
-        if (coincidencia) {
-            return coincidencia[0];
-        } else {
-            return "No se encontró texto alfanumérico";
-        }
-    }
 
 
 
@@ -28,13 +19,10 @@ export default async function Page({
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
-        var titlePart1 = obtenerPrimerTextoAlfanumerico(titleFix)
-        var apiIDnameFix = await animeInfo({ nombreAnime: titlePart1 })
-        var tituloAbuscar = apiIDnameFix.results[0].url // uso mementanio para buscar la url, luego se mejora :p
-        var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
-        var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })  
+        var newTitle = obtenerATF(title)
+        var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
     }
-    else{
+    else {
         var apiIDnameFinal = apiIDname
     }
 
