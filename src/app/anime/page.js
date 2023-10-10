@@ -7,7 +7,14 @@ export default async function Page({
     searchParams,
 }) {
 
-
+    function obtenerPrimerTextoAlfanumerico(texto) {
+        const coincidencia = texto.match(/[a-zA-Z0-9]+/);
+        if (coincidencia) {
+            return coincidencia[0];
+        } else {
+            return "No se encontró texto alfanumérico";
+        }
+    }
 
 
     var result = await AniLisInfoID({ id: searchParams.id })
@@ -20,7 +27,16 @@ export default async function Page({
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
         var newTitle = obtenerATF(title)
-        var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
+        if(newTitle === undefined){
+            var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
+            var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
+            var tituloAbuscar = apiIDnameFix.results[0].url
+            var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
+            var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
+        }
+        else{
+            var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
+        }
     }
     else {
         var apiIDnameFinal = apiIDname

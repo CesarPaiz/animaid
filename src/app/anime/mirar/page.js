@@ -31,21 +31,32 @@ export default async function Page({
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
-        var newTitle = obtenerATF(title)
-        var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
-        var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
-        var captitulo = resultado
-        var final = await getVideoChapter({ captitulo: captitulo })
-        var video = final[0].url
+        var newTitlejson = obtenerATF(title)
+        if (newTitlejson === undefined) {
+            var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
+            var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
+            var tituloAbuscar = apiIDnameFix.results[0].url
+            var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
+            var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
+            var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
+            var captitulo = resultado
+            var final = await getVideoChapter({ captitulo: captitulo })
+            var video = final[0].url
+        }
+        else {
+            var apiIDnameFinaljson = await getAnimeID({ nombreAnime: newTitlejson })
+            var apiIDnameFinal = apiIDnameFinaljson
+        }
+
     }
-    else{
+    else {
         var apiIDnameFinal = await getAnimeID({ nombreAnime: titleFix })
         var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
         var captitulo = resultado
         var final = await getVideoChapter({ captitulo: captitulo })
         var video = final[0].url
     }
-    
+
 
     return (
         <>

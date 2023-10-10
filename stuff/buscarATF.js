@@ -12,7 +12,7 @@ export function obtenerATF(nombre) {
     if (resultado) {
         return resultado.fix;
     } else {
-        return "Nombre no encontrado";
+        return undefined
     }
 
 }
