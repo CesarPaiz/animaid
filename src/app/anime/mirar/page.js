@@ -63,7 +63,7 @@ export default async function Page({
         <>
             <div className="text-white grid justify-center text-center ">
                 <div className="flex align-center justify-center max-w-2xl max-h-2xl mt-4 rounded">
-                    <iframe width="560" height="315" frameborder="0" src={video} scrolling="no" allowfullscreen=""></iframe>
+                    <iframe width="560" height="315" frameborder="0" src={video} sandbox="allow-same-origin allow-scripts" allowfullscreen=""></iframe>
                 </div>
 
                 <div className="flex align-center justify-center mt-4 rounded">
