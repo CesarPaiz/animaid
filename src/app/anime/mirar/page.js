@@ -27,8 +27,8 @@ export default async function Page({
     var cap = parseInt(searchParams.captitulo)
     var result = await AniLisInfoID({ id: searchParams.id })
     var title = result.data.Media.title.romaji
-    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-');
+    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
+        var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
         var newTitlejson = obtenerATF(title)
