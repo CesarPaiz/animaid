@@ -1,14 +1,20 @@
-
 import { AniLisInfoID } from "../../../stuff/anilist"
 import { getAnimeID } from "../../../stuff/api";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../stuff/buscarATF"
-export default async function PageAnime({
+export default async function Page({
     searchParams,
 }) {
-    var id = parseInt(searchParams.id)
-    var result = await AniLisInfoID({ id: id })
+    function obtenerPrimerTextoAlfanumerico(texto) {
+        const coincidencia = texto.match(/[a-zA-Z0-9]+/);
+        if (coincidencia) {
+            return coincidencia[0];
+        } else {
+            return "No se encontró texto alfanumérico";
+        }
+    }
+    var result = await AniLisInfoID({ id: searchParams.id })
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
@@ -16,10 +22,22 @@ export default async function PageAnime({
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
-
-    console.log(id , title , "Mirar")
-
-
+    if (apiIDname.episodes === undefined) {
+        var newTitle = obtenerATF(title)
+        if (newTitle === undefined) {
+            var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
+            var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
+            var tituloAbuscar = apiIDnameFix.results[0].url
+            var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
+            var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
+        }
+        else {
+            var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
+        }
+    }
+    else {
+        var apiIDnameFinal = apiIDname
+    }
     return (
         <>
             <div className="text-white grid justify-center text-center place-items-center">
@@ -27,31 +45,26 @@ export default async function PageAnime({
                 <div className="flex flex-row justify-center max-w-4xl mb-6">
                     <img src={result.data.Media.coverImage.large} className=" mt-4 rounded mb-4 bg-slate-800 max-h-80" alt="logo" />
                     <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
-
                 </div>
-
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
                     {
-                        apiIDname?.episodes.map(item => (
+                        apiIDnameFinal?.episodes.map(item => (
                             <>
                                 <Link href={{
                                     pathname: '/anime/mirar',
                                     query: {
-                                        titulo : titleFix,
-                                        cap: item.number,
+                                        id: searchParams.id,
+                                        captitulo: item.number,
                                     }
                                 }}
                                     key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
                                     <span> Episodio {item.number} </span>
                                 </Link >
                             </>
-
                         ))
                     }
                 </div>
             </div >
-
-
         </>
     )
 }
