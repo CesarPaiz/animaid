@@ -1,6 +1,6 @@
 'use client'
 
-import React , { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AniLisInfoID } from "../../../../stuff/anilist"
 import { getAnimeID } from "../../../../stuff/api";
 import { getVideoChapter } from "../../../../stuff/api"
@@ -12,7 +12,7 @@ import VideoIframe from "./VideoIframe";
 export default async function Page({
     searchParams,
 }) {
-    
+
 
     function obtenerPrimerTextoAlfanumerico(texto) {
         const coincidencia = texto.match(/[a-zA-Z0-9]+/);
@@ -62,6 +62,11 @@ export default async function Page({
     }
 
     return (
-        <VideoIframe jsonVideos={final} parametros={searchParams} />
+        <>
+            <VideoIframe jsonVideos={final} parametros={searchParams} />
+            <div className="flex align-center justify-center mt-8 rounded">
+                <PaginationMirar anime={searchParams.id} captitulo={searchParams.captitulo} />
+            </div>
+        </>
     )
 }

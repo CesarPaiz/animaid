@@ -1,6 +1,5 @@
 import Link from "next/link"
-export default function PaginationMirar({ anime, captitulo , resultado}) {
-    var resultadoFix = parseInt(resultado)
+export default function PaginationMirar({ anime, captitulo }) {
         return (
             <Link href={{
                 pathname: '/anime/mirar',
