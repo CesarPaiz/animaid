@@ -7,18 +7,8 @@ import { obtenerATF } from "../../../stuff/buscarATF"
 export default async function Page({
     searchParams,
 }) {
-
-    function obtenerPrimerTextoAlfanumerico(texto) {
-        const coincidencia = texto.match(/[a-zA-Z0-9]+/);
-        if (coincidencia) {
-            return coincidencia[0];
-        } else {
-            return "No se encontró texto alfanumérico";
-        }
-    }
-
-
-    var result = await AniLisInfoID({ id: searchParams.id })
+    var id = parseInt(searchParams.id)
+    var result = await AniLisInfoID({ id: id })
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
@@ -26,7 +16,9 @@ export default async function Page({
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
-    
+
+    console.log(id , title , "Mirar")
+
 
     return (
         <>
