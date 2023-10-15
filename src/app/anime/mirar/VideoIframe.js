@@ -11,13 +11,7 @@ var fuente = jsonVideos[0].url
 
                 ))}
             </div>
-            <div key={fuente} className="text-white grid justify-center text-center ">
-                <div  className="flex align-center justify-center w-full h-full max-w-2xl max-h-2xl mt-4 rounded">
-                        <iframe className="w-full h-full" src={fuente} allowFullScreen></iframe>
-               
-                </div>
-
-            </div >
+            
 
         </>
     )

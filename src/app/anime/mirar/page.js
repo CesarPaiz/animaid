@@ -63,9 +63,14 @@ export default async function Page({
 
     return (
         <>
-            <VideoIframe jsonVideos={final} parametros={searchParams} />
             <div className="flex align-center justify-center mt-8 rounded">
-                <PaginationMirar anime={searchParams.id} captitulo={searchParams.captitulo} />
+                <div key={final[0].url} className="text-white grid justify-center text-center ">
+                    <div className="flex align-center justify-center w-full h-full max-w-2xl max-h-2xl mt-4 rounded">
+                        <iframe className="w-full h-full" src={final[0].url} allowFullScreen></iframe>
+
+                    </div>
+
+                </div >
             </div>
         </>
     )
