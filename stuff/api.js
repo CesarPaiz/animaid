@@ -1,4 +1,3 @@
-import axios from "axios"
 
 const urlApi = "https://multi-api-animaid.vercel.app"
 export async function getAnimeID({ nombreAnime }) {

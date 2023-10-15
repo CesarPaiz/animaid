@@ -7,7 +7,6 @@ import { getVideoChapter } from "../../../../stuff/api"
 import { animeInfo } from "../../../../stuff/api";
 import PaginationMirar from "../../../../stuff/paginationMirar";
 import { obtenerATF } from "../../../../stuff/buscarATF";
-import VideoIframe from "./VideoIframe";
 
 export default async function Page({
     searchParams,
@@ -35,7 +34,7 @@ export default async function Page({
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
-        var newTitlejson = obtenerATF(title)
+        var newTitlejson = obtenerATF(title) // ATF = Anime Title Fix
         if (newTitlejson === undefined) {
             var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
             var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
@@ -59,19 +58,22 @@ export default async function Page({
         var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
         var captitulo = resultado
         var final = await getVideoChapter({ captitulo: captitulo })
+        var video = final[0].url
+
     }
 
     return (
         <>
-            <div className="flex align-center justify-center mt-8 rounded">
-                <div key={final[0].url} className="text-white grid justify-center text-center ">
-                    <div className="flex align-center justify-center w-full h-full max-w-2xl max-h-2xl mt-4 rounded">
-                        <iframe className="w-full h-full" src={final[0].url} allowFullScreen></iframe>
+            <div className="text-white grid justify-center text-center ">
+                <div className="flex align-center justify-center max-w-2xl max-h-2xl mt-4 rounded">
+                    <iframe width="560" height="315" frameborder="0" src={video} sandbox="allow-same-origin allow-scripts" allowfullscreen=""></iframe>
+                </div>
 
-                    </div>
+                <div className="flex align-center justify-center mt-4 rounded">
+                    <PaginationMirar anime={searchParams.id} captitulo={searchParams.captitulo} resultado={searchParams.resultado} />
+                </div>
 
-                </div >
-            </div>
+            </div >
         </>
     )
 }

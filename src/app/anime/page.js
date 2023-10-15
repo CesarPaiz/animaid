@@ -27,7 +27,7 @@ export default async function Page({
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
-        var newTitle = obtenerATF(title)
+        var newTitle = obtenerATF(title) // ATF = Anime Title Fix
         if (newTitle === undefined) {
             var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
             var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
@@ -61,10 +61,8 @@ export default async function Page({
                                 <Link href={{
                                     pathname: '/anime/mirar',
                                     query: {
-
                                         id: searchParams.id,
                                         captitulo: item.number,
-
                                     }
                                 }}
                                     key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
