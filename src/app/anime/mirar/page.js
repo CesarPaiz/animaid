@@ -12,13 +12,10 @@ export default async function Page({
     searchParams,
 }) {
     var titulo = searchParams.titulo
+    var id = parseInt(searchParams.cap)
     var apiIDname = await getAnimeID({ nombreAnime: titulo })
-
-    var videoGet = await getVideoChapter({ captitulo: apiIDname.episodes[0].url })
-    
-    var video = videoGet[0].url
-
-
+    var videoGET = await getVideoChapter({ captitulo: apiIDname.episodes[id].url })
+    var video = videoGET[0].url
     return (
         <>
             <div className="text-white grid justify-center text-center ">
@@ -27,7 +24,7 @@ export default async function Page({
                 </div>
 
                 <div className="flex align-center justify-center mt-4 rounded">
-                    <PaginationMirar anime={searchParams.id} captitulo={searchParams.captitulo} resultado={searchParams.resultado} />
+                    <PaginationMirar anime={titulo} captitulo={id} />
                 </div>
 
             </div >

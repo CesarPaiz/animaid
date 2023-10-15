@@ -38,6 +38,7 @@ export default async function Page({
                                     pathname: '/anime/mirar',
                                     query: {
                                         titulo : titleFix,
+                                        cap: item.number,
                                     }
                                 }}
                                     key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
