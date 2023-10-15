@@ -26,23 +26,7 @@ export default async function Page({
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
-    if (apiIDname.episodes === undefined) {
-        var newTitle = obtenerATF(title) // ATF = Anime Title Fix
-        if (newTitle === undefined) {
-            var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
-            var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
-            var tituloAbuscar = apiIDnameFix.results[0].url
-            var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
-            var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
-        }
-        else {
-            var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
-        }
-    }
-    else {
-        var apiIDnameFinal = apiIDname
-    }
-
+    
 
     return (
         <>
@@ -56,7 +40,7 @@ export default async function Page({
 
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
                     {
-                        apiIDnameFinal?.episodes.map(item => (
+                        apiIDname?.episodes.map(item => (
                             <>
                                 <Link href={{
                                     pathname: '/anime/mirar',

@@ -3,7 +3,7 @@ import AniList from "anilist-node";
 const settings = '';
 const animaid = new AniList(settings.token);
 import { AniListNombre } from "../src/app/NavBar"
-import  { NextRequest } from 'next/server'
+import { NextRequest } from 'next/server'
 export async function AniListSearch({ nombreAnime }) {
     var query = `
     query ($Search: String, $Page: Int ) { # Define which variables will be used in the query (id)
