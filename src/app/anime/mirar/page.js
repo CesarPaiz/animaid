@@ -11,18 +11,13 @@ import { obtenerATF } from "../../../../stuff/buscarATF";
 export default async function Page({
     searchParams,
 }) {
-    var id = parseInt(searchParams.id)
-    var result = await AniLisInfoID({ id: id })
-    var title = result.data.Media.title.romaji
-    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-');
-    var apiIDname = await getAnimeID({ nombreAnime: titleFix })
+    var titulo = searchParams.titulo
+    var apiIDname = await getAnimeID({ nombreAnime: titulo })
 
     var videoGet = await getVideoChapter({ captitulo: apiIDname.episodes[0].url })
     
     var video = videoGet[0].url
 
-    console.log(id , title , "Video")
 
     return (
         <>

@@ -37,8 +37,7 @@ export default async function Page({
                                 <Link href={{
                                     pathname: '/anime/mirar',
                                     query: {
-                                        id: searchParams.id,
-                                        captitulo: item.number,
+                                        titulo : titleFix,
                                     }
                                 }}
                                     key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
