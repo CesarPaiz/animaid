@@ -1,8 +1,9 @@
+
 import { AniLisInfoID } from "../../../stuff/anilist"
 import { getAnimeID } from "../../../stuff/api";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
-import {obtenerATF} from "../../../stuff/buscarATF"
+import { obtenerATF } from "../../../stuff/buscarATF"
 export default async function Page({
     searchParams,
 }) {
@@ -23,24 +24,25 @@ export default async function Page({
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-        var titleFix = titleFixPar1.replace(/\s+/g, '-');
+    var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
     if (apiIDname.episodes === undefined) {
         var newTitle = obtenerATF(title)
-        if(newTitle === undefined){
+        if (newTitle === undefined) {
             var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
             var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
             var tituloAbuscar = apiIDnameFix.results[0].url
             var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
             var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
         }
-        else{
+        else {
             var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
         }
     }
     else {
         var apiIDnameFinal = apiIDname
     }
+
 
     return (
         <>

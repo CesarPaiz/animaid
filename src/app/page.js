@@ -1,16 +1,21 @@
 import Link from "next/link"
 import { AniListTendencia } from "../../stuff/anilist"
 import PaginationMain from "../../stuff/pagination"
-import { Suspense } from "react"
+import { AniListPopular } from "../../stuff/anilist"
+import Cookies from 'js-cookie';
+
+
+
 
 export default async function Main({
     searchParams,
 }) {
-    var paginaN = 0
-    const data = await AniListTendencia({ pagina: paginaN })
+    const data = await AniListPopular({ pagina: 1 })
 
     return (
         <>
+            <h1 className="text-2xl mt-5 text-white text-center">Los animes mas populares</h1>
+
             <div className="max-w-full ml-8 mr-8 mx-auto grid gap-6 grid-cols-2 md:grid-cols-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
@@ -39,7 +44,6 @@ export default async function Main({
                 }
 
             </div>
-            <PaginationMain paginaQ={paginaN} />
         </>
 
     )

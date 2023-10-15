@@ -1,41 +1,33 @@
-'use client'
+
 
 import Link from "next/link"
-import { AniListSearch } from "../../stuff/anilist"
-import { useState } from "react"
+import NavegadorCLiente from "../../stuff/NavBarClient";
 import Image from "next/image"
+import SectionsButtons from "../../stuff/SectionsButtons";
 
 
 export default function NavBar() {
-    const [nombreAnilist, setNombre] = useState("")
     return (
-        <nav id="main_nav" className="flex gap-4 w-full flex-row mt-3 max-h-10 justify-center">
-            <div className="font-size-2 text-white text-3xl flex-row flex place-items-left ml-0 md:ml-4 mt-1 font-bold pl-4">
-                <Link className="" href="/" >
-                    <span className="text-white hidden  xl:block 2xl:block lg:block md:block sm:hidden">AniMaid</span>
-                    <span className="text-white xl:hidden 2xl:hidden lg:hidden md:hidden sm:block ">AM</span>
-                </Link>
-            </div>
-            <div className="flex flex-row justify-center grow ">
-                <input className=" flex rounded-full text-dark-500  place-items-center justify-center grow place-items-center  mr-2 text-center outline-none max-w-lg" onFocus={e => e.target.placeholder =""}onBlur={e => e.target.placeholder = "¿Que anime debo buscar?"} value={nombreAnilist} onChange={e => setNombre(e.target.value)}  placeholder="¿Que anime debo buscar?" />
 
-                <Link
-                    href={{
-                        pathname: '/buscar',
-                        query: {
-                            query: nombreAnilist
-                        },
-                    }}
-                >
-                    <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 md:px-4 rounded-full">Buscar</button>
-                </Link>
-            </div>
+        <>
+            <div className="w-full flex flex-row max-h-10  ">
+                <div className=" w-full">
+                    <NavegadorCLiente />
+                </div>
+                <div className="mt-3">
 
-            <div>
-                <button className="flex w-10 h-10 place-items-center outline outline-offset-1 outline-1 outline-blue-500 bg-none hover:bg-none  rounded-full  mr-3 md:mx-8">
-                    <Image width={50} height={50} className=" w-10 h-10 bg-slate-800  rounded-full p-0" src="/img/animeico.png" alt="logo" />
-                </button>
+                    <a className="" href='https://anilist.co/api/v2/oauth/authorize?client_id=14401&response_type=code'>
+                        <button className="flex w-10 h-10 place-items-center outline outline-offset-1 outline-1 outline-blue-500 bg-none hover:bg-none  rounded-full  mr-3 md:mx-8">
+                            <Image width={50} height={50} className=" w-10 h-10 bg-slate-800  rounded-full p-0" src="/img/animeico.png" alt="logo" />
+                        </button>
+                    </a>
+                </div>
+
             </div>
-        </nav>
+                <SectionsButtons />
+
+
+
+        </>
     )
 }

@@ -3,8 +3,7 @@ import AniList from "anilist-node";
 const settings = '';
 const animaid = new AniList(settings.token);
 import { AniListNombre } from "../src/app/NavBar"
-import Link from "next/link";
-
+import  { NextRequest } from 'next/server'
 export async function AniListSearch({ nombreAnime }) {
     var query = `
     query ($Search: String, $Page: Int ) { # Define which variables will be used in the query (id)
@@ -76,7 +75,6 @@ export async function AniListTendencia({ pagina }) {
       }
     `;
 
-
     var resultado = {
         Page: pagina
 
@@ -131,6 +129,55 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
 
     var resultado = {
         Id: id
+    }
+
+    var anilisUrl = 'https://graphql.anilist.co',
+        options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                query: query,
+                variables: resultado
+            })
+        }
+
+
+    return (
+        fetch(anilisUrl, options).then(response => response.json()).then(data => {
+            return data
+        })
+    )
+}
+
+export async function AniListPopular({ pagina }) {
+    var query = `
+    query ($Page: Int ) { # Define which variables will be used in the query (id)
+        Page (page: $Page,perPage: 18) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+        pageInfo {
+          total
+        }
+        media(sort: POPULARITY_DESC, isAdult: false,type: ANIME) {
+          id
+          title {
+            romaji
+            english
+          } 
+          description
+          coverImage {
+            large
+            medium
+          } 
+          }
+        }
+      }
+    `;
+
+    var resultado = {
+        Page: pagina
+
     }
 
     var anilisUrl = 'https://graphql.anilist.co',

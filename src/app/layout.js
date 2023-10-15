@@ -5,21 +5,20 @@ export const metadata = {
 import "./globals.css"
 import NavBar from "./NavBar"
 import { Suspense } from "react"
+import HeadHTML from "./HeadHTML"
 
-export default function RootLayout({ children }) {
+
+export default function RootLayout({ children}) {
   return (
     <html lang="es">
-      <head>
-        <title>{metadata.title}</title>
-      </head>
+      <HeadHTML />
       <body className="bg-slate-950">
-        <div className="">
-
+        <div>
           <NavBar />
         </div>
         <Suspense fallback={<div>Loading...</div>}>
 
-        {children}
+          {children}
         </Suspense>
       </body>
     </html >
