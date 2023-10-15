@@ -4,7 +4,7 @@ import { getAnimeID } from "../../../stuff/api";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../stuff/buscarATF"
-export default async function Page({
+export default async function PageAnime({
     searchParams,
 }) {
     var id = parseInt(searchParams.id)

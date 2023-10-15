@@ -8,10 +8,11 @@ import { animeInfo } from "../../../../stuff/api";
 import PaginationMirar from "../../../../stuff/paginationMirar";
 import { obtenerATF } from "../../../../stuff/buscarATF";
 
-export default async function Page({
+export default async function PageMirar({
     searchParams,
 }) {
     var titulo = searchParams.titulo
+    console.log( titulo )
     var id = parseInt(searchParams.cap)
     var apiIDname = await getAnimeID({ nombreAnime: titulo })
     var videoGET = await getVideoChapter({ captitulo: apiIDname.episodes[id].url })
