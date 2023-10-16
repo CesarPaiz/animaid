@@ -6,7 +6,7 @@ import { AniListTendencia } from "../../../stuff/anilist"
 
 
 export default async function Main() {
-    var [pagina, setPagina] = useState(0)
+    var [pagina, setPagina] = useState(1)
 
     const data = await AniListTendencia({ pagina: pagina })
     return (
