@@ -11,11 +11,10 @@ export default async function Main() {
     const data = await AniListTendencia({ pagina: pagina })
     return (
         <>
+            <span className="flex justify-center align-center text-2xl mt-8 text-white text-center">Tendencias Pagina {pagina}</span>
             <div className="max-w-full ml-8 mr-8 mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
-
-
                         <div key={item} className="max-w-sm mx-auto bg-gray-800 rounded overflow-hidden shadow-lg">
                             <Link href={{
                                 pathname: '/anime',
@@ -38,7 +37,10 @@ export default async function Main() {
 
             </div>
             <div className="flex justify-center mt-4 mb-4" >
-                <button onClick={() => setPagina(pagina - 1)} className="bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-1 md:px-4 rounded-full">Anterior</button>
+                {pagina > 1 && (
+                    <button onClick={() => setPagina(pagina - 1)} className="bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-1 md:px-4 rounded-full">Anterior</button>
+
+                )}
                 <button onClick={() => setPagina(pagina + 1)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 md:px-4 rounded-full">Siguiente</button>
             </div>
 
