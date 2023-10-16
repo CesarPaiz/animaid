@@ -3,7 +3,7 @@
 import Link from "next/link"
 import NavegadorCLiente from "../../stuff/NavBarClient";
 import Image from "next/image"
-import SectionsButtons from "../../stuff/SectionsButtons";
+import SectionsButtons from "./SectionsButtons";
 
 
 export default function NavBar() {
