@@ -23,7 +23,6 @@ export default function SectionButtons() {
         )
             }
         else{
-            //      no retornar nada     //
         }
     
 }
