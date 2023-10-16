@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from "react"
+import PaginationMirar from "../stuff/paginationMirar"
 
-export default function IframeVideo({ jsonVideos }) {
+export default function IframeVideo({ jsonVideos, id, captitulo }) {
     const [video, setVideo] = useState("")
     return (
         <>
@@ -13,8 +14,11 @@ export default function IframeVideo({ jsonVideos }) {
 
                 ))}
             </div>
-            <div className="flex align-center justify-center max-w-2xl max-h-2xl mt-4 rounded">
-                <iframe width="560" height="315" frameborder="0" src={video} scrolling="no" allowfullscreen=""></iframe>
+            <div className=" flex  mt-6 align-center justify-center  ">
+                <iframe className="justify-center text-center" width="760" height="415" frameborder="0" src={video} scrolling="no" allowfullscreen=""></iframe>
+            </div>
+            <div onClick={() => setVideo("")} className="flex align-center justify-center mt-4 rounded">
+                <PaginationMirar anime={id} captitulo={captitulo} />
             </div>
         </>
     )

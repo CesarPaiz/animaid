@@ -7,7 +7,7 @@ import PaginationMain from "../../../stuff/pagination"
 export default async function Main({
     searchParams,
 }) {
-    var paginaN = parseInt(searchParams.pagina)
+    var paginaN = parseInt(searchParams.pagina) ?? 1
     
     const data = await AniListTendencia({ pagina: paginaN })
     return (

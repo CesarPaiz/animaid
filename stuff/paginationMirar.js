@@ -4,7 +4,7 @@ export default function PaginationMirar({ anime, captitulo }) {
             <Link href={{
                 pathname: '/anime/mirar',
                 query: {
-                    anime: anime,
+                    id: anime,
                     captitulo: parseInt(captitulo) + 1,
                 }
             }}
