@@ -1,16 +1,14 @@
 'use client'
+
 import Link from "next/link"
+import { useState } from "react"
 import { AniListTendencia } from "../../../stuff/anilist"
-import PaginationMain from "../../../stuff/pagination"
 
 
-export default async function Main({
-    searchParams,
-}) {
-    var paginaN = parseInt(searchParams.pagina) ?? 1
-    console.log("Pagina tendencias", paginaN)
+export default async function Main() {
+    var [pagina, setPagina] = useState(0)
 
-    const data = await AniListTendencia({ pagina: paginaN })
+    const data = await AniListTendencia({ pagina: pagina })
     return (
         <>
             <div className="max-w-full ml-8 mr-8 mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mt-8 rounded overflow-hidden shadow-lg">
@@ -39,8 +37,10 @@ export default async function Main({
                 }
 
             </div>
-
-            <PaginationMain paginaActual={paginaN} />
+            <div className="flex justify-center mt-4 mb-4" >
+                <button onClick={() => setPagina(pagina - 1)} className="bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-1 md:px-4 rounded-full">Anterior</button>
+                <button onClick={() => setPagina(pagina + 1)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 md:px-4 rounded-full">Siguiente</button>
+            </div>
 
         </>
 
