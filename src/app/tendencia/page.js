@@ -8,6 +8,7 @@ export default async function Main({
     searchParams,
 }) {
     var paginaN = parseInt(searchParams.pagina) ?? 1
+    console.log( "Pagina tendencias", paginaN)
     
     const data = await AniListTendencia({ pagina: paginaN })
     return (
@@ -39,7 +40,7 @@ export default async function Main({
 
             </div>
 
-            <PaginationMain paginaQ={paginaN} />
+            <PaginationMain paginaActual={paginaN} />
 
         </>
 
