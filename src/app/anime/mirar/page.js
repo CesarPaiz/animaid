@@ -54,12 +54,12 @@ export default async function Page({
     }
     return (
         <>
-            <div className="  justify-items-center text-center items-center">
-                <IframeVideo jsonVideos={final} id={searchParams.id} captitulo={searchParams.captitulo} />
-            </div>
-            <div className="text-white grid justify-center text-center ">
-                
-            </div >
+            <Suspense fallback={<span>Loading...</span>}>
+                <div className="  justify-items-center text-center items-center">
+                    <IframeVideo jsonVideos={final} id={searchParams.id} episodios={apiIDnameFinal.episodes} captitulo={searchParams.captitulo} />
+                </div>
+            </Suspense>
+            
         </>
     )
 }

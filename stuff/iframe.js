@@ -3,7 +3,10 @@
 import { useState } from "react"
 import PaginationMirar from "../stuff/paginationMirar"
 
-export default function IframeVideo({ jsonVideos, id, captitulo }) {
+export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
+    var videos = jsonVideos
+    var animeID = parseInt(id)
+    var animeCaps = parseInt(captitulo)
     const [video, setVideo] = useState("")
     return (
         <>
@@ -17,9 +20,10 @@ export default function IframeVideo({ jsonVideos, id, captitulo }) {
             <div className=" flex  mt-6 align-center justify-center  ">
                 <iframe className="justify-center text-center" width="760" height="415" frameborder="0" src={video} scrolling="no" allowfullscreen=""></iframe>
             </div>
-            <div onClick={() => setVideo("")} className="flex align-center justify-center mt-4 rounded">
-                <PaginationMirar anime={id} captitulo={captitulo} />
-            </div>
+            <div onClick={() => setVideo("")} className="text-white  justify-center text-center flex flex-row gap-4 ">
+                <PaginationMirar anime={animeID} captitulo={animeCaps} cantidad={episodios} />
+            </div >
+
         </>
     )
 }

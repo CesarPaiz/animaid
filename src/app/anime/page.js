@@ -41,10 +41,10 @@ export default async function Page({
     }
     return (
         <>
-            <div className="text-white grid justify-center  place-items-center">
+            <div className="text-white flex flex-col justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
-                <div className="flex flex-row justify-center mt-6 mb-6">
-                    <div style={{ width: '200px', height: '300px', position: 'relative' }} >
+                <div className="flex md:flex-row flex-col align-center justify-center mt-6 mb-6 place-items-center">
+                    <div className=" flex md:align-center justify-center text-center items-center  " style={{ width: '200px', height: '300px', position: 'relative' }} >
                         <Image
                             src={result.data.Media.coverImage.large}
                             layout="fill"
@@ -55,7 +55,7 @@ export default async function Page({
                     </div>
                      <div className=" max-w-2xl">
                             <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
-                        </div>
+                    </div>
                 </div>
 
 
