@@ -3,6 +3,7 @@ import { getAnimeID } from "../../../stuff/api";
 import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../stuff/buscarATF"
+import Image from "next/image";
 export default async function Page({
     searchParams,
 }) {
@@ -40,12 +41,24 @@ export default async function Page({
     }
     return (
         <>
-            <div className="text-white grid justify-center text-center place-items-center">
+            <div className="text-white grid justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
-                <div className="flex flex-row justify-center max-w-4xl mb-6">
-                    <img src={result.data.Media.coverImage.large} className=" mt-4 rounded mb-4 bg-slate-800 max-h-80" alt="logo" />
-                    <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
+                <div className="flex flex-row justify-center mt-6 mb-6">
+                    <div style={{ width: '200px', height: '300px', position: 'relative' }} >
+                        <Image
+                            src={result.data.Media.coverImage.large}
+                            layout="fill"
+                            style={{ objectFit: 'cover' }}
+
+                        />
+                       
+                    </div>
+                     <div className=" max-w-2xl">
+                            <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
+                        </div>
                 </div>
+
+
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
                     {
                         apiIDnameFinal?.episodes.map(item => (
