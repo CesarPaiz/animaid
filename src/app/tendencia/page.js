@@ -23,14 +23,20 @@ export default async function Main() {
                                     id: item.id,
                                 }
                             }}>
-                                <div style={{ width: '185px', height: '300px', position: 'relative' }}>
+                                <div style={{ width: '175px', height: '300px', position: 'relative' }}>
                                     <Image
                                         src={item.coverImage.large}
                                         layout="fill"
-                                        style={{ objectFit: 'cover' }} 
-                                    />                                    
-                                    <div className=" w-full absolute inset-0 text-white bg-black bg-opacity-40 hover:bg-opacity-0 flex items-end justify-center ">
-                                        <h2 className=" text-base font-bold  truncate">{item.title.romaji ?? item.title.english}</h2>
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                    <div className="absolute inset-0">
+                                        <div className=" w-full  relative  text-white bg-black bg-opacity-80  flex items-end justify-center ">
+                                            <h2 className=" text-base font-bold  truncate">{item.title.romaji ?? item.title.english}</h2>
+
+                                        </div>
+                                        <div className=" w-full absolute  text-white bg-black bg-opacity-80 flex bottom-0 justify-center ">
+                                            <span className="text-white">Estado : {item.status}</span>
+                                        </div>
                                     </div>
                                 </div>
 

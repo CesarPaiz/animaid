@@ -8,7 +8,7 @@ export default function NavegadorCLiente() {
     const [nombreAnilist, setNombre] = useState("")
     return (
 
-        <nav className= " w-full flex flex-row gap-4 mt-3 max-h-10 justify-center ">
+        <nav className= " w-full flex flex-row gap-4 mt-3 max-h-10 justify-center">
             <div className="font-size-2 text-white text-3xl flex-row flex place-items-left ml-0 md:ml-4 mt-1 font-bold pl-4">
                 <Link className="" href="/" >
                     <span className="text-white hidden  xl:block 2xl:block lg:block md:block sm:hidden">AniMaid</span>
