@@ -1,26 +1,10 @@
 'use client'
 
-import { usePathname, useSearchParams } from 'next/navigation'
-import Cookies from 'js-cookie';
+
+import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
-const setCookie = (key, value) => {
-    Cookies.set(key, value, { expires: 365 * 999 });
-}
-const removeCookie = (key) => {
-    Cookies.remove(key);
-};
-
 export default function HeadHTML() {
-    const router = useRouter()
-    const searchParams = useSearchParams();
-    var codigo = searchParams.get("code");
-    if (codigo !== null) {
-        removeCookie("anilistAuth");
-        setCookie("anilistAuth", codigo);
-        router.push("/");
-    }
-
     const pathname = usePathname()
     var pathnameFix = pathname.replace(/\//g, " ")
     var partes = pathnameFix.split(" ");
@@ -29,9 +13,12 @@ export default function HeadHTML() {
     var pathnameFinal = " - " + pathnameFixPar2
     return (
         <head>
+            <link rel="icon" href="/img/icono.png" />
+
             {pathnameFinal !== " - " &&
                 <title>{`AniMaid  ${pathnameFinal}`}</title>
             }
         </head>
     )
+
 }

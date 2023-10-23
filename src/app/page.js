@@ -3,11 +3,6 @@ import Image from "next/image"
 import { AniListTendencia } from "../../stuff/anilist"
 import PaginationMain from "../../stuff/pagination"
 import { AniListPopular } from "../../stuff/anilist"
-import Cookies from 'js-cookie';
-
-
-
-
 
 export default async function Main({
     searchParams,
@@ -18,7 +13,7 @@ export default async function Main({
         <>
             <h1 className="text-2xl mt-5 text-white text-center">Los animes mas populares</h1>
 
-            <div className="max-w-full ml-8 mr-8 mx-auto grid gap-6 grid-cols-2 md:grid-cols-6 mt-8 rounded overflow-hidden shadow-lg">
+            <div className="max-w-full  md:ml-8 md:mr-8 ml-4 mr-4 mx-auto grid gap-6 grid-cols-2 md:grid-cols-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
 
@@ -33,7 +28,7 @@ export default async function Main({
                                 <div style={{ width: '175px', height: '300px', position: 'relative' }}>
                                     <Image
                                         src={item.coverImage.large}
-                                        layout="fill"
+                                        fill
                                         style={{ objectFit: 'cover' }}
                                     />
                                     <div className="absolute inset-0">
@@ -42,7 +37,7 @@ export default async function Main({
 
                                         </div>
                                         <div className=" w-full absolute  text-white bg-black bg-opacity-80 flex bottom-0 justify-center ">
-                                        <span className="text-white">Estado : {item.status}</span>
+                                            <span className="text-white">Estado : {item.status}</span>
                                         </div>
                                     </div>
 

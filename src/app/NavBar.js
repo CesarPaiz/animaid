@@ -1,12 +1,21 @@
-
+'use server'
 
 import Link from "next/link"
 import NavegadorCLiente from "../../stuff/NavBarClient";
 import Image from "next/image"
 import SectionsButtons from "./SectionsButtons";
+import {AniListAvatar} from "../../stuff/anilist"
+import { AniListToken } from "../../stuff/anilist";
+import { cookies } from 'next/headers'
 
+export default async function NavBar() {
+    var anilistCode =  cookies().get('anilistCode')
+    var anilistToken =  cookies().get('anilistToken')
 
-export default function NavBar() {
+    if(anilistCode !== undefined && anilistToken === undefined){
+        //await cookiesAuth()
+    }
+    
     return (
 
         <>
@@ -16,7 +25,7 @@ export default function NavBar() {
                 </div>
                 <div className="mt-3 ml-3">
 
-                    <a className="" href='https://anilist.co/api/v2/oauth/authorize?client_id=14401&response_type=code'>
+                    <a className="" href='https://anilist.co/api/v2/oauth/authorize?client_id=14401&response_type=token'>
                         <button className="flex w-10 h-10 place-items-center outline outline-offset-1 outline-1 outline-blue-500 bg-none hover:bg-none  rounded-full  mr-3 md:mx-8">
                             <Image width={50} height={50} className=" w-10 h-10 bg-slate-800  rounded-full p-0" src="/img/animeico.png" alt="logo" />
                         </button>

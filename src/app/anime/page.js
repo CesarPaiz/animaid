@@ -42,7 +42,7 @@ export default async function Page({
     return (
         <>
             <div className="text-white flex flex-col justify-center  place-items-center">
-                <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
+                <h1 className="text-2xl text-center mr-6 ml-6 mt-6 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
                 <div className="flex md:flex-row flex-col align-center justify-center mt-6 mb-6 place-items-center">
                     <div className=" flex md:align-center justify-center text-center items-center  " style={{ width: '200px', height: '300px', position: 'relative' }} >
                         <Image
