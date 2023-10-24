@@ -220,46 +220,21 @@ export async function AniListAvatar({ code }) {
 
 
     var anilisUrl = 'https://graphql.anilist.co',
-
+    
         options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': code,
+                'Authorization': 'Bearer ' + code,
             },
             body: JSON.stringify({
                 query: query,
             })
         }
-    console.log(code)
+        console.log(code)
     return (
         fetch(anilisUrl, options).then(response => response.json()).then(data => {
-            return data
-        })
-    )
-}
-export async function AniListToken({ code }) {
- var uri = 'https://anilist.co/api/v2/oauth/token'
-
-var options = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  },
-  body:JSON.stringify({
-    'grant_type': 'authorization_code',
-    'client_id': '14401',
-    'client_secret': 'mxd42XrKeUO44wtll2lqfE68vtCo1gyTMdTouF9P',
-    'redirect_uri': 'http://localhost:3000/', 
-    'code': code, 
-  })
-};
-
-
-    return (
-        await fetch(uri, options).then(response => response.json()).then(data => {
             return data
         })
     )
