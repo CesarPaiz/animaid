@@ -13,7 +13,7 @@ export default async function Main() {
     return (
         <>
             <span className="flex justify-center align-center text-2xl mt-8 text-white text-center">Tendencias Pagina {pagina}</span>
-            <div className="max-w-full ml-8 mr-8 mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mt-8 rounded overflow-hidden shadow-lg">
+            <div className="max-w-full md:ml-8 md:mr-8 ml-4 mr-4 mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
                         <div key={item} className="max-w-sm mx-auto  bg-gray-800 rounded overflow-hidden shadow-lg">
@@ -26,7 +26,7 @@ export default async function Main() {
                                 <div style={{ width: '175px', height: '300px', position: 'relative' }}>
                                     <Image
                                         src={item.coverImage.large}
-                                        layout="fill"
+                                        fill
                                         style={{ objectFit: 'cover' }}
                                     />
                                     <div className="absolute inset-0">
