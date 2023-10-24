@@ -38,7 +38,7 @@ export default async function Main() {
 
                                         </div>
                                         <div className=" w-full absolute  text-white bg-black bg-opacity-80 flex bottom-0 justify-center ">
-                                            <span className="text-white">Estado : {item.status}</span>
+                                            <span className="text-white">{item.type}</span>
                                         </div>
                                     </div>
                                 </div>

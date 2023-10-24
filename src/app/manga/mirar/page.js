@@ -2,8 +2,9 @@ import { mangaInfo } from "../../../../stuff/api";
 import { mangaBuscar } from "../../../../stuff/api";
 import { mangaCaptulo } from "../../../../stuff/api";
 import { AniLisInfoID } from "../../../../stuff/anilist"
-import Link from "next/link";
 import { obtenerATF } from "../../../../stuff/buscarATF"
+import MangaRPage from "./PaginationManga"
+import { Suspense } from "react";
 
 export default async function MirarMangaPage({ searchParams }) {
 
@@ -29,9 +30,16 @@ export default async function MirarMangaPage({ searchParams }) {
     return (
         <>
             <div className="mt-8 text-white flex flex-col justify-center  place-items-center">
-                {final?.images.map(item => (
-                    <img key={item} className="max-w-xl ml-4 mr-4" src={item.image}></img>
-                ))}
+                <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
+               <span className="mt-4 ml-4 line-clamp-6">capitol {cap}</span>
+                <MangaRPage idM={searchParams.id} capitulo={cap} />
+
+                <Suspense fallback={<span className='flex justify-center ml-4 mr-4 align-center text-2xl mt-8 text-white'>Loading...</span>}>
+                    {final?.images.map(item => (
+                        <img key={item} className="md:max-w-xl w-full " src={item.image}></img>
+                    ))}
+                </Suspense>
+                <MangaRPage idM={searchParams.id} capitulo={cap} />
             </div>
         </>
     )

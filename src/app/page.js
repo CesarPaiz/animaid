@@ -12,7 +12,6 @@ export default async function Main({
     searchParams,
 }) {
     const data = await AniListPopular({ pagina: 1 })
-    console.log(data.data.Page.media.type)
     return (
         <>
             <h1 className="text-2xl mt-5 text-white text-center">Los animes mas populares</h1>
@@ -43,7 +42,7 @@ export default async function Main({
 
                                         </div>
                                         <div className=" w-full absolute  text-white bg-black bg-opacity-80 flex bottom-0 justify-center ">
-                                            <span className="text-white">Estado : {item.status}</span>
+                                            <span className="text-white">{item.type}</span>
                                         </div>
                                     </div>
 
