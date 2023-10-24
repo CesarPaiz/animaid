@@ -19,3 +19,21 @@ export async function animeInfo({ nombreAnime }) {
     const id = await result.json();
     return(id)
 }
+export async function mangaInfo({ nombreManga }) {
+    var url = urlApi + nombreManga +"?lang=es-419";
+    var result = await fetch(url)
+    const id = await result.json();
+    return(id)
+}
+export async function mangaBuscar({ nombreManga }) {
+    var url = urlApi + "/manga/comick/filter?search=" + nombreManga;
+    var result = await fetch(url)
+    const id = await result.json();
+    return(id.results[0].url)
+}
+export async function mangaCaptulo({ nombreManga }) {
+    var url = urlApi + nombreManga;
+    var result = await fetch(url)
+    const id = await result.json();
+    return(id)
+}
