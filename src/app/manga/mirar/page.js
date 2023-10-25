@@ -9,9 +9,14 @@ import { Suspense } from "react";
 export default async function MirarMangaPage({ searchParams }) {
 
     function getUrlByNumber(jsonManga, targetNumber) {
-        const matchingObject = jsonManga.find(obj => obj.number === targetNumber);
-        return matchingObject ? matchingObject.url : null;
+        for (let i = 0; i < jsonManga.length; i++) {
+            if (jsonManga[i].number === targetNumber) {
+                return i
+            }
+        }
     }
+
+
 
     var result = await AniLisInfoID({ id: searchParams.id })
     var cap = searchParams.captitulo
@@ -24,22 +29,42 @@ export default async function MirarMangaPage({ searchParams }) {
     var buscar = await mangaBuscar({ nombreManga: titleFix });
     var resultado = await mangaInfo({ nombreManga: buscar })
 
-    var capitulo_a_ver = getUrlByNumber(resultado.chapters, cap)
+
+    var capituloBuscar = getUrlByNumber(resultado.chapters, cap)
+
+    var capitulo_a_ver = resultado.chapters[capituloBuscar].url
+
+    //var actualCap = resultado.chapters[capituloBuscar].number
+
+    try {
+        var nexCap = resultado.chapters[capituloBuscar - 1].number
+    }
+    catch {
+        var nexCap = null
+    }
+    try {
+        var backCap = resultado.chapters[capituloBuscar + 1].number
+    }
+    catch {
+        var backCap = null
+    }
+
+
 
     var final = await mangaCaptulo({ nombreManga: capitulo_a_ver })
     return (
         <>
             <div className="mt-8 text-white flex flex-col justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
-               <span className="mt-4 ml-4 line-clamp-6">capitol {cap}</span>
-                <MangaRPage idM={searchParams.id} capitulo={cap} />
+                <span className="mt-4 ml-4 line-clamp-6">capitol {cap}</span>
+                <MangaRPage idM={searchParams.id} capitulo={cap} nextCap={nexCap} backCap={backCap} />
 
                 <Suspense fallback={<span className='flex justify-center ml-4 mr-4 align-center text-2xl mt-8 text-white'>Loading...</span>}>
                     {final?.images.map(item => (
                         <img key={item} className="md:max-w-xl w-full " src={item.image}></img>
                     ))}
                 </Suspense>
-                <MangaRPage idM={searchParams.id} capitulo={cap} />
+                <MangaRPage idM={searchParams.id} capitulo={cap} nextCap={nexCap} />
             </div>
         </>
     )
