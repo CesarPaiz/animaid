@@ -49,9 +49,7 @@ export async function AniListSearch({ nombreAnime }) {
 
 
     return (
-        fetch(anilisUrl, options,{
-            cache: "no-cache",
-        }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -101,9 +99,7 @@ export async function AniListTendencia({ pagina }) {
 
 
     return (
-        fetch(anilisUrl, options,{
-            cache: "no-cache",
-        }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -156,9 +152,7 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
 
 
     return (
-        fetch(anilisUrl, options,{
-            cache: "no-cache",
-        }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -209,9 +203,7 @@ export async function AniListPopular({ pagina }) {
 
 
     return (
-        fetch(anilisUrl, options,{
-            cache: "no-cache",
-        }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -246,9 +238,7 @@ export async function AniListAvatar({ code }) {
         }
     console.log(code)
     return (
-        fetch(anilisUrl, options,{
-            cache: "no-cache",
-        }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
             return data
         })
     )
