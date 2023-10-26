@@ -14,16 +14,12 @@ export default async function MangaPage({ searchParams }) {
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '+').toLowerCase();
+    var titleFix = titleFixPar1.replace(/\s+/g, ' ').toLowerCase();
     var buscar = await mangaBuscar({ nombreManga: titleFix });
     var resultado = await mangaInfo({ nombreManga: buscar })
     return (
         <>
-            <head>
 
-                <title>AniMaid - {title}</title>
-
-            </head>
             <div className="text-white flex flex-col justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
                 <div className="flex md:flex-row flex-col align-center justify-center mt-6 mb-6 place-items-center">

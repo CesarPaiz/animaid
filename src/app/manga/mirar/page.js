@@ -25,7 +25,7 @@ export default async function MirarMangaPage({ searchParams }) {
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-');
+    var titleFix = titleFixPar1.replace(/\s+/g, ' ').toLowerCase();
     var buscar = await mangaBuscar({ nombreManga: titleFix });
     var resultado = await mangaInfo({ nombreManga: buscar })
 

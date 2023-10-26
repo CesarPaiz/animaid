@@ -23,6 +23,12 @@ export async function mangaInfo({ nombreManga }) {
     var url = urlApi + nombreManga +"?lang=es-419";
     var result = await fetch(url,{ next: { revalidate: 43200 } })
     const id = await result.json();
+    if(id.chapters[0] === undefined){
+        var url = urlApi + nombreManga +"?lang=en";
+        var result = await fetch(url,{ next: { revalidate: 43200 } })
+        const id = await result.json();
+        return(id)
+    }
     return(id)
 }
 export async function mangaBuscar({ nombreManga }) {
