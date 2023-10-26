@@ -4,7 +4,7 @@ import { AniListTendencia } from "../../stuff/anilist"
 import PaginationMain from "../../stuff/pagination"
 import { AniListPopular } from "../../stuff/anilist"
 import { Suspense } from "react"
-
+import Head from 'next/head'
 
 
 
@@ -29,7 +29,7 @@ export default async function Main({
                                 }
                             }}>
                                 <div style={{ width: '175px', height: '300px', position: 'relative' }}>
-                                <Suspense fallback={<span className='flex justify-center align-center text-2xl mt-8 text-white'>Loading...</span>}>
+                                    <Suspense fallback={<span className='flex justify-center align-center text-2xl mt-8 text-white'>Loading...</span>}>
                                         <Image
                                             src={item.coverImage.large}
                                             fill

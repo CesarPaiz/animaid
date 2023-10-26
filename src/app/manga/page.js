@@ -19,6 +19,11 @@ export default async function MangaPage({ searchParams }) {
     var resultado = await mangaInfo({ nombreManga: buscar })
     return (
         <>
+            <head>
+
+                <title>AniMaid - {title}</title>
+
+            </head>
             <div className="text-white flex flex-col justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
                 <div className="flex md:flex-row flex-col align-center justify-center mt-6 mb-6 place-items-center">

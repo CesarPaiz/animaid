@@ -11,7 +11,7 @@ import HeadHTML from "./HeadHTML"
 export default function RootLayout({ children}) {
   return (
     <html lang="es">
-      <HeadHTML />
+      
       <body className="bg-slate-950">
         <div>
           <NavBar />

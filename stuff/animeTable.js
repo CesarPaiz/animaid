@@ -10,6 +10,7 @@ export default async function AnimeTable({ nombreAnime }) {
     const data = await AniListSearch(nombreAnime = { nombreAnime })
     return (
         <>
+        
             <div className="max-w-full md:ml-8 md:mr-8 ml-4 mr-4 mx-auto grid grid-cols-2 md:grid-cols-6 gap-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (

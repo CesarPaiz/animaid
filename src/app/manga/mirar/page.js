@@ -34,8 +34,6 @@ export default async function MirarMangaPage({ searchParams }) {
 
     var capitulo_a_ver = resultado.chapters[capituloBuscar].url
 
-    //var actualCap = resultado.chapters[capituloBuscar].number
-
     try {
         var nexCap = resultado.chapters[capituloBuscar - 1].number
     }
@@ -54,6 +52,11 @@ export default async function MirarMangaPage({ searchParams }) {
     var final = await mangaCaptulo({ nombreManga: capitulo_a_ver })
     return (
         <>
+            <head>
+
+                <title>AniMaid - {title}</title>
+
+            </head>
             <div className="mt-8 text-white flex flex-col justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
                 <span className="mt-4 ml-4 line-clamp-6">capitol {cap}</span>

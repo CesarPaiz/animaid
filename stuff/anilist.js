@@ -224,7 +224,7 @@ export async function AniListAvatar({ code }) {
 
 
     var anilisUrl = 'https://graphql.anilist.co',
-    
+
         options = {
             method: 'POST',
             headers: {
@@ -236,7 +236,7 @@ export async function AniListAvatar({ code }) {
                 query: query,
             })
         }
-        console.log(code)
+    console.log(code)
     return (
         fetch(anilisUrl, options).then(response => response.json()).then(data => {
             return data

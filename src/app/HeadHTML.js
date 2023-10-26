@@ -13,10 +13,6 @@ const removeCookie = (key) => {
 
 export default function HeadHTML() {
 
-    
-
-
-
     const router = useRouter()
     const pathnameHtml = usePathname()
     const searchParams = useSearchParams();

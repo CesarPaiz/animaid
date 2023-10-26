@@ -23,6 +23,7 @@ export default async function Page({
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
+
     if (apiIDname.episodes === undefined) {
         var newTitle = obtenerATF(title)
         if (newTitle === undefined) {
@@ -41,6 +42,7 @@ export default async function Page({
     }
     return (
         <>
+   
             <div className="text-white flex flex-col justify-center  place-items-center">
                 <h1 className="text-2xl mt-5 text-white ">{result.data.Media.title.romaji ?? result.data.Media.title.english}</h1>
                 <div className="flex md:flex-row flex-col align-center justify-center mt-6 mb-6 place-items-center">
@@ -51,10 +53,10 @@ export default async function Page({
                             style={{ objectFit: 'cover' }}
 
                         />
-                       
+
                     </div>
-                     <div className=" max-w-2xl">
-                            <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
+                    <div className=" max-w-2xl">
+                        <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
                     </div>
                 </div>
 

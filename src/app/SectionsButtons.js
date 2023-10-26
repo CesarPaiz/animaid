@@ -10,6 +10,9 @@ export default function SectionButtons() {
             <div className="flex gap-4 flex-row  item-align-center justify-center mt-8 mb-4">
                 <Link href={{
                     pathname: '/tendencia',
+                    query: {
+                        pag: 1,
+                    }
                 }}>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full    "> Tendencias </button>
     

@@ -26,8 +26,6 @@ export default async function NavBar() {
             </div>
                 <SectionsButtons />
 
-
-
         </>
     )
 }
