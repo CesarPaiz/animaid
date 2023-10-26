@@ -63,7 +63,7 @@ export default async function MirarMangaPage({ searchParams }) {
                         <img key={item} className="md:max-w-xl w-full " src={item.image}></img>
                     ))}
                 </Suspense>
-                <MangaRPage idM={searchParams.id} capitulo={cap} nextCap={nexCap} />
+                <MangaRPage idM={searchParams.id} capitulo={cap} nextCap={nexCap} backCap={backCap} />
             </div>
         </>
     )

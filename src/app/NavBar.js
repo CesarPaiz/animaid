@@ -11,7 +11,6 @@ export default async function NavBar() {
     return (
 
         <>
-            <HeadHTML />
             <div className="w-full flex flex-row max-h-10 ">
                 <div className=" w-full">
                     <NavegadorCLiente />
