@@ -2,6 +2,7 @@
 import NavegadorCLiente from "../../stuff/NavBarClient";
 import Image from "next/image"
 import SectionsButtons from "./SectionsButtons";
+import HeadHTML from "./HeadHTML";
 
 
 
@@ -10,6 +11,7 @@ export default async function NavBar() {
     return (
 
         <>
+            <HeadHTML />
             <div className="w-full flex flex-row max-h-10 ">
                 <div className=" w-full">
                     <NavegadorCLiente />
@@ -24,7 +26,7 @@ export default async function NavBar() {
                 </div>
 
             </div>
-                <SectionsButtons />
+            <SectionsButtons />
 
         </>
     )
