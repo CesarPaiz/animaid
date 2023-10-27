@@ -6,12 +6,21 @@ import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../stuff/buscarATF"
 import Image from "next/image";
+import translatte from "translatte";
 
 export default async function MangaPage({ searchParams }) {
+    
     var result = await AniLisInfoID({ id: searchParams.id })
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
+    var descriptionEs = await translatte(descriptionFix, {to: 'es'}).then(res => {
+        return(res.text);
+    }).catch(err => {
+        console.error(err);
+    });
+
+
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, ' ').toLowerCase();
@@ -33,7 +42,7 @@ export default async function MangaPage({ searchParams }) {
 
                     </div>
                     <div className=" max-w-2xl">
-                        <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
+                        <span className="mt-4 ml-4 line-clamp-6">{descriptionEs}</span>
                     </div>
                 </div>
                 <div className="text-white flex flex-col justify-center  place-items-center mt-8 place-items-center">
