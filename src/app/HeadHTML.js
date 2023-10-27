@@ -31,6 +31,7 @@ export default function HeadHTML() {
     var pathnameFinal = " - " + pathnameFixPar2
     return (
         <head>
+            <link rel="icon" href="/favicon.png" />
             {pathnameFinal !== " - " &&
                 <title>{`AniMaid  ${pathnameFinal}`}</title>
             }
