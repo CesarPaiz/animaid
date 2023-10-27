@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "anilist-node": "^1.14.0",
+    "electron": "^27.0.2",
     "encoding": "^0.1.13",
+    "free-translate": "^0.6.1",
+    "google-translate-free": "^2.4.5",
     "js-cookie": "^3.0.5",
     "js-cookies": "^1.0.4",
     "next": "13.5.6",
