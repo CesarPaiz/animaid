@@ -4,6 +4,8 @@ import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../stuff/buscarATF"
 import Image from "next/image";
+import translatte from "translatte";
+
 export default async function Page({
     searchParams,
 }) {
@@ -23,6 +25,11 @@ export default async function Page({
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
+    var descriptionEs = await translatte(descriptionFix, {to: 'es'}).then(res => {
+        return(res.text);
+    }).catch(err => {
+        console.error(err);
+    });
 
     if (apiIDname.episodes === undefined) {
         var newTitle = obtenerATF(title)
@@ -56,7 +63,7 @@ export default async function Page({
 
                     </div>
                     <div className=" max-w-2xl">
-                        <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
+                        <span className="mt-4 ml-4 line-clamp-6">{descriptionEs}</span>
                     </div>
                 </div>
 
