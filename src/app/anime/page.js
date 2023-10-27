@@ -56,8 +56,8 @@ export default async function Page({
                         />
 
                     </div>
-                    <div className=" max-w-2xl">
-                        <span className="mt-4 ml-4 line-clamp-6">{descriptionFix}</span>
+                    <div className="ml-4 max-w-2xl">
+                        <span className="mt-4  line-clamp-8">{apiIDnameFinal.synopsis ?? descriptionFix}</span>
                     </div>
                 </div>
 
