@@ -1,24 +1,19 @@
 import { mangaInfo } from "../../../stuff/api";
 import { mangaBuscar } from "../../../stuff/api";
 import { AniLisInfoID } from "../../../stuff/anilist"
-import { getAnimeID } from "../../../stuff/api";
-import { animeInfo } from "../../../stuff/api";
 import Link from "next/link";
-import { obtenerATF } from "../../../stuff/buscarATF"
 import Image from "next/image";
 
 export default async function MangaPage({ searchParams }) {
     
     var result = await AniLisInfoID({ id: searchParams.id })
     var description = result.data.Media.description
-    var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     
-
-
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, ' ').toLowerCase();
+    var titleFix = titleFixPar1.replace(/\s+/g, '-').toLowerCase();
+    console.log(titleFix)
     var buscar = await mangaBuscar({ nombreManga: titleFix });
     var resultado = await mangaInfo({ nombreManga: buscar })
     return (

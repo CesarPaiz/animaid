@@ -30,7 +30,7 @@ export async function mangaInfo({ nombreManga }) {
         return(id)
     }
     return(id)
-}
+}   
 export async function mangaBuscar({ nombreManga }) {
     var url = urlApi + "/manga/comick/filter?search=" + nombreManga;
     var result = await fetch(url,{ next: { revalidate: 43200 } })

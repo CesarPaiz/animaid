@@ -2,8 +2,7 @@ import AniList from "anilist-node";
 
 const settings = '';
 const animaid = new AniList(settings.token);
-import { AniListNombre } from "../src/app/NavBar"
-import { NextRequest } from 'next/server'
+
 export async function AniListSearch({ nombreAnime }) {
     var query = `
     query ($Search: String, $Page: Int ) { # Define which variables will be used in the query (id)
@@ -11,7 +10,7 @@ export async function AniListSearch({ nombreAnime }) {
         pageInfo {
           total
         }
-        media(search: $Search,sort: TRENDING_DESC,isAdult: false) {
+        media(search: $Search,sort: TRENDING_DESC,isAdult: false  ,type: ANIME) {
           id
           type
           status
@@ -61,7 +60,7 @@ export async function AniListTendencia({ pagina }) {
         pageInfo {
           total
         }
-        media(sort: TRENDING_DESC, isAdult: false) {
+        media(sort: TRENDING_DESC, isAdult: false ,type: ANIME) {
           id
           type
           status
@@ -107,7 +106,7 @@ export async function AniListTendencia({ pagina }) {
 export async function AniLisInfoID({ id }) {
     var query = `
 query ($Id: Int) { # Define which variables will be used in the query (id)
-  Media (id: $Id) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+  Media (id: $Id ) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
     id
     type
     status
@@ -161,11 +160,11 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
 export async function AniListPopular({ pagina }) {
     var query = `
     query ($Page: Int ) { # Define which variables will be used in the query (id)
-        Page (page: $Page,perPage: 18) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
+        Page (page: $Page,perPage: 18 ) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
         pageInfo {
           total
         }
-        media(sort: POPULARITY_DESC, isAdult: false) {
+        media(sort: POPULARITY_DESC, isAdult: false, type: ANIME) {
           id
           type
           status
