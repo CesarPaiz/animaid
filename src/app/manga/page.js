@@ -3,6 +3,7 @@ import { mangaBuscar } from "../../../stuff/api";
 import { AniLisInfoID } from "../../../stuff/anilist"
 import Link from "next/link";
 import Image from "next/image";
+import {mangaScrapSearch , mangaScrapInfo} from "../../../stuff/mangaScrap";
 
 export default async function MangaPage({ searchParams }) {
     
@@ -10,12 +11,14 @@ export default async function MangaPage({ searchParams }) {
     var description = result.data.Media.description
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     
-    var title = result.data.Media.title.romaji
+    var title = result.data.Media.title.english
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-').toLowerCase();
-    console.log(titleFix)
-    var buscar = await mangaBuscar({ nombreManga: titleFix });
-    var resultado = await mangaInfo({ nombreManga: buscar })
+    var titleFix = titleFixPar1.replace(/\s+/g, '_').toLowerCase();
+
+    var busqueda = await mangaScrapSearch({ nombreManga: titleFix })
+    
+    var capitulos = await mangaScrapInfo({ url: busqueda })
+
     return (
         <>
 
@@ -36,16 +39,16 @@ export default async function MangaPage({ searchParams }) {
                     </div>
                 </div>
                 <div className="text-white flex flex-col justify-center  place-items-center mt-8 place-items-center">
-                    {resultado?.chapters.map(item => (
+                    {capitulos.map(item => (
                         <Link href={{
                             pathname: '/manga/mirar',
                             query: {
                                 id: searchParams.id,
-                                captitulo: item.number,
+                                captitulo: item.chapterNumber,
                             }
                         }}
-                            key={item.number} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
-                            <span>{item.number}</span>
+                            key={item.chapterNumber} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
+                            <span>{item.chapterNumber}</span>
                         </Link>
                     ))}
                 </div>

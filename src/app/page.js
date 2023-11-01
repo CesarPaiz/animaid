@@ -16,7 +16,7 @@ export default async function Main({
         <>
             <h1 className="text-2xl mt-5 text-white text-center">Los animes mas populares</h1>
 
-            <div className="max-w-full md:ml-8 md:mr-8 ml-4 mr-4  mx-auto grid gap-6 grid-cols-2 md:grid-cols-6 mt-8 rounded overflow-hidden shadow-lg">
+            <div className="max-w-full md:ml-8 md:mr-8 ml-4 mr-4  mx-auto grid gap-6 grid-cols-2 md:grid-cols-6 mt-8 rounded  overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
 

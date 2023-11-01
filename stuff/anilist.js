@@ -10,7 +10,7 @@ export async function AniListSearch({ nombreAnime }) {
         pageInfo {
           total
         }
-        media(search: $Search,sort: TRENDING_DESC,isAdult: false  ,type: ANIME) {
+        media(search: $Search,sort: TRENDING_DESC,isAdult: false) {
           id
           type
           status
@@ -60,7 +60,7 @@ export async function AniListTendencia({ pagina }) {
         pageInfo {
           total
         }
-        media(sort: TRENDING_DESC, isAdult: false ,type: ANIME) {
+        media(sort: TRENDING_DESC, isAdult: false) {
           id
           type
           status
@@ -164,7 +164,7 @@ export async function AniListPopular({ pagina }) {
         pageInfo {
           total
         }
-        media(sort: POPULARITY_DESC, isAdult: false, type: ANIME) {
+        media(sort: POPULARITY_DESC, isAdult: false) {
           id
           type
           status
