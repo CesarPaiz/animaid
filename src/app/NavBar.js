@@ -1,13 +1,16 @@
+'use client'
 
 import NavegadorCLiente from "../../stuff/NavBarClient";
 import Image from "next/image"
 import SectionsButtons from "./SectionsButtons";
 import HeadHTML from "./HeadHTML";
+import { useEffect } from "react";
+
+import { useSearchParams } from 'next/navigation'
 
 
-
-export default async function NavBar() {
-
+export default function NavBar() {
+    
     return (
 
         <>

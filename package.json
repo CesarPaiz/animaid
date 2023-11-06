@@ -12,6 +12,7 @@
     "anilist-node": "^1.14.0",
     "axios": "^1.6.0",
     "cheerio": "^1.0.0-rc.12",
+    "cloudscraper": "^4.6.0",
     "domparser": "^0.1.1",
     "electron": "^27.0.2",
     "encoding": "^0.1.13",

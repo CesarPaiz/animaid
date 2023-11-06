@@ -1,5 +1,9 @@
+'use client'
 import Link from "next/link"
-export default async function TendenciasPage({ pagina }) {
+import { Suspense } from "react"
+import Loading from "./loading"
+import { useRouter } from "next/navigation"
+export default function TendenciasPage({ pagina }) {
 
     var pag = parseInt(pagina)
 

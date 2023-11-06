@@ -18,7 +18,6 @@ export default function RootLayout({ children }) {
           <NavBar />
         </div>
         <Suspense fallback={<div>Loading...</div>}>
-
           {children}
         </Suspense>
       </body>

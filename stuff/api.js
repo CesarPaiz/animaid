@@ -2,12 +2,12 @@
 const urlApi = "https://multi-api-animaid.vercel.app"
 export async function getAnimeID({ nombreAnime }) {
     var request = urlApi + "/anime/monoschinos/name/" + nombreAnime
-    var result = await fetch(request,{ next: { revalidate: 43200 } })
+    var result = await fetch(request,{ cache: 'no-store' })
     const id = await result.json();
     return (id);
 }
 export async function getVideoChapter({captitulo }) {
-    var result = await fetch(urlApi + captitulo,{ next: { revalidate: 43200 } })
+    var result = await fetch(urlApi + captitulo,{ cache: 'no-store' })
     const id = await result.json();
     return (id);
 
@@ -15,17 +15,17 @@ export async function getVideoChapter({captitulo }) {
 
 export async function animeInfo({ nombreAnime }) {
     var url = urlApi + "/anime/monoschinos/filter?title=" + nombreAnime;
-    var result = await fetch(url,{ next: { revalidate: 43200 } })
+    var result = await fetch(url,{ cache: 'no-store' })
     const id = await result.json();
     return(id)
 }
 export async function mangaInfo({ nombreManga }) {
     var url = urlApi + nombreManga +"?lang=es-419";
-    var result = await fetch(url,{ next: { revalidate: 43200 } })
+    var result = await fetch(url,{ cache: 'no-store' })
     const id = await result.json();
     if(id.chapters[0] === undefined){
         var url = urlApi + nombreManga +"?lang=en";
-        var result = await fetch(url,{ next: { revalidate: 43200 } })
+        var result = await fetch(url,{ cache: 'no-store' })
         const id = await result.json();
         return(id)
     }
@@ -33,13 +33,13 @@ export async function mangaInfo({ nombreManga }) {
 }   
 export async function mangaBuscar({ nombreManga }) {
     var url = urlApi + "/manga/comick/filter?search=" + nombreManga;
-    var result = await fetch(url,{ next: { revalidate: 43200 } })
+    var result = await fetch(url,{ cache: 'no-store' })
     const id = await result.json();
     return(id.results[0].url)
 }
 export async function mangaCaptulo({ nombreManga }) {
     var url = urlApi + nombreManga;
-    var result = await fetch(url,{ next: { revalidate: 43200 } })
+    var result = await fetch(url,{ cache: 'no-store' })
     const id = await result.json();
     return(id)
 }

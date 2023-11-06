@@ -52,7 +52,6 @@ export async function getCapImages({ url }) {
         return load
     })
     const imgHtml = doc('img');
-    const imgSrc = imgHtml.attr('src');
 
     const imgArray = []
 

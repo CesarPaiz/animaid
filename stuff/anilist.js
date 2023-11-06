@@ -10,7 +10,7 @@ export async function AniListSearch({ nombreAnime }) {
         pageInfo {
           total
         }
-        media(search: $Search,sort: TRENDING_DESC,isAdult: false) {
+        media(search: $Search,sort: TRENDING_DESC,isAdult: false , type: ANIME) {
           id
           type
           status
@@ -48,7 +48,7 @@ export async function AniListSearch({ nombreAnime }) {
 
 
     return (
-        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ cache: 'no-store' }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -60,7 +60,7 @@ export async function AniListTendencia({ pagina }) {
         pageInfo {
           total
         }
-        media(sort: TRENDING_DESC, isAdult: false) {
+        media(sort: TRENDING_DESC, isAdult: false , type: ANIME) {
           id
           type
           status
@@ -98,7 +98,7 @@ export async function AniListTendencia({ pagina }) {
 
 
     return (
-        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ cache: 'no-store' }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -151,7 +151,7 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
 
 
     return (
-        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ cache: 'no-store' }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -164,7 +164,7 @@ export async function AniListPopular({ pagina }) {
         pageInfo {
           total
         }
-        media(sort: POPULARITY_DESC, isAdult: false) {
+        media(sort: POPULARITY_DESC, isAdult: false , type: ANIME) {
           id
           type
           status
@@ -202,7 +202,7 @@ export async function AniListPopular({ pagina }) {
 
 
     return (
-        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ cache: 'no-store' }).then(response => response.json()).then(data => {
             return data
         })
     )
@@ -237,7 +237,7 @@ export async function AniListAvatar({ code }) {
         }
     console.log(code)
     return (
-        fetch(anilisUrl, options,{ next: { revalidate: 43200 } }).then(response => response.json()).then(data => {
+        fetch(anilisUrl, options,{ cache: 'no-store' }).then(response => response.json()).then(data => {
             return data
         })
     )
