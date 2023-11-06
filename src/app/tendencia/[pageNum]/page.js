@@ -1,15 +1,14 @@
 import Link from "next/link"
-import { AniListTendencia } from "../../../stuff/anilist"
+import { AniListTendencia } from "../../../../stuff/anilist"
 import Image from "next/image"
 import { Suspense } from "react"
-import TendenciasPage from "./PaginationTendencias"
-import Loading from "./loading"
+import TendenciasPage from "../PaginationTendencias"
+import Loading from "../loading"
 import ImageAsync from "next/image"
 export default async function Main({
-    searchParams,
+    params: {pageNum},
 }) {
-
-    const pagina = parseInt(searchParams.pag) ?? 1
+    const pagina = parseInt(pageNum) ?? 1
     const data = await AniListTendencia({ pagina: pagina })
     return (
         <>

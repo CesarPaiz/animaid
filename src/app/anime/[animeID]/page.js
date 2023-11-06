@@ -1,11 +1,11 @@
-import { AniLisInfoID } from "../../../stuff/anilist"
-import { getAnimeID } from "../../../stuff/api";
-import { animeInfo } from "../../../stuff/api";
+import { AniLisInfoID } from "../../../../stuff/anilist"
+import { getAnimeID } from "../../../../stuff/api";
+import { animeInfo } from "../../../../stuff/api";
 import Link from "next/link";
-import { obtenerATF } from "../../../stuff/buscarATF"
+import { obtenerATF } from "../../../../stuff/buscarATF"
 import Image from "next/image";
 export default async function Page({
-    searchParams,
+    params:{animeID},
 }) {
     function obtenerPrimerTextoAlfanumerico(texto) {
         const coincidencia = texto.match(/[a-zA-Z0-9]+/);
@@ -15,7 +15,7 @@ export default async function Page({
             return "No se encontró texto alfanumérico";
         }
     }
-    var result = await AniLisInfoID({ id: searchParams.id })
+    var result = await AniLisInfoID({ id: animeID})
     var description = result.data.Media.description
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
@@ -67,11 +67,8 @@ export default async function Page({
                         apiIDnameFinal?.episodes.map(item => (
                             <>
                                 <Link href={{
-                                    pathname: '/anime/mirar',
-                                    query: {
-                                        id: searchParams.id,
-                                        captitulo: item.number,
-                                    }
+                                    pathname: '/anime/' + animeID + '/' + item.number,
+                                    
                                 }}
                                     key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
                                     <span> Episodio {item.number} </span>

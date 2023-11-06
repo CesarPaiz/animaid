@@ -1,14 +1,16 @@
 import React, { Suspense } from "react";
-import { AniLisInfoID } from "../../../../stuff/anilist"
-import { getAnimeID } from "../../../../stuff/api";
-import { getVideoChapter } from "../../../../stuff/api"
-import { animeInfo } from "../../../../stuff/api";
-import PaginationMirar from "../../../../stuff/paginationMirar";
-import { obtenerATF } from "../../../../stuff/buscarATF";
-import IframeVideo from "../../../../stuff/iframe";
+import { AniLisInfoID } from "../../../../../stuff/anilist"
+import { getAnimeID } from "../../../../../stuff/api";
+import { getVideoChapter } from "../../../../../stuff/api"
+import { animeInfo } from "../../../../../stuff/api";
+import PaginationMirar from "../../../../../stuff/paginationMirar";
+import { obtenerATF } from "../../../../../stuff/buscarATF";
+import IframeVideo from "../../../../../stuff/iframe";
 export default async function Page({
-    searchParams,
+    params:{animeID},
+    params:{aniCap}
 }) {
+
     function obtenerPrimerTextoAlfanumerico(texto) {
         const coincidencia = texto.match(/[a-zA-Z0-9]+/);
         if (coincidencia) {
@@ -21,8 +23,8 @@ export default async function Page({
         const matchingObject = json.find(obj => obj.number === targetNumber);
         return matchingObject ? matchingObject.url : null;
     }
-    var cap = parseInt(searchParams.captitulo)
-    var result = await AniLisInfoID({ id: searchParams.id })
+    var cap = parseInt(aniCap)
+    var result = await AniLisInfoID({ id: animeID })
     var title = result.data.Media.title.romaji
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
@@ -56,7 +58,7 @@ export default async function Page({
         <>
             <Suspense fallback={<span>Loading...</span>}>
                 <div className="  justify-items-center text-center items-center">
-                    <IframeVideo jsonVideos={final} id={searchParams.id} episodios={apiIDnameFinal.episodes} captitulo={searchParams.captitulo} />
+                    <IframeVideo jsonVideos={final} id={animeID} episodios={apiIDnameFinal.episodes} captitulo={aniCap} />
                 </div>
             </Suspense>
             

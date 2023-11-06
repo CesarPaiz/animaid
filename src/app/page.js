@@ -23,10 +23,8 @@ export default async function Main({
 
                         <div key={item} className="max-w-sm mx-auto bg-gray-800 rounded overflow-hidden shadow-lg mb-8">
                             <Link href={{
-                                pathname: '/' + item.type.toLowerCase(),
-                                query: {
-                                    id: item.id,
-                                }
+                                pathname: '/' + item.type.toLowerCase() + '/' + item.id,
+                               
                             }}>
                                 <div style={{ width: '175px', height: '300px', position: 'relative' }}>
                                     <Suspense fallback={<span className='flex justify-center align-center text-2xl mt-8 text-white'>Loading...</span>}>
