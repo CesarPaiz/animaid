@@ -18,7 +18,7 @@ export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
                 ))}
             </div>
             <div className=" flex  mt-6 align-center justify-center  ">
-                <iframe className="justify-center text-center" width="760" height="415" frameborder="0" src={video} scrolling="no" allowfullscreen=""></iframe>
+                <iframe className="justify-center text-center" width="760" height="415" frameBorder="0" src={video} scrolling="no" allowFullScreen=""></iframe>
             </div>
             <div onClick={() => setVideo("")} className="text-white  justify-center text-center flex flex-row gap-4 ">
                 <PaginationMirar anime={animeID} captitulo={animeCaps} cantidad={episodios} />

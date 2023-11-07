@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 import { AniLisInfoID } from "../../../../../stuff/anilist"
-import { getAnimeID } from "../../../../../stuff/api";
+import { getAnimeID, getAnimeSearch } from "../../../../../stuff/api";
 import { getVideoChapter } from "../../../../../stuff/api"
 import { animeInfo } from "../../../../../stuff/api";
 import PaginationMirar from "../../../../../stuff/paginationMirar";
 import { obtenerATF } from "../../../../../stuff/buscarATF";
 import IframeVideo from "../../../../../stuff/iframe";
 export default async function Page({
-    params:{animeID},
-    params:{aniCap}
+    params: { animeID },
+    params: { aniCap }
 }) {
 
     function obtenerPrimerTextoAlfanumerico(texto) {
@@ -29,23 +29,37 @@ export default async function Page({
     let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
+
+
     if (apiIDname.episodes === undefined) {
-        var newTitlejson = obtenerATF(title)
-        if (newTitlejson === undefined) {
-            var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
-            var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
-            var tituloAbuscar = apiIDnameFix.results[0].url
-            var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
-            var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
+        var titleHunter = titleFixPar1.replace('×', '+x+')
+        var titleFixSearch = titleHunter.replace(/\s+/g, '+');
+        var apiIDnameSeach = await getAnimeSearch({ nombreAnime: titleFixSearch })
+        if (apiIDnameSeach[0] === undefined) {
+            var newTitlejson = obtenerATF(title)
+            if (newTitlejson === undefined) {
+                var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
+                var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
+                var tituloAbuscar = apiIDnameFix.results[0].url
+                var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
+                var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
+            }
+            else {
+                var apiIDnameFinaljson = await getAnimeID({ nombreAnime: newTitlejson })
+                var apiIDnameFinal = apiIDnameFinaljson
+            }
+            var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
+            var captitulo = resultado
+            var final = await getVideoChapter({ captitulo: captitulo })
+            var video = final[0].url
         }
         else {
-            var apiIDnameFinaljson = await getAnimeID({ nombreAnime: newTitlejson })
-            var apiIDnameFinal = apiIDnameFinaljson
+            var apiIDnameFinal = await getAnimeID({ nombreAnime: apiIDnameSeach[0] })
+            var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
+            var captitulo = resultado
+            var final = await getVideoChapter({ captitulo: captitulo })
+            var video = final[0].url
         }
-        var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
-        var captitulo = resultado
-        var final = await getVideoChapter({ captitulo: captitulo })
-        var video = final[0].url
     }
     else {
         var apiIDnameFinal = await getAnimeID({ nombreAnime: titleFix })
@@ -61,7 +75,7 @@ export default async function Page({
                     <IframeVideo jsonVideos={final} id={animeID} episodios={apiIDnameFinal.episodes} captitulo={aniCap} />
                 </div>
             </Suspense>
-            
+
         </>
     )
 }

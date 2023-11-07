@@ -1,6 +1,5 @@
 import Link from "next/link"
 export default function PaginationMirar({ anime, captitulo, cantidad }) {
-    console.log(anime, captitulo, cantidad)
     var cantidadCaps = parseInt(cantidad.length)
     var numeroCapFinal = parseInt(cantidad[cantidadCaps - 1].number)
 
