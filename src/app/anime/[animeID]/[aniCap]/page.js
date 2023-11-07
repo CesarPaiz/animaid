@@ -20,7 +20,7 @@ export async function generateMetadata({
         title: title + ' - Cap ' + aniCap + ' - AniMaid',
         description: descriptionFix,
         openGraph: {
-            images: result.data.Media.coverImage.large
+            images: result.data.Media.bannerImage
         },
     }
     

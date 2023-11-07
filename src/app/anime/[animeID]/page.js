@@ -13,14 +13,13 @@ export async function generateMetadata({ params: { animeID } }) {
     var result = await AniLisInfoID({ id: animeID })
     var title = result.data.Media.title.romaji
     var description = result.data.Media.description
-
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
 
     return {
         title: title + ' - AniMaid',
         description: descriptionFix,
         openGraph: {
-            images: result.data.Media.coverImage.large
+            images: result.data.Media.bannerImage
         },
     }
 }
