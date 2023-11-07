@@ -1,7 +1,9 @@
+
 export const metadata = {
   title: 'AniMaid',
   description: 'Animemaid its here',
 }
+
 import "./globals.css"
 import NavBar from "./NavBar"
 import { Suspense } from "react"
@@ -12,7 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <HeadHTML />
-
       <body className="bg-slate-950">
         <div>
           <NavBar />

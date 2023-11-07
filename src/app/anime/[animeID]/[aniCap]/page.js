@@ -3,9 +3,30 @@ import { AniLisInfoID } from "../../../../../stuff/anilist"
 import { getAnimeID, getAnimeSearch } from "../../../../../stuff/api";
 import { getVideoChapter } from "../../../../../stuff/api"
 import { animeInfo } from "../../../../../stuff/api";
-import PaginationMirar from "../../../../../stuff/paginationMirar";
 import { obtenerATF } from "../../../../../stuff/buscarATF";
 import IframeVideo from "../../../../../stuff/iframe";
+
+
+export async function generateMetadata({
+    params: { animeID },
+    params: { aniCap }
+}) {
+    var result = await AniLisInfoID({ id: animeID })
+    var title = result.data.Media.title.romaji
+    var description = result.data.Media.description
+    var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
+
+    return {
+        title: title + ' - Cap ' + aniCap + ' - AniMaid',
+        description: descriptionFix,
+        openGraph: {
+            images: result.data.Media.coverImage.large
+        },
+    }
+    
+}
+
+
 export default async function Page({
     params: { animeID },
     params: { aniCap }

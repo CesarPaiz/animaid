@@ -4,9 +4,33 @@ import { animeInfo, getAnimeSearch } from "../../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../../stuff/buscarATF"
 import Image from "next/image";
+
+
+
+
+
+export async function generateMetadata({ params: { animeID } }) {
+    var result = await AniLisInfoID({ id: animeID })
+    var title = result.data.Media.title.romaji
+    var description = result.data.Media.description
+
+    var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
+
+    return {
+        title: title + ' - AniMaid',
+        description: descriptionFix,
+        openGraph: {
+            images: result.data.Media.coverImage.large
+        },
+    }
+}
+
+
+
 export default async function Page({
     params: { animeID },
 }) {
+
     function obtenerPrimerTextoAlfanumerico(texto) {
         const coincidencia = texto.match(/[a-zA-Z0-9]+/);
         if (coincidencia) {
@@ -52,7 +76,10 @@ export default async function Page({
     else {
         var apiIDnameFinal = apiIDname
     }
+
+
     return (
+
         <>
 
             <div className="text-white flex flex-col justify-center  place-items-center">
@@ -61,9 +88,8 @@ export default async function Page({
                     <div className=" flex md:align-center justify-center text-center items-center  " style={{ width: '200px', height: '300px', position: 'relative' }} >
                         <Image
                             src={result.data.Media.coverImage.large}
-                            layout="fill"
+                            fill
                             style={{ objectFit: 'cover' }}
-
                         />
 
                     </div>

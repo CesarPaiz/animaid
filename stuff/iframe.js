@@ -9,7 +9,7 @@ export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
     var animeCaps = parseInt(captitulo)
     const [video, setVideo] = useState("")
     return (
-        <>
+        <div >
             <div className="justify-center text-center">
                 {jsonVideos?.map((item) => (
 
@@ -18,12 +18,12 @@ export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
                 ))}
             </div>
             <div className=" flex  mt-6 align-center justify-center  ">
-                <iframe className="justify-center text-center" width="760" height="415" frameBorder="0" src={video} scrolling="no" allowFullScreen=""></iframe>
+                <iframe className="justify-center text-center" width="760" height="415" frameBorder="0" src={video} scrolling="no" allowFullScreen='True'></iframe>
             </div>
             <div onClick={() => setVideo("")} className="text-white  justify-center text-center flex flex-row gap-4 ">
                 <PaginationMirar anime={animeID} captitulo={animeCaps} cantidad={episodios} />
             </div >
 
-        </>
+        </div>
     )
 }
