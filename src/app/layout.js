@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           </div>
         </div>
 
-        <div className="pb-8">
+        <div className="md:pb-8 pb-28">
           <EndBar />
         </div>
 
