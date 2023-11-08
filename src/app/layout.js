@@ -8,6 +8,7 @@ import "./globals.css"
 import NavBar from "./NavBar"
 import { Suspense } from "react"
 import HeadHTML from "./HeadHTML"
+import EndBar from "./EndBar"
 
 
 export default function RootLayout({ children }) {
@@ -21,6 +22,9 @@ export default function RootLayout({ children }) {
         <Suspense fallback={<div>Loading...</div>}>
           {children}
         </Suspense>
+        <div>
+          <EndBar />
+        </div>
       </body>
     </html >
   )
