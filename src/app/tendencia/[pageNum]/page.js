@@ -5,6 +5,16 @@ import { Suspense } from "react"
 import TendenciasPage from "../PaginationTendencias"
 import Loading from "../loading"
 import ImageAsync from "next/image"
+
+
+export async function generateMetadata({ params: { pageNum } }) {
+
+    return {
+        title: 'Tendencias Pagina ' + pageNum + ' - AniMaid',
+      
+    }
+}
+
 export default async function Main({
     params: {pageNum},
 }) {
