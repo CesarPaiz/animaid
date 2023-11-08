@@ -15,20 +15,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <HeadHTML />
-      <body className="bg-slate-950 min-h-screen">
-        <div>
-          <NavBar />
+      <body className="bg-slate-950 relative min-h-screen">
+
+        <div className="mb-12">
+          <div>
+            <NavBar />
+          </div>
+          <div className="">
+            {children}
+          </div>
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          {children}
-        </Suspense>
-        <div>
+
+        <div className="pb-8">
           <EndBar />
         </div>
+
       </body>
-    </html >
+    </html>
   )
 }
+
 
 
 
