@@ -47,6 +47,27 @@ export default async function Page({
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
 
+
+    function convertirSegundos(segundos) {
+        var dias = Math.floor(segundos / (24 * 3600)) ?? 0;
+        var horas = Math.floor((segundos % (24 * 3600)) / 3600) ?? 0;
+        var minutos = Math.floor((segundos % 3600) / 60) ?? 0;
+        var segundosRestantes = segundos % 60 ?? 0;
+
+        return {
+            dias: dias,
+            horas: horas,
+            minutos: minutos,
+            segundos: segundosRestantes
+        };
+    }
+    try {
+        var tiempo = convertirSegundos(result.data.Media.nextAiringEpisode.timeUntilAiring)
+    } catch (error) {
+        var tiempo = 'Finalizado'
+    }
+
+
     if (apiIDname.episodes === undefined) {
         var titleHunter = titleFixPar1.replace('×', '+x+')
         var titleFixSearch = titleHunter.replace(/\s+/g, '+');
@@ -96,6 +117,12 @@ export default async function Page({
                         <span className="mt-4  line-clamp-8">{apiIDnameFinal.synopsis ?? descriptionFix}</span>
                     </div>
                 </div>
+                {tiempo !== 'Finalizado' &&
+                    <span> Siguiente capitulo dentro de {tiempo.dias + ' Dias'}  {tiempo.horas + ' Horas'}  {tiempo.minutos + ' Minutos'} </span>
+                }
+                {tiempo === 'Finalizado' &&
+                    <span> Finalizado </span>
+                }
 
 
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">

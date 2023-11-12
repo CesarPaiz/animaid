@@ -117,6 +117,10 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
         native
         userPreferred
     }
+    nextAiringEpisode {
+      timeUntilAiring
+      episode
+    }
     coverImage {
         large
     }

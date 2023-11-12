@@ -16,17 +16,24 @@ export default function PaginationMirar({ anime, captitulo, cantidad }) {
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Anterior</button>
                 </Link>
             )}
+            <Link href={{
+                pathname: '/anime/' + anime + '/'
+            }}
+            >
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Capitulos </button>
+            </Link>
 
 
 
             {cap < numeroCapFinal && (
                 <Link href={{
-                    pathname: '/anime/' + anime + '/' + parseInt(captitulo + 1)    
+                    pathname: '/anime/' + anime + '/' + parseInt(captitulo + 1)
                 }}
                 >
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Siguiente</button>
                 </Link>
-            )}
+            )
+            }
 
 
         </>
