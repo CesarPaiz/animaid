@@ -1,33 +1,35 @@
-var cheerio = require('cheerio');
-
+import cheerio from 'cheerio';
 export async function mangaScrapSearch({ nombreManga }) {
 
-    var url = "https://manganato.com/search/story/" + nombreManga
-
-
+    var url = 'https://leermanga.net/biblioteca?search=' + nombreManga
+    console.log(url)
     var doc = await fetch(url).then(response => response.text()).then(json => {
-        const html = cheerio.load(json)
-        return html
-
+        var load = cheerio.load(json);
+        return load
     })
-
+    const ulElement = doc('.page-listing-item');
+    const links = ulElement.find('a');
 
     var resultados = []
-    doc('.search-story-item').each((index, element) => {
-        const firstAnchor = doc(element).find('a').first();
-        const href = firstAnchor.attr('href');
+
+    links.each((index, element) => {
+        const $element = doc(element);
+        const href = $element.attr('href');
         resultados.push(href)
-    });
-
+    })
     return (resultados[0])
-
 }
+
+
+
+
+
 export async function mangaScrapInfo({ url }) {
     var doc = await fetch(url).then(response => response.text()).then(json => {
         var load = cheerio.load(json);
         return load
     })
-    const ulElement = doc('li');
+    const ulElement = doc('.listing-chapters_wrap');
     const links = ulElement.find('a');
 
     const linkData = [];
@@ -35,15 +37,10 @@ export async function mangaScrapInfo({ url }) {
     links.each((index, element) => {
         const $element = doc(element);
         const href = $element.attr('href');
-        const url = href;
-        const regex = /chapter-(\d+(\.\d+)?)/; // Expresión regular para buscar "chapter" seguido de números y un punto opcional
-        
-        const match = url.match(regex);
-        const chapterNumber = match[1];
-        
-        // Crea un objeto JSON con el texto y el href y agrégalo al array
-        linkData.push({ chapterNumber, href });
-      });
+        var digitos = href.match(/\d+(\.\d+)?$/);
+        var reultado = digitos[0]
+        linkData.push({ reultado, href });
+    });
     return (linkData)
 }
 export async function getCapImages({ url }) {
@@ -57,7 +54,7 @@ export async function getCapImages({ url }) {
 
     imgHtml.each((index, element) => {
         const $element = doc(element);
-        const src = $element.attr('src');
+        const src = $element.attr('data-src');
         imgArray.push(src)
     })
 

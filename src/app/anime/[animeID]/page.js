@@ -47,6 +47,7 @@ export default async function Page({
     var titleFix = titleFixPar1.replace(/\s+/g, '-');
     var apiIDname = await getAnimeID({ nombreAnime: titleFix })
 
+    console.log(titleFix)
 
     function convertirSegundos(segundos) {
         var dias = Math.floor(segundos / (24 * 3600)) ?? 0;
