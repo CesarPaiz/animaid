@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
-export async function mangaScrapSearch({ nombreManga }) {
 
+
+export async function mangaScrapSearch({ nombreManga }) {
     var url = 'https://leermanga.net/biblioteca?search=' + nombreManga
     console.log(url)
     var doc = await fetch(url).then(response => response.text()).then(json => {
@@ -17,6 +18,8 @@ export async function mangaScrapSearch({ nombreManga }) {
         const href = $element.attr('href');
         resultados.push(href)
     })
+
+
     return (resultados[0])
 }
 
@@ -41,7 +44,9 @@ export async function mangaScrapInfo({ url }) {
         var reultado = digitos[0]
         linkData.push({ reultado, href });
     });
+    
     return (linkData)
+
 }
 export async function getCapImages({ url }) {
     var doc = await fetch(url).then(response => response.text()).then(json => {

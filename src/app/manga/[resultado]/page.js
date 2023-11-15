@@ -3,21 +3,39 @@ import { mangaBuscar } from "../../../../stuff/api";
 import { AniLisInfoID } from "../../../../stuff/anilist"
 import Link from "next/link";
 import Image from "next/image";
-import {mangaScrapSearch , mangaScrapInfo} from "../../../../stuff/mangaScrap";
+import { mangaScrapSearch, mangaScrapInfo } from "../../../../stuff/mangaScrap";
 
-export default async function MangaPage({ 
+export default async function MangaPage({
     params: { resultado },
- }) {
-    
+}) {
+
     var result = await AniLisInfoID({ id: resultado })
     var description = result.data.Media.description
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
-    
-    var title = result.data.Media.title.romaji
-    var titleFixPar2 = title.replace(/\s+/g, '+').toLowerCase();
 
-    var busqueda = await mangaScrapSearch({ nombreManga: titleFixPar2 })
-    var capitulos = await mangaScrapInfo({ url: busqueda })
+    var title = result.data.Media.title.romaji
+    var titleFixPar2 = title.replace(/\s+/g, '+').toLowerCase().replace(/[.,]/g, '');
+    console.log(titleFixPar2)
+    const nameDirect = 'https://leermanga.net/manga/' + title.replace(/[^a-zA-Z\s]/g, '').replace(/\s/g, '-');
+
+
+
+    try{
+        var capitulosDirect = await mangaScrapInfo({ url: nameDirect })
+        
+        if (capitulosDirect[0] === undefined) {
+            var busqueda = await mangaScrapSearch({ nombreManga: titleFixPar2 })
+            var capitulos = await mangaScrapInfo({ url: busqueda })
+        }
+        else {
+            var capitulos = capitulosDirect
+        }
+    }
+    catch {
+        var capitulos = []
+    }
+
+
 
     return (
         <>
@@ -42,7 +60,7 @@ export default async function MangaPage({
                     {capitulos.map(item => (
                         <Link href={{
                             pathname: '/manga/' + resultado + '/' + item.reultado,
-                            
+
                         }}
                             key={item.reultado} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
                             <span>{item.reultado}</span>
