@@ -53,7 +53,6 @@ export default async function Page({
         var horas = Math.floor((segundos % (24 * 3600)) / 3600) ?? 0;
         var minutos = Math.floor((segundos % 3600) / 60) ?? 0;
         var segundosRestantes = segundos % 60 ?? 0;
-
         return {
             dias: dias,
             horas: horas,
