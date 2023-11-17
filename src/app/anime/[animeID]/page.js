@@ -43,10 +43,12 @@ export default async function Page({
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
-    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-');
-    var apiIDname = await getAnimeID({ nombreAnime: titleFix })
+ 
 
+    var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: title })
+   
+    //console.log(mutiAnimeAPI[1].resultados)
+    var apiIDnameFinal = mutiAnimeAPI[0].resultados
 
     function convertirSegundos(segundos) {
         var dias = Math.floor(segundos / (24 * 3600)) ?? 0;
@@ -65,36 +67,7 @@ export default async function Page({
     } catch (error) {
         var tiempo = 'Finalizado'
     }
-
-
-    if (apiIDname.episodes === undefined) {
-        var titleHunter = titleFixPar1.replace('×', '+x+')
-        var titleFixSearch = titleHunter.replace(/\s+/g, '+');
-        var apiIDnameSeach = await getAnimeSearch({ nombreAnime: titleFixSearch })
-
-        var apiIDnameBuscar = await getAnimeID({ nombreAnime: apiIDnameSeach[0] })
-
-        if (apiIDnameBuscar.episodes === undefined) {
-            var newTitle = obtenerATF(title)
-            if (newTitle === undefined) {
-                var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
-                var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
-                var tituloAbuscar = apiIDnameFix.results[0].url
-                var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
-                var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
-            }
-            else {
-                var apiIDnameFinal = await getAnimeID({ nombreAnime: newTitle })
-            }
-        }
-        else {
-            var apiIDnameFinal = apiIDnameBuscar
-        }
-
-    }
-    else {
-        var apiIDnameFinal = apiIDname
-    }
+    
 
 
     return (

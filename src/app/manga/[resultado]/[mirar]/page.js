@@ -27,7 +27,7 @@ export default async function MirarMangaPage({
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
 
     var title = result.data.Media.title.romaji
-    var titleFixPar2 = title.replace(/\s+/g, '+').toLowerCase();
+    var titleFixPar2 = title.replace(/\s+/g, '+').toLowerCase().replace(/[.,]/g, '');
 
     var busqueda = await mangaScrapSearch({ nombreManga: titleFixPar2 })
     var capitulos = await mangaScrapInfo({ url: busqueda })

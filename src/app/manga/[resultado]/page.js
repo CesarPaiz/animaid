@@ -15,24 +15,16 @@ export default async function MangaPage({
 
     var title = result.data.Media.title.romaji
     var titleFixPar2 = title.replace(/\s+/g, '+').toLowerCase().replace(/[.,]/g, '');
-    console.log(titleFixPar2)
     const nameDirect = 'https://leermanga.net/manga/' + title.replace(/[^a-zA-Z\s]/g, '').replace(/\s/g, '-');
 
+    try {
+        var busqueda = await mangaScrapSearch({ nombreManga: titleFixPar2 })
 
-
-    try{
-        var capitulosDirect = await mangaScrapInfo({ url: nameDirect })
-        
-        if (capitulosDirect[0] === undefined) {
-            var busqueda = await mangaScrapSearch({ nombreManga: titleFixPar2 })
-            var capitulos = await mangaScrapInfo({ url: busqueda })
-        }
-        else {
-            var capitulos = capitulosDirect
-        }
+        var capitulos = await mangaScrapInfo({ url: busqueda })
     }
     catch {
         var capitulos = []
+        var noEncontrado = true
     }
 
 
@@ -66,6 +58,9 @@ export default async function MangaPage({
                             <span>{item.reultado}</span>
                         </Link>
                     ))}
+                    {noEncontrado && (
+                        <span className="mt-4 ml-4 line-clamp-6">No se encontraron capitulos</span>
+                    )}
                 </div>
 
             </div >
