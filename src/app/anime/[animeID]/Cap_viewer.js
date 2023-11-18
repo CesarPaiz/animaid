@@ -4,10 +4,10 @@ import { useState } from "react"
 import Link from "next/link"
 import { Tooltip } from "@nextui-org/react";
 export default function CapViewer({ fuentes, anime, titulo }) {
+    var multiFuente = fuentes
+    const [fuente, setFuente] = useState(multiFuente[0])
     try {
-        var multiFuente = fuentes
-        const [fuente, setFuente] = useState(multiFuente[0])
-
+      
         return (
             <div>
                 <div className="flex justify-center align-center place-self-center mb-6">
