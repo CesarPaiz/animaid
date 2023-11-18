@@ -77,7 +77,7 @@ export default async function Page({
         <>
             <Suspense fallback={<span>Loading...</span>}>
                 <div className="  justify-items-center text-center items-center ">
-                    <IframeVideo jsonVideos={final} id={animeID} episodios={apiIDnameFinal.episodes} captitulo={aniCap} />
+                    <IframeVideo fuente={fuente} jsonVideos={final} id={animeID} episodios={apiIDnameFinal.episodes} captitulo={aniCap} />
                 </div>
             </Suspense>
 

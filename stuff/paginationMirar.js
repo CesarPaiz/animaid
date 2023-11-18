@@ -1,16 +1,28 @@
 import Link from "next/link"
-export default function PaginationMirar({ anime, captitulo, cantidad }) {
+export default function PaginationMirar({ anime, captitulo, cantidad ,fuente }) {
     var cantidadCaps = parseInt(cantidad.length)
-    var numeroCapFinal = parseInt(cantidad[cantidadCaps - 1].number)
+    var numeroCapFinal = parseInt(String(cantidad[cantidadCaps - 1].number).match(/\d+/)[0])
 
-    var numeroCapIncial = parseInt(cantidad[0].number)
+    var numeroCapIncial = parseInt(String(cantidad[0].number).match(/\d+/)[0])
+    if(numeroCapFinal < numeroCapIncial){
+        var capsInicialFinal = numeroCapIncial
+        var capsicialIncial = numeroCapFinal
+    }
+    else{
+        var capsInicialFinal = numeroCapFinal
+        var capsicialIncial = numeroCapIncial
+    }
+
     var cap = parseInt(captitulo)
-
+    
     return (
         <>
-            {cap > numeroCapIncial && (
+            {cap > capsicialIncial && (
                 <Link href={{
-                    pathname: '/anime/' + anime + '/' + parseInt(captitulo - 1)
+                    pathname: '/anime/' + anime + '/' + parseInt(cap - 1),
+                    query: {
+                        fuente: fuente
+                    }
                 }}
                 >
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Anterior</button>
@@ -25,9 +37,12 @@ export default function PaginationMirar({ anime, captitulo, cantidad }) {
 
 
 
-            {cap < numeroCapFinal && (
+            {cap < capsInicialFinal && (
                 <Link href={{
-                    pathname: '/anime/' + anime + '/' + parseInt(captitulo + 1)
+                    pathname: '/anime/' + anime + '/' + parseInt(cap + 1),
+                    query: {
+                        fuente: fuente
+                    }
                 }}
                 >
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Siguiente</button>
