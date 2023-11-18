@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import PaginationMirar from "../stuff/paginationMirar"
-
 export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
     if(
         jsonVideos.servers !== undefined

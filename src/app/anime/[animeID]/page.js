@@ -43,10 +43,11 @@ export default async function Page({
     var tags = result.data.Media.tags.category
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
- 
 
     var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: title })
-   
+
+
+
 
     function convertirSegundos(segundos) {
         var dias = Math.floor(segundos / (24 * 3600)) ?? 0;
@@ -65,7 +66,7 @@ export default async function Page({
     } catch (error) {
         var tiempo = 'Finalizado'
     }
-    
+
 
 
     return (
@@ -96,7 +97,7 @@ export default async function Page({
 
 
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
-                   <CapViewer fuentes={mutiAnimeAPI} anime={animeID} titulo={title}/>
+                    <CapViewer fuentes={mutiAnimeAPI} anime={animeID} titulo={title} />
                 </div>
             </div >
         </>
