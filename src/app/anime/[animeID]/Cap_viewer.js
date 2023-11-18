@@ -10,7 +10,7 @@ export default function CapViewer({ fuentes, anime, titulo }) {
         <div>
             <div className="flex justify-center align-center place-self-center mb-6">
                 {multiFuente.map((fuente) => (
-                    <Tooltip className="bg-gray-900 rounded-full outline-none text-white px-2" color="warning" content={'Cambiar fuente a ' + fuente.nombre} delay={100}>
+                    <Tooltip key={fuente.resultados} className="bg-gray-900 rounded-full outline-none text-white px-2" color="warning" content={'Cambiar fuente a ' + fuente.nombre} delay={100}>
                         <button onClick={() => setFuente(fuente)} className=" outline-none gap-2 mt-2 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{fuente.nombre}</button>
                     </Tooltip>
                 ))}
