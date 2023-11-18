@@ -19,7 +19,7 @@ export default function CapViewer({ fuentes, anime, titulo }) {
                 {
                     fuente?.resultados.episodes.map(item => (
                         <>
-                            <Tooltip placement="right" className="bg-gray-900 rounded-full outline-none text-white px-6" color="warning" content={
+                            <Tooltip key={item.name} placement="right" className="bg-gray-900 rounded-full outline-none text-white px-6" color="warning" content={
                                 <div className="">
                                     <div className="text-small font-bold">{item.name}</div>
                                     <div className="text-tiny">Fuente original 
