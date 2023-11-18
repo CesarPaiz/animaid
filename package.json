@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.9",
     "anilist-node": "^1.14.0",
     "axios": "^1.6.0",
     "cheerio": "^1.0.0-rc.12",

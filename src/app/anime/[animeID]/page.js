@@ -4,7 +4,7 @@ import { animeInfo, getAnimeSearch } from "../../../../stuff/api";
 import Link from "next/link";
 import { obtenerATF } from "../../../../stuff/buscarATF"
 import Image from "next/image";
-
+import CapViewer from "./Cap_viewer";
 
 
 
@@ -47,8 +47,6 @@ export default async function Page({
 
     var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: title })
    
-    //console.log(mutiAnimeAPI[1].resultados)
-    var apiIDnameFinal = mutiAnimeAPI[0].resultados
 
     function convertirSegundos(segundos) {
         var dias = Math.floor(segundos / (24 * 3600)) ?? 0;
@@ -86,7 +84,7 @@ export default async function Page({
 
                     </div>
                     <div className="md:ml-4 max-w-2xl">
-                        <span className="mt-4  line-clamp-8">{apiIDnameFinal.synopsis ?? descriptionFix}</span>
+                        <span className="mt-4  line-clamp-8">{descriptionFix}</span>
                     </div>
                 </div>
                 {tiempo !== 'Finalizado' &&
@@ -98,19 +96,7 @@ export default async function Page({
 
 
                 <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
-                    {
-                        apiIDnameFinal?.episodes.map(item => (
-                            <>
-                                <Link href={{
-                                    pathname: '/anime/' + animeID + '/' + item.number,
-
-                                }}
-                                    key={item.name} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
-                                    <span> Episodio {item.number} </span>
-                                </Link >
-                            </>
-                        ))
-                    }
+                   <CapViewer fuentes={mutiAnimeAPI} anime={animeID} titulo={title}/>
                 </div>
             </div >
         </>

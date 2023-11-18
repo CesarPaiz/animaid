@@ -7,12 +7,21 @@ const urlApi = "https://multi-api-animaid.vercel.app"
 
 
 export async function MonosChinosanimeInfo({ titleAnime }) {
-    var titleFixPar1 = titleAnime.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-');
-    var request = urlApi + "/anime/monoschinos/name/" + titleFix
-    var result = await fetch(request, { cache: 'no-store' })
-    const id = await result.json();
-    return (id);
+    try {
+        var buscarMonosCHinos = urlApi + "/anime/monoschinos/filter?title=" + titleAnime
+
+        var resultBusqueda = await fetch(buscarMonosCHinos, { cache: 'no-store' })
+        const rutaBusqueda = await resultBusqueda.json()
+
+        var request = urlApi + rutaBusqueda.results[0].url
+        var result = await fetch(request, { cache: 'no-store' })
+        const id = await result.json();
+        return (id);
+    }
+    catch {
+        return (null)
+    }
+
 }
 
 
@@ -58,22 +67,29 @@ export async function getAnimeSearch({ nombreAnime }) {
 
 
         if (fuente == 'monoschinos2') {
-            var resultados = await MonosChinosanimeInfo( {titleAnime:nombreAnime})
-            return ({
+            var resultados = await MonosChinosanimeInfo({ titleAnime: nombreAnime })
+            if (resultados === null) {
+                
+            }
+            else {
+                resultadosFinal.push({
+                    'nombre': fuente,
+                    resultados
+                })
+            }
+
+
+        }
+        else if (fuente == 'animeFlv') {
+            var resultados = await animeFLVanimeInfo({ nombreAnime })
+            resultadosFinal.push({
                 'nombre': fuente,
                 resultados
             })
         }
-        else if (fuente == 'animeFlv') {
-            var resultados = await animeFLVanimeInfo({ nombreAnime })
-            return ({
-                'nombre': fuente
-                , resultados
-            })
-        }
     }
     for await (const fuente of fuentes) {
-        resultadosFinal.push(await buscaDorPorFuente(fuente.name))
+        await buscaDorPorFuente(fuente.name)
     }
     //console.log(resultadosFinal)
     return (resultadosFinal)

@@ -29,9 +29,10 @@ export async function generateMetadata({
 
 export default async function Page({
     params: { animeID },
-    params: { aniCap }
+    params: { aniCap },
+    searchParams,
 }) {
-
+    var fuente = searchParams.fuente
     function obtenerPrimerTextoAlfanumerico(texto) {
         const coincidencia = texto.match(/[a-zA-Z0-9]+/);
         if (coincidencia) {
@@ -42,53 +43,36 @@ export default async function Page({
     }
     function getUrlByNumber(json, targetNumber) {
         const matchingObject = json.find(obj => obj.number === targetNumber);
+        if (!matchingObject) {
+            const final = json.find(obj => obj.number === 'Episodio ' + targetNumber);
+            return final ? final.url : null;
+
+        }
+        
         return matchingObject ? matchingObject.url : null;
     }
+
+    function getFuenteAnime(fuentes , targetFuente) {
+
+        for(let i = 0; i < fuentes.length; i++) {
+            if(fuentes[i].nombre == targetFuente) {
+                return i
+            }
+        }
+    }
+  
     var cap = parseInt(aniCap)
     var result = await AniLisInfoID({ id: animeID })
     var title = result.data.Media.title.romaji
-    let titleFixPar1 = title.replace(/[^a-zA-Z0-9\s-×]/g, '');
-    var titleFix = titleFixPar1.replace(/\s+/g, '-');
-    var apiIDname = await getAnimeID({ nombreAnime: titleFix })
 
+    var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: title })
+    var fuente_a_ver = getFuenteAnime(mutiAnimeAPI, fuente) ?? 0
+    var apiIDnameFinal = mutiAnimeAPI[fuente_a_ver].resultados
 
-    if (apiIDname.episodes === undefined) {
-        var titleHunter = titleFixPar1.replace('×', '+x+')
-        var titleFixSearch = titleHunter.replace(/\s+/g, '+');
-        var apiIDnameSeach = await getAnimeSearch({ nombreAnime: titleFixSearch })
-        if (apiIDnameSeach[0] === undefined) {
-            var newTitlejson = obtenerATF(title)
-            if (newTitlejson === undefined) {
-                var newTitle = obtenerPrimerTextoAlfanumerico(titleFix)
-                var apiIDnameFix = await animeInfo({ nombreAnime: newTitle })
-                var tituloAbuscar = apiIDnameFix.results[0].url
-                var tituloAbuscarFix = tituloAbuscar.replace("/anime/monoschinos/name/", '');
-                var apiIDnameFinal = await getAnimeID({ nombreAnime: tituloAbuscarFix })
-            }
-            else {
-                var apiIDnameFinaljson = await getAnimeID({ nombreAnime: newTitlejson })
-                var apiIDnameFinal = apiIDnameFinaljson
-            }
-            var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
-            var captitulo = resultado
-            var final = await getVideoChapter({ captitulo: captitulo })
-            var video = final[0].url
-        }
-        else {
-            var apiIDnameFinal = await getAnimeID({ nombreAnime: apiIDnameSeach[0] })
-            var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
-            var captitulo = resultado
-            var final = await getVideoChapter({ captitulo: captitulo })
-            var video = final[0].url
-        }
-    }
-    else {
-        var apiIDnameFinal = await getAnimeID({ nombreAnime: titleFix })
-        var resultado = getUrlByNumber(apiIDnameFinal.episodes, cap)
-        var captitulo = resultado
-        var final = await getVideoChapter({ captitulo: captitulo })
-        var video = final[0].url
-    }
+    var capAVer = getUrlByNumber(apiIDnameFinal.episodes, cap)
+
+    var final = await getVideoChapter({ captitulo: capAVer })
+
     return (
         <>
             <Suspense fallback={<span>Loading...</span>}>

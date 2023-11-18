@@ -4,7 +4,14 @@ import { useState } from "react"
 import PaginationMirar from "../stuff/paginationMirar"
 
 export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
-    var videos = jsonVideos
+    if(
+        jsonVideos.servers !== undefined
+    ){
+        var videos = jsonVideos.servers
+    }
+    else{
+        var videos = jsonVideos
+    }
     var animeID = parseInt(id)
     var animeCaps = parseInt(captitulo)
     const [video, setVideo] = useState("")
@@ -13,10 +20,10 @@ export default function IframeVideo({ jsonVideos, id, captitulo,episodios }) {
     return (
         <div >
             <div className="justify-center text-center mt-8">
-                {jsonVideos?.map((item) => (
+                {videos?.map((item) => (
 
                     <button key={item.url} onClick={() => setVideo(item.url)} className=" gap-2 mt-2 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{item.name}</button>
-
+                    
                 ))}
             </div>
             <div className=" flex  mt-6 align-center justify-center  ">
