@@ -82,10 +82,15 @@ export async function getAnimeSearch({ nombreAnime }) {
         }
         else if (fuente == 'animeFlv') {
             var resultados = await animeFLVanimeInfo({ nombreAnime })
-            resultadosFinal.push({
-                'nombre': fuente,
-                resultados
-            })
+            if (resultados === null) {
+                
+            }
+            else {
+                resultadosFinal.push({
+                    'nombre': fuente,
+                    resultados
+                })
+            }
         }
     }
     for await (const fuente of fuentes) {
