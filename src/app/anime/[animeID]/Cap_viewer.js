@@ -24,13 +24,13 @@ export default function CapViewer({ fuentes, anime, titulo }) {
                                 <Tooltip key={item.name} placement="right" className="bg-gray-900 rounded-full outline-none text-white px-6" color="warning" content={
                                     <div className="">
                                         <div className="text-small font-bold">{item.name}</div>
-                                        <div className="text-tiny">Fuente original
+                                        <div className="text-tiny">Fuente original {' '}
 
                                             {fuente.nombre == 'monoschinos2' &&
-                                                <a href="https://monoschinos2.com"> {fuente.nombre}</a>
+                                                <a className="underline underline-offset-2" target="_blank" href="https://monoschinos2.com">{fuente.nombre}</a>
                                             }
                                             {fuente.nombre == 'animeFlv' &&
-                                                <a href="https://www3.animeflv.net/"> {fuente.nombre}</a>
+                                                <a  className="underline underline-offset-2" target="_blank" href="https://www3.animeflv.net/">{fuente.nombre}</a>
                                             }
 
 
