@@ -37,6 +37,7 @@ export default async function MangaPage({
                 <div className="flex md:flex-row flex-col align-center justify-center mt-6 mb-6 place-items-center">
                     <div className=" flex md:align-center justify-center text-center items-center  " style={{ width: '200px', height: '300px', position: 'relative' }} >
                         <Image
+                            unoptimized
                             src={result.data.Media.coverImage.large}
                             fill
                             style={{ objectFit: 'cover' }}

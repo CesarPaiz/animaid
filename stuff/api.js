@@ -1,14 +1,69 @@
+import cheerio from 'cheerio';
+import { fetch } from 'undici'
+import path from 'path';
+import fs from 'fs';
+
 const urlApi = "https://multi-api-animaid.vercel.app"
+async function titleFilter({ titleAnime }) {
+    const filtros = [
+        {
+            original: '×',
+            replace: ' x ',
+        }
+    ]
+    for (const filtro of filtros) {
+        titleAnime = titleAnime.replace(filtro.original, filtro.replace)
+    }
+    return titleAnime
+}
+
+async function jkGetChapter({ url }) {
+    const response = await fetch(url).then(response => response.text()).then(json => {
+        var load = cheerio.load(json);
+        const currentDirectory = process.cwd();
+
+        // Genera un string que deseas guardar en el archivo
+        const contentToWrite = json
+
+        // Define la ruta completa del archivo
+        const filePath = path.join(currentDirectory, 'archivo.txt');
+
+        // Escribe el contenido en el archivo
+        fs.writeFileSync(filePath, contentToWrite);
+        return load
+    })
 
 
 
+}
 
+export async function jkanimeSearch({ nombreAnime }) {
+    var title_ = nombreAnime.replace(/ /g, '_')
 
+    var url = 'https://jkanime.net/buscar/' + title_ + '/1/?filtro=nombre&tipo=none&estado=none&orden=desc'
+    var doc = await fetch(url).then(response => response.text()).then(json => {
+        var load = cheerio.load(json);
+        return load
+    })
+    const ulElement = doc('.anime__item');
+    const links = ulElement.find('a');
+
+    var resultados = []
+
+    links.each((index, element) => {
+        const $element = doc(element);
+        const href = $element.attr('href');
+        resultados.push(href)
+    })
+
+    await jkGetChapter({ url: resultados[0] })
+}
 
 
 export async function MonosChinosanimeInfo({ titleAnime }) {
     try {
-        var buscarMonosCHinos = urlApi + "/anime/monoschinos/filter?title=" + titleAnime
+        var titulo_filtrado = await titleFilter({ titleAnime: titleAnime })
+        var buscarMonosCHinos = urlApi + "/anime/monoschinos/filter?title=" + titulo_filtrado
 
         var resultBusqueda = await fetch(buscarMonosCHinos, { cache: 'no-store' })
         const rutaBusqueda = await resultBusqueda.json()
@@ -27,9 +82,9 @@ export async function MonosChinosanimeInfo({ titleAnime }) {
 
 export async function animeFLVanimeInfo({ nombreAnime }) {
     try {
-        var temporadaFix = nombreAnime.replace('Season 2', '2nd Season').replace('Part 2', '2nd Season')
-        var requestBusqueda = urlApi + "/anime/flv/filter?title=" + temporadaFix
-        //console.log(requestBusqueda)
+        var titulo_filtrado = await titleFilter({ titleAnime: nombreAnime })
+
+        var requestBusqueda = urlApi + "/anime/flv/filter?title=" + titulo_filtrado
 
         var resultBusqueda = await fetch(requestBusqueda, { cache: 'no-store' })
         const nombreJson = await resultBusqueda.json();
@@ -69,7 +124,7 @@ export async function getAnimeSearch({ nombreAnime }) {
         if (fuente == 'monoschinos2') {
             var resultados = await MonosChinosanimeInfo({ titleAnime: nombreAnime })
             if (resultados === null) {
-                
+
             }
             else {
                 resultadosFinal.push({
@@ -83,7 +138,7 @@ export async function getAnimeSearch({ nombreAnime }) {
         else if (fuente == 'animeFlv') {
             var resultados = await animeFLVanimeInfo({ nombreAnime })
             if (resultados === null) {
-                
+
             }
             else {
                 resultadosFinal.push({
@@ -91,6 +146,10 @@ export async function getAnimeSearch({ nombreAnime }) {
                     resultados
                 })
             }
+        }
+        else if (fuente == 'jkanime') {
+            var resultados = await jkanimeSearch({ nombreAnime })
+
         }
     }
     for await (const fuente of fuentes) {

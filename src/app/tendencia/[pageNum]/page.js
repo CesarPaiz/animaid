@@ -11,12 +11,12 @@ export async function generateMetadata({ params: { pageNum } }) {
 
     return {
         title: 'Tendencias Pagina ' + pageNum + ' - AniMaid',
-      
+
     }
 }
 
 export default async function Main({
-    params: {pageNum},
+    params: { pageNum },
 }) {
     const pagina = parseInt(pageNum) ?? 1
     const data = await AniListTendencia({ pagina: pagina })
@@ -33,6 +33,7 @@ export default async function Main({
                                 <div style={{ width: '175px', height: '300px', position: 'relative' }}>
                                     <Suspense key={item.coverImage.large} fallback={<Loading />}>
                                         <Image
+                                            unoptimized
                                             src={item.coverImage.large}
                                             fill
                                             style={{ objectFit: 'cover' }}
