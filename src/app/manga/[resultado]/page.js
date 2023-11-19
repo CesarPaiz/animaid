@@ -51,7 +51,7 @@ export default async function MangaPage({
                 </div>
                 <div className="text-white flex flex-col justify-center  place-items-center mt-8 place-items-center">
                     {capitulos.map(item => (
-                        <Link href={{
+                        <Link prefetch={false} href={{
                             pathname: '/manga/' + resultado + '/' + item.reultado,
 
                         }}

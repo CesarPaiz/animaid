@@ -32,7 +32,7 @@ export default function CapViewer({ fuentes, anime, titulo }) {
                     {
                         fuente?.resultados.episodes.map(item => (
                             <>
-                                <Link href={{
+                                <Link prefetch={false} href={{
                                     pathname: '/anime/' + anime + '/' + String(item.number).match(/\d+/)[0],
                                     query: {
                                         fuente: fuente.nombre

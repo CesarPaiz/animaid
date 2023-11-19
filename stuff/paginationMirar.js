@@ -18,7 +18,7 @@ export default function PaginationMirar({ anime, captitulo, cantidad ,fuente }) 
     return (
         <>
             {cap > capsicialIncial && (
-                <Link href={{
+                <Link prefetch={false} href={{
                     pathname: '/anime/' + anime + '/' + parseInt(cap - 1),
                     query: {
                         fuente: fuente
@@ -28,7 +28,7 @@ export default function PaginationMirar({ anime, captitulo, cantidad ,fuente }) 
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Anterior</button>
                 </Link>
             )}
-            <Link href={{
+            <Link prefetch={false} href={{
                 pathname: '/anime/' + anime + '/'
             }}
             >

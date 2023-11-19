@@ -22,7 +22,7 @@ export default async function Main({
 
 
                         <div key={item} className="max-w-sm mx-auto bg-gray-800 rounded overflow-hidden shadow-lg mb-8">
-                            <Link href={{
+                            <Link prefetch={false} href={{
                                 pathname: '/' + item.type.toLowerCase() + '/' + item.id,
 
                             }}>

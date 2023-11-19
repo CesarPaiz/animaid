@@ -13,7 +13,7 @@ export default function TendenciasPage({ pagina }) {
         <>
             <div className="flex justify-center align-center place-self-center mt-4 gap-4 mb-4 place-items-center">
                 {pag > 1 && (
-                    <Link href={{
+                    <Link prefetch={false} href={{
                         pathname: '/tendencia/' + pagAnterior,
                         
 
@@ -22,7 +22,7 @@ export default function TendenciasPage({ pagina }) {
 
                     </Link>
                 )}
-                <Link href={{
+                <Link prefetch={false} href={{
                     pathname: '/tendencia/' + pagSiguiente,
                     
                 }}>

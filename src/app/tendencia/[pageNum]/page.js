@@ -27,7 +27,7 @@ export default async function Main({
                 {
                     data?.data.Page.media.map(item => (
                         <div key={item} className="max-w-sm mx-auto  bg-gray-800 rounded overflow-hidden shadow-lg">
-                            <Link href={{
+                            <Link prefetch={false} href={{
                                 pathname: '/' + item.type.toLowerCase() + '/' + item.id
                             }}>
                                 <div style={{ width: '175px', height: '300px', position: 'relative' }}>
