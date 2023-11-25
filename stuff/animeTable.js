@@ -25,6 +25,7 @@ export default async function AnimeTable({ datos, fuente }) {
                                                 unoptimized
                                                 src={item.coverImage.large}
                                                 fill
+                                                alt={'AniMaid' + item.title.romaji ?? item.title.english}
                                                 style={{ objectFit: 'cover' }}
                                             />
                                         </Suspense>
