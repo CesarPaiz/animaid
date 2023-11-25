@@ -42,7 +42,7 @@ export default async function AnimeTable({ datos, fuente }) {
                                 </div>
                             </PopoverTrigger>
                             <PopoverContent  placement="right" shadow className="transparent rounded  text-white bg-[#001731] ">
-                                <div className="max-w-md mt-8 p-6  rounded-md shadow-md">
+                                <div className="max-w-md p-6  rounded-md shadow-md">
                                     <h1 className="text-2xl font-bold mb-4">{item.title.romaji ?? item.title.english}</h1>
                                     <p className="text-gray-600 mb-4 line-clamp-3">
                                         {item.description.replace(/(<([^>]+)>)/gi, "")}
