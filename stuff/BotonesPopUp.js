@@ -10,7 +10,7 @@ export default function BotonesPopUp({tipo, id }) {
                 </button>
             </Tooltip>
             <Link href={{
-                pathname: '/' + String(tipo).toLocaleLowerCase()     + '/' + id,
+                pathname: '/' + String(tipo).toLocaleLowerCase() + '/' + id,
 
             }}>
                 <button className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">
