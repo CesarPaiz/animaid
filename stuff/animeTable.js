@@ -53,7 +53,7 @@ export default async function AnimeTable({ datos, fuente }) {
                                         <span className="bg-gray-700 text-center p-1 text-sm rounded">{item.tags[2].name}</span>
                                     </div>
                                     <div className="flex justify-between gap-4">
-                                        <span className='font-size-2 text-white text-3xl bold'>
+                                        <span className='font-size-2 font-bold text-white text-3xl bold'>
                                             AniMaid
                                         </span>
                                         <BotonesPopUp tipo={item.type} id={item.id} />

@@ -16,7 +16,6 @@ export default async function Main({
         <>
             <h1 className="text-2xl mt-5 text-white text-center">Los animes mas populares</h1>
             <AnimeTable datos={data} fuente={'main'} />
-
         </>
 
     )

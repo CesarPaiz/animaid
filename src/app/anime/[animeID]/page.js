@@ -5,6 +5,7 @@ import Link from "next/link";
 import { obtenerATF } from "../../../../stuff/buscarATF"
 import Image from "next/image";
 import CapViewer from "./Cap_viewer";
+import { Suspense } from "react";
 
 
 
@@ -96,10 +97,11 @@ export default async function Page({
                     <span> Finalizado </span>
                 }
 
-
-                <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
-                    <CapViewer fuentes={mutiAnimeAPI} anime={animeID} titulo={title} />
-                </div>
+                <Suspense fallback={<span className='flex justify-center align-center text-2xl mt-8 text-white'>Loading...</span>}>
+                    <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
+                        <CapViewer fuentes={mutiAnimeAPI} anime={animeID} titulo={title} />
+                    </div>
+                </Suspense>
             </div >
         </>
     )
