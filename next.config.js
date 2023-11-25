@@ -3,7 +3,19 @@ const nextConfig = {}
 
 module.exports = nextConfig
 
-module.exports = {
+const withPWA = require('next-pwa')
+
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+  },
+  // otras configuraciones de Next.js
+})
+
+
+module.exports = {  
     images: {
       remotePatterns: [
         {

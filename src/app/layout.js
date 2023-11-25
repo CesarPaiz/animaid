@@ -2,6 +2,7 @@
 export const metadata = {
   title: 'AniMaid',
   description: 'Animemaid its here',
+  manifest: '/manifest.json',
 }
 
 import "./globals.css"
@@ -10,15 +11,13 @@ import { Suspense } from "react"
 import HeadHTML from "./HeadHTML"
 import EndBar from "./EndBar"
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <HeadHTML />
       <body className="bg-slate-950 relative min-h-screen">
-
         <div className="mb-12">
-          <div>
+          <div >
             <NavBar />
           </div>
           <div className="">

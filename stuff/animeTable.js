@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import BotonesPopUp from './BotonesPopUp'
 
-export default async function AnimeTable({ datos, fuente }) {
+export default function AnimeTable({ datos, fuente }) {
     const data = datos
     //console.log(data.data.Page.media.tags)
     return (
@@ -14,10 +14,10 @@ export default async function AnimeTable({ datos, fuente }) {
             <div className="max-w-full md:ml-8 md:mr-8 ml-4 mr-4 mx-auto grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 gap-6 mt-8 rounded overflow-hidden shadow-lg">
                 {
                     data?.data.Page.media.map(item => (
-                        <Popover  placement="right">
+                        <Popover key={item} placement="right">
                             <PopoverTrigger>
 
-                                <div key={item} className="max-w-sm mx-auto bg-gray-800 rounded overflow-hidden shadow-lg mb-8">
+                                <div className="max-w-sm mx-auto bg-gray-800 rounded overflow-hidden shadow-lg mb-8">
 
                                     <div style={{ width: '175px', height: '300px', position: 'relative' }}>
                                         <Suspense fallback={<span className='flex justify-center align-center text-2xl mt-8 text-white'>Loading...</span>}>
@@ -25,7 +25,7 @@ export default async function AnimeTable({ datos, fuente }) {
                                                 unoptimized
                                                 src={item.coverImage.large}
                                                 fill
-                                                alt={'AniMaid' + item.title.romaji ?? item.title.english}
+                                                alt={'AniMaid' +  item.title.romaji ?? item.title.english}
                                                 style={{ objectFit: 'cover' }}
                                             />
                                         </Suspense>

@@ -1,0 +1,17 @@
+{
+    "name": "AniMaid",
+    "short_name": "AniMaid",
+    "description": "Multi server anime website",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#262626",
+    "theme_color": "#262626",
+    "icons": [
+      {
+        "src": "/favicon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
+  

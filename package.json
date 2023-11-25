@@ -30,6 +30,7 @@
     "js-cookies": "^1.0.4",
     "mangakakalot-scrapper": "^0.0.3",
     "next": "13.5.6",
+    "next-pwa": "^5.6.0",
     "next-seo": "^6.4.0",
     "nock": "^13.3.7",
     "node-fetch": "^3.3.2",
