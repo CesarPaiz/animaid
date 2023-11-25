@@ -4,7 +4,7 @@ const settings = '';
 const animaid = new AniList(settings.token);
 
 export async function AniListSearch({ nombreAnime }) {
-    var query = `
+  var query = `
     query ($Search: String, $Page: Int ) { # Define which variables will be used in the query (id)
         Page (page: $Page,perPage: 18) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
         pageInfo {
@@ -14,10 +14,14 @@ export async function AniListSearch({ nombreAnime }) {
           id
           type
           status
+          
           title {
             romaji
             english
           } 
+          tags {
+            name
+          }
           coverImage {
             medium
             large
@@ -28,33 +32,34 @@ export async function AniListSearch({ nombreAnime }) {
 `;
 
 
-    var resultado = {
-        Search: nombreAnime,
-        Page: 1
+  var resultado = {
+    Search: nombreAnime,
+    Page: 1
+  }
+
+  var anilisUrl = 'https://graphql.anilist.co',
+    options = {
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: resultado
+      })
     }
 
-    var anilisUrl = 'https://graphql.anilist.co',
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                query: query,
-                variables: resultado
-            })
-        }
 
-
-    return (
-        fetch(anilisUrl, options,{ cache: 'no-cache' }).then(response => response.json()).then(data => {
-            return data
-        })
-    )
+  return (
+    fetch(anilisUrl, options, { cache: 'no-cache' }).then(response => response.json()).then(data => {
+      return data
+    })
+  )
 }
 export async function AniListTendencia({ pagina }) {
-    var query = `
+  var query = `
     query ($Page: Int ) { # Define which variables will be used in the query (id)
         Page (page: $Page,perPage: 18) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
         pageInfo {
@@ -68,7 +73,11 @@ export async function AniListTendencia({ pagina }) {
             romaji
             english
           } 
+
           description
+          tags {
+            name
+          }
           coverImage {
             large
             medium
@@ -78,39 +87,43 @@ export async function AniListTendencia({ pagina }) {
       }
     `;
 
-    var resultado = {
-        Page: pagina
+  var resultado = {
+    Page: pagina
 
+  }
+
+  var anilisUrl = 'https://graphql.anilist.co',
+    options = {
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: resultado
+      })
     }
 
-    var anilisUrl = 'https://graphql.anilist.co',
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                query: query,
-                variables: resultado
-            })
-        }
 
-
-    return (
-        fetch(anilisUrl, options,{ cache: 'no-cache' }).then(response => response.json()).then(data => {
-            return data
-        })
-    )
+  return (
+    fetch(anilisUrl, options, { cache: 'no-cache' }).then(response => response.json()).then(data => {
+      return data
+    })
+  )
 }
 export async function AniLisInfoID({ id }) {
-    var query = `
+  var query = `
 query ($Id: Int) { # Define which variables will be used in the query (id)
   Media (id: $Id ) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
     id
     type
     status
     description
+    tags {
+      name
+    }
     title {
         english
         romaji
@@ -125,9 +138,6 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
         large
     }
     bannerImage
-    tags{
-        name
-    }
     trailer {
       id
       site
@@ -137,36 +147,37 @@ query ($Id: Int) { # Define which variables will be used in the query (id)
 `;
 
 
-    var resultado = {
-        Id: id
+  var resultado = {
+    Id: id
+  }
+
+  var anilisUrl = 'https://graphql.anilist.co',
+    options = {
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: resultado
+      },
+        { cache: 'no-cache' }
+      )
+
     }
 
-    var anilisUrl = 'https://graphql.anilist.co',
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                query: query,
-                variables: resultado
-            },
-            { cache: 'no-cache' }
-            )
 
-        }
-
-
-    return (
-        fetch(anilisUrl, options,{ cache: 'no-cache' }).then(response => response.json()).then(data => {
-            return data
-        })
-    )
+  return (
+    fetch(anilisUrl, options).then(response => response.json()).then(data => {
+      return data
+    })
+  )
 }
 
 export async function AniListPopular({ pagina }) {
-    var query = `
+  var query = `
     query ($Page: Int ) { # Define which variables will be used in the query (id)
         Page (page: $Page,perPage: 18 ) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
         pageInfo {
@@ -181,6 +192,9 @@ export async function AniListPopular({ pagina }) {
             english
           } 
           description
+          tags {
+            name
+          }
           coverImage {
             large
             medium
@@ -190,33 +204,34 @@ export async function AniListPopular({ pagina }) {
       }
     `;
 
-    var resultado = {
-        Page: pagina
+  var resultado = {
+    Page: pagina
 
+  }
+
+  var anilisUrl = 'https://graphql.anilist.co',
+    options = {
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: resultado
+      })
     }
 
-    var anilisUrl = 'https://graphql.anilist.co',
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                query: query,
-                variables: resultado
-            })
-        }
 
-
-    return (
-        fetch(anilisUrl, options,{ cache: 'no-cache' }).then(response => response.json()).then(data => {
-            return data
-        })
-    )
+  return (
+    fetch(anilisUrl, options, { cache: 'no-cache' }).then(response => response.json()).then(data => {
+      return data
+    })
+  )
 }
 export async function AniListAvatar({ code }) {
-    var query = `
+  var query = `
     query {
         Viewer {
           id
@@ -230,24 +245,25 @@ export async function AniListAvatar({ code }) {
     `;
 
 
-    var anilisUrl = 'https://graphql.anilist.co',
+  var anilisUrl = 'https://graphql.anilist.co',
 
-        options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + code,
-            },
-            body: JSON.stringify({
-                query: query,
-            },
-            )
-        }
-    console.log(code)
-    return (
-        fetch(anilisUrl, options,{ cache: 'no-cache' }).then(response => response.json()).then(data => {
-            return data
-        })
-    )
+    options = {
+      method: 'POST',
+      headers: {
+        'Cache-Control': 'no-store',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + code,
+      },
+      body: JSON.stringify({
+        query: query,
+      },
+      )
+    }
+  console.log(code)
+  return (
+    fetch(anilisUrl, options, { cache: 'no-cache' }).then(response => response.json()).then(data => {
+      return data
+    })
+  )
 }

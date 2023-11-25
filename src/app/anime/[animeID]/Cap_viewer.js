@@ -24,7 +24,7 @@ export default function CapViewer({ fuentes, anime, titulo }) {
                             </div>
                         }delay={500} 
                         >
-                            <button onClick={() => setFuente(fuente)} className=" outline-none gap-2 mt-2 mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{fuente.nombre}</button>
+                            <button onClick={() => setFuente(fuente)} className=" outline-none gap-2 mt-2 mr-2 bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">{fuente.nombre}</button>
                         </Tooltip>
                     ))}
                 </div>

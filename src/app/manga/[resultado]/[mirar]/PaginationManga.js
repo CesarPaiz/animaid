@@ -14,14 +14,14 @@ export default async function MangaRPage({
                     pathname: '/manga/' + idM + '/' + backCap,
 
                 }}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Anterior </button>
+                    <button className="bg-cyan-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Anterior </button>
                 </Link>
             )}
             <Link prefetch={false} href={{
                 pathname: '/manga/' + idM + '/',
 
             }}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Capitulos </button>
+                <button className="bg-cyan-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Capitulos </button>
             </Link>
 
             {nextCap !== undefined && (
@@ -29,7 +29,7 @@ export default async function MangaRPage({
                     pathname: '/manga/' + idM + '/' + nextCap,
 
                 }}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Siguiente </button>
+                    <button className="bg-cyan-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> Siguiente </button>
                 </Link>
             )}
         </div>
