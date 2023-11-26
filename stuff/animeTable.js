@@ -9,13 +9,14 @@ export default function AnimeTable({ datos, fuente }) {
     const data = datos
     const descripciónFix = (descripción) => {
         const fix = String(descripción).replace(/(<([^>]+)>)/ig, '')
-        if (fix === 'null') {
+        if (fix === 'null' || fix === undefined) {
             return 'No hay descripción'
         }
         else {
             return fix
         }
     }
+
     return (
         <>
 
@@ -57,9 +58,13 @@ export default function AnimeTable({ datos, fuente }) {
                                         {descripciónFix(item.description)}
                                     </p>
                                     <div className="flex space-x-2 mb-4 place-content-center place-items-center line-clamp-1">
-                                        <span className="bg-gray-700 text-center p-1 text-sm rounded">{item.tags[0].name}</span>
-                                        <span className="bg-gray-700 text-center p-1 text-sm rounded">{item.tags[1].name}</span>
-                                        <span className="bg-gray-700 text-center p-1 text-sm rounded">{item.tags[2].name}</span>
+                                        {(item.tags.slice(0, 3)).map((tag) => (
+                                            <span className="bg-gray-700 text-center p-1 text-sm rounded">{tag.name}</span>
+
+                                        ))}
+
+
+
                                     </div>
                                     <div className="flex justify-between gap-4">
                                         <span className='font-size-2 font-bold text-white text-3xl bold'>
