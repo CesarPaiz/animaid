@@ -62,11 +62,13 @@ export default function AnimeTable({ datos, fuente }) {
                                             <span className="bg-gray-700 text-center p-1 text-sm rounded">{tag.name}</span>
 
                                         ))}
-
-
-
                                     </div>
+                                    <div className="flex justify-between ">
+                                        <span className="text-white text-3xl font-bold">
+                                            AniMaid
+                                        </span>
                                         <BotonesPopUp tipo={item.type} id={item.id} />
+                                    </div>
                                 </div>
                             </PopoverContent>
                         </Popover>
