@@ -7,7 +7,6 @@ export default function CapViewer({ fuentes, anime, titulo }) {
     var multiFuente = fuentes
     const [fuente, setFuente] = useState(multiFuente[0])
     try {
-
         return (
             <div>
                 <div className="flex justify-center align-center place-self-center mb-6">
@@ -24,7 +23,7 @@ export default function CapViewer({ fuentes, anime, titulo }) {
                             </div>
                         }delay={500} 
                         >
-                            <button onClick={() => setFuente(fuente)} className=" outline-none gap-2 mt-2 mr-2 bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">{fuente.nombre}</button>
+                            <div onClick={() => setFuente(fuente)} className=" outline-none gap-2 mt-2 mr-2 bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">{fuente.nombre}</div>
                         </Tooltip>
                     ))}
                 </div>

@@ -5,7 +5,7 @@ export default function Bnext({
     var actualFix = parseInt(actual)
     return (
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-4">
+        <div className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-4">
             <Link href={{
                 pathname: '/tendencia',
                 query: {
@@ -14,7 +14,7 @@ export default function Bnext({
             }}>
                 Siguiente
             </Link>
-        </button>
+        </div>
 
     )
 

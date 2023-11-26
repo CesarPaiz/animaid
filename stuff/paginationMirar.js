@@ -25,14 +25,14 @@ export default function PaginationMirar({ anime, captitulo, cantidad ,fuente }) 
                     }
                 }}
                 >
-                    <button className="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">Anterior</button>
+                    <div className="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">Anterior</div>
                 </Link>
             )}
             <Link prefetch={false} href={{
                 pathname: '/anime/' + anime + '/'
             }}
             >
-                <button class="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full"> Capitulos </button>
+                <div class="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full"> Capitulos </div>
             </Link>
 
 
@@ -45,7 +45,7 @@ export default function PaginationMirar({ anime, captitulo, cantidad ,fuente }) 
                     }
                 }}
                 >
-                    <button className="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">Siguiente</button>
+                    <div className="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">Siguiente</div>
                 </Link>
             )
             }
