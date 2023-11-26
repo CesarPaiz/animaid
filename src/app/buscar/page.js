@@ -15,7 +15,6 @@ export default async function BuscarMain({
 }) {
     var nombre = searchParams.query;
     var resultado = await AniListSearch({ nombreAnime: nombre })
-
     return (
         <>
             <AnimeTable datos={resultado} />

@@ -14,11 +14,11 @@ export async function AniListSearch({ nombreAnime }) {
           id
           type
           status
-          
           title {
             romaji
             english
           } 
+          description
           tags {
             name
           }

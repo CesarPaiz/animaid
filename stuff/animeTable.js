@@ -7,7 +7,15 @@ import BotonesPopUp from './BotonesPopUp'
 
 export default function AnimeTable({ datos, fuente }) {
     const data = datos
-    //console.log(data.data.Page.media.tags)
+    const descripciónFix = (descripción) => {
+        const fix = String(descripción).replace(/(<([^>]+)>)/ig, '')
+        if (fix === 'null') {
+            return 'No hay descripción'
+        }
+        else {
+            return fix
+        }
+    }
     return (
         <>
 
@@ -25,7 +33,7 @@ export default function AnimeTable({ datos, fuente }) {
                                                 unoptimized
                                                 src={item.coverImage.large}
                                                 fill
-                                                alt={'AniMaid' +  item.title.romaji ?? item.title.english}
+                                                alt={'AniMaid' + item.title.romaji ?? item.title.english}
                                                 style={{ objectFit: 'cover' }}
                                             />
                                         </Suspense>
@@ -42,11 +50,11 @@ export default function AnimeTable({ datos, fuente }) {
                                     </div>
                                 </div>
                             </PopoverTrigger>
-                            <PopoverContent  placement="right" shadow className="transparent rounded  text-white bg-[#001731] ">
+                            <PopoverContent placement="right" shadow className="transparent rounded  text-white bg-[#001731] ">
                                 <div className="max-w-md p-6  rounded-md shadow-md">
                                     <h1 className="text-2xl font-bold mb-4">{item.title.romaji ?? item.title.english}</h1>
                                     <p className="text-gray-600 mb-4 line-clamp-3">
-                                        {item.description.replace(/(<([^>]+)>)/gi, "")}
+                                        {descripciónFix(item.description)}
                                     </p>
                                     <div className="flex space-x-2 mb-4 place-content-center place-items-center line-clamp-1">
                                         <span className="bg-gray-700 text-center p-1 text-sm rounded">{item.tags[0].name}</span>
