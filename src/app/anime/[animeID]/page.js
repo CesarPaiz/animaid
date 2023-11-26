@@ -47,29 +47,6 @@ export default async function Page({
 
     var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: title })
 
-
-
-
-    function convertirSegundos(segundos) {
-        var dias = Math.floor(segundos / (24 * 3600)) ?? 0;
-        var horas = Math.floor((segundos % (24 * 3600)) / 3600) ?? 0;
-        var minutos = Math.floor((segundos % 3600) / 60) ?? 0;
-        var segundosRestantes = segundos % 60 ?? 0;
-        return {
-            dias: dias,
-            horas: horas,
-            minutos: minutos,
-            segundos: segundosRestantes
-        };
-    }
-    try {
-        var tiempo = convertirSegundos(result.data.Media.nextAiringEpisode.timeUntilAiring)
-    } catch (error) {
-        var tiempo = 'Finalizado'
-    }
-
-
-
     return (
 
         <>
@@ -90,12 +67,7 @@ export default async function Page({
                         <span className="mt-4  line-clamp-8">{descriptionFix}</span>
                     </div>
                 </div>
-                {tiempo !== 'Finalizado' &&
-                    <span> Siguiente capitulo dentro de {tiempo.dias + ' Dias'}  {tiempo.horas + ' Horas'}  {tiempo.minutos + ' Minutos'} </span>
-                }
-                {tiempo === 'Finalizado' &&
-                    <span> Finalizado </span>
-                }
+        
 
                 <Suspense fallback={<span className='flex justify-center align-center text-2xl mt-8 text-white'>Loading...</span>}>
                     <div className="grid align-center justify-center max-w-2xl max-h-2xl mt-6 rounded">
