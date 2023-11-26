@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <HeadHTML />
-      <body className="bg-slate-950 relative min-h-screen">
+      <body className="bg-blur bg-slate-950 relative min-h-screen">
         <div className="mb-12">
           <div >
             <NavBar />

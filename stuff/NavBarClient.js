@@ -28,7 +28,7 @@ export default function NavegadorCLiente() {
                         },
                     }}
                 >
-                    <button className=" bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-1 md:px-4 rounded-full">Buscar</button>
+                    <div className=" bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-1 md:px-4 rounded-full">Buscar</div>
                 </Link>
             </div>
 

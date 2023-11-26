@@ -13,7 +13,7 @@ export default function SectionButtons() {
                     pathname: '/tendencia/' + 1
 
                 }}>
-                    <div className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full "> Tendencias </div>
+                    <div className="bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full "> Tendencias </div>
 
                 </Link>
                 <Tooltip placement="bottom" content="Proximamente" className='bg-gray-800 rounded-full outline-none text-white px-2'>
