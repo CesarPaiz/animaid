@@ -13,8 +13,9 @@ export async function mangaScrapSearch({ nombreManga }) {
 
 
 export async function mangaScrapInfo({ url }) {
-    const search = await fetch(mainUrl + url, { cache: 'no-store' })
+    const search = await fetch(mainUrl +  url + '?lang=es-419', { cache: 'no-store' })
     const result = await search.json();
+    console.log(result)
     return(result.chapters)
 }
 export async function getCapImages({ url }) {
