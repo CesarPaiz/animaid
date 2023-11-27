@@ -16,7 +16,7 @@ export default function IframeVideo({ jsonVideos, id, captitulo,episodios, fuent
    
     return (
         <div >
-            <div className="justify-center text-center mt-8">
+            <div className="flex justify-center text-center mt-8">
                 {videos?.map((item) => (
 
                     <div key={item.url} onClick={() => setVideo(item.url)} className=" gap-2 mt-2 mr-2 bg-blue-700 hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-full">{item.name}</div>
