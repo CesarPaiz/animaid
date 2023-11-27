@@ -51,13 +51,18 @@ export default async function MangaPage({
                 </div>
                 <div className="text-white flex flex-col justify-center  place-items-center mt-8 place-items-center">
                     {capitulos.map(item => (
-                        <Link prefetch={false} href={{
-                            pathname: '/manga/' + resultado + '/' + item.reultado,
 
-                        }}
-                            key={item.reultado} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
-                            <span>{item.reultado}</span>
-                        </Link>
+                        item !== null && (
+                            <Link prefetch={false} href={{
+                                pathname: '/manga/' + resultado + '/' + item.number,
+
+                            }}
+                                key={item.number} className="mb-4 bg-slate-800 rounded-full px-4 grid justify-center text-center text-white" > {title}
+                                <span>{item.number}</span>
+                            </Link>
+                        )
+
+
                     ))}
                     {noEncontrado && (
                         <span className="mt-4 ml-4 line-clamp-6">No se encontraron capitulos</span>

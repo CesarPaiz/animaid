@@ -12,12 +12,16 @@ export default async function MirarMangaPage({
 
     function getUrlByNumber(jsonManga, targetNumber) {
         for (let i = 0; i < jsonManga.length; i++) {
-            if (jsonManga[i].reultado === targetNumber) {
-                return [
-                    i,
-                    jsonManga[i].href
-                ]
+            if (jsonManga[i] !== null) {
+                if (jsonManga[i].number === targetNumber) {
+                    return [
+                        i,
+                        jsonManga[i].number
+                    ]
+                }
             }
+
+
         }
     }
 
@@ -31,24 +35,21 @@ export default async function MirarMangaPage({
 
     var busqueda = await mangaScrapSearch({ nombreManga: titleFixPar2 })
     var capitulos = await mangaScrapInfo({ url: busqueda })
-
     const capitulo_a_ver = getUrlByNumber(capitulos, mirar)
     try {
-        var capSiguiente = capitulos[capitulo_a_ver[0] - 1].reultado
+        var capSiguiente = capitulos[capitulo_a_ver[0] - 1].number
     }
     catch {
         var capSiguiente = undefined
     }
     try {
-        var capAnterior = capitulos[capitulo_a_ver[0] + 1].reultado
+        var capAnterior = capitulos[capitulo_a_ver[0] + 1].number
     }
     catch {
         var capAnterior = undefined
     }
 
-
-    const imagenes = await getCapImages({ url: capitulos[capitulo_a_ver[0]].href })
-
+    const imagenes = await getCapImages({ url: capitulos[capitulo_a_ver[0]].url })
 
 
     return (
@@ -61,7 +62,7 @@ export default async function MirarMangaPage({
 
                 <Suspense fallback={<span className='flex justify-center ml-4 mr-4 align-center text-2xl mt-8 text-white'>Loading...</span>}>
                     {imagenes.map(item => (
-                        <img key={item} className="md:max-w-xl w-full " src={item}></img>
+                        <img key={item.image} className="md:max-w-xl w-full " src={item.image}></img>
                     ))}
                 </Suspense>
                 <MangaRPage idM={resultado} capitulo={mirar} nextCap={capSiguiente} backCap={capAnterior} />
