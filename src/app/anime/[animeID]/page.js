@@ -45,7 +45,7 @@ export default async function Page({
     var descriptionFix = description.replace(/(<([^>]+)>)/gi, "")
     var title = result.data.Media.title.romaji
 
-    var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: title })
+    var mutiAnimeAPI = await getAnimeSearch({ nombreAnime: String(title).toLocaleLowerCase() })
 
     return (
 
